@@ -1,0 +1,41 @@
+<div class="Events-wrapper">
+    <h2 class="Events-title">All Events</h2>
+    <div class="Events-content">
+        <div class="Search-tabs">
+            <div class="Search-tab highlight">
+                Events
+            </div>
+            <div class="Search-tab">
+                Venues
+            </div>
+        </div>
+        <div class="Events-tableWrapper">
+            <div class="Search-search">
+                <div class="Search-searchBarWrapper">
+                    <div class="Search-searchBar">
+                        <%= form_tag events_path, :class => 'form' do %>
+                            <%= text_field :event, :name, :class => 'form-control' %>
+                            <%= submit_tag 'Search', :class => 'Search-submit btn btn-primary' %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="Search-filterWrapper">
+                    <button class="Search-filterButton btn">
+                        Filter
+                    </button>
+                </div>
+            </div>
+            <table class="Events-table table table-striped col-md-12" id="events">
+                <tbody>
+                    <% @events.each do |event| %>
+                        <tr class="Events-row" border="1">
+                            <td class="Events-item">
+                                <%= link_to "#{event.name}, #{event.date}", event_path(event) %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
