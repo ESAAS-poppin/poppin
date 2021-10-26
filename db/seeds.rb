@@ -5,3 +5,92 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+users = [{:username => 'caseyo', :password => 'password', :email => 'casey@columbia.edu', :image_url => '', :age => 22},
+    	  {:username => 'elies', :password => 'password', :email => 'elie@columbia.edu', :image_url => '', :age => 24},
+    	  {:username => 'jorger', :password => 'password', :email => 'jorge@columbia.edu', :image_url => '', :age => 22},
+          {:username => 'ryank', :password => 'password', :email => 'ryan@columbia.edu', :image_url => '', :age => 22},
+  	 ]
+
+users.each do |user|
+  User.create!(user)
+end
+
+
+venues = [{:name => 'Amity Hall', :address => '123 4th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :location => 'will be geolocation', :image_url => ''},
+          {:name => 'Lion\'s Head', :address => '234 5th st', :description => 'bar with outdoor seating', :venue_type => 'bar', :attire => 'casual', :price_range => '$', :location => 'will be geolocation', :image_url => ''},
+    	  {:name => '1020', :address => '345 6th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :location => 'will be geolocation', :image_url => ''},
+          {:name => 'Mel\s', :address => '456 7th st', :description => 'bar near columbia with cornhole', :venue_type => 'club', :attire => 'casual', :price_range => '$$$', :location => 'will be geolocation', :image_url => ''},
+  	 ]
+
+venues.each do |venue|
+  Venue.create!(venue)
+end
+
+events = [{:name => 'Trivia Night', 
+                :address => '123 4th st', 
+                :description => 'grab your friends to play trivia!', 
+                :event_type => 'trivia', 
+                :attire => 'casual', 
+                :price_range => '$$', 
+                :venue_id => 1,
+                :date => Date.new(2021, 11, 12),
+                :duration => 120,
+                :location => 'will be geolocation', 
+                :image_url => ''},
+          {:name => 'Line Dancing', 
+                :address => '345 5th st', 
+                :description => 'country music and line dancing', 
+                :event_type => 'dancing', 
+                :attire => 'cowboy', 
+                :price_range => '$$', 
+                :venue_id => 3,
+                :date => Date.new(2021, 10, 30),
+                :duration => 180,
+                :location => 'will be geolocation', 
+                :image_url => ''},
+  	 ]
+
+events.each do |event|
+  Event.create!(event)
+end
+
+followings = [{:user_id => 1, :following_user_id => 2},
+          {:user_id => 1, :following_user_id => 3},
+          {:user_id => 1, :following_user_id => 4},
+    	  {:user_id => 2, :following_user_id => 1},
+          {:user_id => 2, :following_user_id => 4},
+          {:user_id => 3, :following_user_id => 2},
+          {:user_id => 4, :following_user_id => 1},
+          {:user_id => 4, :following_user_id => 3},
+  	 ]
+
+followings.each do |following|
+  Following.create!(following)
+end
+
+saved_events = [{:user_id => 1, :event_id => 1},
+          {:user_id => 1, :event_id => 2},
+          {:user_id => 2, :event_id => 1},
+    	  {:user_id => 3, :event_id => 2},
+          {:user_id => 4, :event_id => 1},
+          {:user_id => 4, :event_id => 2},
+  	 ]
+
+saved_events.each do |saved_event|
+  SavedEvent.create!(saved_event)
+end
+
+saved_venues = [{:user_id => 1, :venue_id => 2},
+          {:user_id => 1, :venue_id => 3},
+          {:user_id => 1, :venue_id => 4},
+    	  {:user_id => 2, :venue_id => 1},
+          {:user_id => 2, :venue_id => 4},
+          {:user_id => 3, :venue_id => 2},
+          {:user_id => 4, :venue_id => 1},
+          {:user_id => 4, :venue_id => 3},
+  	 ]
+
+saved_venues.each do |saved_venue|
+  SavedVenue.create!(saved_venue)
+end

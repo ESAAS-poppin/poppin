@@ -4,6 +4,7 @@ class CreateVenues < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :address
       t.text :description
+      t.string :venue_type
       t.string :attire
       t.string :price_range
       t.string :location

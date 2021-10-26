@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_143806) do
+ActiveRecord::Schema.define(version: 2021_10_26_153134) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.text "description"
+    t.string "event_type"
     t.string "attire"
     t.string "price_range"
     t.integer "venue_id"
-    t.date "string"
+    t.date "date"
     t.integer "duration"
     t.string "location"
     t.string "image_url"
@@ -29,12 +30,12 @@ ActiveRecord::Schema.define(version: 2021_10_26_143806) do
   end
 
   create_table "followings", force: :cascade do |t|
-    t.integer "user_id_id"
-    t.integer "following_user_id_id"
+    t.integer "user_id"
+    t.integer "following_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["following_user_id_id"], name: "index_followings_on_following_user_id_id"
-    t.index ["user_id_id"], name: "index_followings_on_user_id_id"
+    t.index ["following_user_id"], name: "index_followings_on_following_user_id"
+    t.index ["user_id"], name: "index_followings_on_user_id"
   end
 
   create_table "saved_events", force: :cascade do |t|
@@ -56,7 +57,6 @@ ActiveRecord::Schema.define(version: 2021_10_26_143806) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "user_id"
     t.string "username"
     t.string "password"
     t.string "email"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_10_26_143806) do
     t.string "name"
     t.string "address"
     t.text "description"
+    t.string "venue_type"
     t.string "attire"
     t.string "price_range"
     t.string "location"
@@ -79,8 +80,8 @@ ActiveRecord::Schema.define(version: 2021_10_26_143806) do
   end
 
   add_foreign_key "events", "venues"
-  add_foreign_key "followings", "users", column: "following_user_id_id"
-  add_foreign_key "followings", "users", column: "user_id_id"
+  add_foreign_key "followings", "users"
+  add_foreign_key "followings", "users", column: "following_user_id"
   add_foreign_key "saved_events", "events"
   add_foreign_key "saved_events", "users"
   add_foreign_key "saved_venues", "users"

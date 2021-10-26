@@ -1,2 +1,2 @@
-class Saved_Event < ApplicationRecord
+class SavedEvent < ApplicationRecord
 end
