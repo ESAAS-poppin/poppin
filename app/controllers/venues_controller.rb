@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class VenuesController < ApplicationController
 
     # def show
     #   id = params[:id] # retrieve movie ID from URI route
@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     # end
   
     def index
-      @events = Event.all
+      @venues = Venue.all
     end
   
     # def new

@@ -1,20 +1,20 @@
 <div class="List-wrapper">
-    <h2 class="List-title">All Events</h2>
+    <h2 class="List-title">All Venues</h2>
     <div class="List-content">
         <div class="Search-tabs">
-            <div class="Search-tab highlight">
-                Events
-            </div>
             <div class="Search-tab">
-                <%= link_to "Venues", venues_path %>
+                <%= link_to "Events", events_path %>
+            </div>
+            <div class="Search-tab highlight">
+                Venues
             </div>
         </div>
         <div class="List-tableWrapper">
             <div class="Search-search">
                 <div class="Search-searchBarWrapper">
                     <div class="Search-searchBar">
-                        <%= form_tag events_path, :class => 'form' do %>
-                            <%= text_field :event, :name, :class => 'form-control' %>
+                        <%= form_tag venues_path, :class => 'form' do %>
+                            <%= text_field :venue, :name, :class => 'form-control' %>
                             <%= submit_tag 'Search', :class => 'Search-submit btn btn-primary' %>
                         <% end %>
                     </div>
@@ -25,12 +25,12 @@
                     </button>
                 </div>
             </div>
-            <table class="List-table table table-striped col-md-12" id="events">
+            <table class="List-table table table-striped col-md-12" id="venues">
                 <tbody>
-                    <% @events.each do |event| %>
+                    <% @venues.each do |venue| %>
                         <tr class="List-row" border="1">
                             <td class="List-item">
-                                <%= link_to "#{event.name}, #{event.date}", event_path(event) %>
+                                <%= link_to "#{venue.venue_type}: #{venue.name}, #{venue.price_range}", venue_path(venue) %>
                             </td>
                         </tr>
                     <% end %>
