@@ -14,7 +14,7 @@
  *= require_self
  */
 
-@import "./events";
+@import "./events.css";
 
 .btn
 {
