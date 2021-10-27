@@ -10,6 +10,10 @@ class UsersController < ApplicationController
 
     def show
        @user = current_user
+       @saved_events = @user.saved_events
+       @saved_venues = @user.saved_venues
+       @events = @user.events
+       @venues = @user.venues
     end
 
     def create

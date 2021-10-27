@@ -1,1 +1,28 @@
 <h1><%= @user.username %>'s Dashboard</h1>
+
+<div class="List-wrapper">
+    <h2 class="List-title">Your Favorite Venues</h2>
+    <div class="List-content">
+        <div class="Search-tabs">
+            <div class="Search-tab">
+                <%= link_to "Events", events_path %>
+            </div>
+            <div class="Search-tab highlight">
+                Venues
+            </div>
+        </div>
+        <div class="List-tableWrapper">
+            <table class="List-table table table-striped col-md-12" id="venues">
+                <tbody>
+                    <% @venues.each do |venue| %>
+                        <tr class="List-row" border="1">
+                            <td class="List-item">
+                                <%= link_to "#{venue.venue_type}: #{venue.name}, #{venue.price_range}", venue_path(venue) %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
