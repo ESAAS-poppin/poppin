@@ -1,0 +1,43 @@
+<div class="Event-detailsPage">
+    <div class="Event-link">
+        <%= link_to "All Events", events_path %>
+    </div>
+    <h2 class="Event-name">
+        <%= "#{@event.name} @ #{@event.venue_name}, #{@event.date.strftime("%B %-d, %Y")}"%>
+    </h2>
+    <div class="Event-info">
+        <div class="Event-infoTop">
+            <%# TODO: Event image %>
+            <div class="Event-imageWrapper">
+                image placeholder
+            </div>
+            <%# TODO: Map image %>
+            <div class="Event-mapWrapper">
+                map placeholder
+            </div>
+        </div>
+        <div class="Event-infoBottom">
+            <div class="Event-details">
+                <div class="Event-description Event-detail">
+                    <%= @event.name %>
+                </div>
+                <div class="Event-attire Event-detail">
+                    <%= @event.attire %>
+                </div>
+                <div class="Event-price Event-detail">
+                    <%= @event.price_range %>
+                </div>
+                <%# TODO: Save button functionality %>
+                <button class="Event-save btn">
+                    Save
+                </button>
+            </div>
+            <%# TODO: Friends section %>
+            <div class="Event-friendsWrapper">
+                <div class="Event-friendsTitle">
+                    My friends who saved
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>

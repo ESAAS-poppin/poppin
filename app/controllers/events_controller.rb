@@ -1,24 +1,21 @@
 class EventsController < ApplicationController
-
-    # def show
-    #   id = params[:id] # retrieve movie ID from URI route
-    #   @movie = Movie.find(id) # look up movie by unique ID
-    #   # will render app/views/movies/show.<extension> by default
-    # end
-  
     def index
       all_events = Event.all
-      # get venue name from id
       all_events.each do |evt|
-        ven_id = evt.venue_id
-        if ven_id != nil && ven_id != ''
-          evt_ven = Venue.where(id: ven_id)
-          if evt_ven != nil
-            evt.venue_name = evt_ven.first.name
-          end
-        end
+        Event.add_venue_name(evt)
       end
       @events = all_events
+    end
+
+    def show
+      id = params[:id]
+      event = Event.find_by_id(id)
+      if event == nil
+        redirect_to events_path(), :flash => { :error => "Event not found." }
+      else
+        Event.add_venue_name(event)
+        @event = event
+      end
     end
   
     # def new

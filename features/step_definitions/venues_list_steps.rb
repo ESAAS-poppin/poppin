@@ -9,7 +9,12 @@ When /^(?:|I )go to the venues list page$/ do
 end
 
 Then /I should be on the venues list page$/ do
-    visit venues_path
+    current_path = URI.parse(current_url).path
+    if current_path.respond_to? :should
+        current_path.should == venues_path
+    else
+        assert_equal venues_path, current_path
+    end
 end
 
 Then /I should see all the venues/ do
