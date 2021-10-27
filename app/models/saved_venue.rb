@@ -1,0 +1,2 @@
+class SavedVenue < ApplicationRecord
+end

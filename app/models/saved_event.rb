@@ -1,0 +1,2 @@
+class SavedEvent < ApplicationRecord
+end
