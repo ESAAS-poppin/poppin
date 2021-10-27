@@ -7,7 +7,18 @@ class EventsController < ApplicationController
     # end
   
     def index
-      @events = Event.all
+      all_events = Event.all
+      # get venue name from id
+      all_events.each do |evt|
+        ven_id = evt.venue_id
+        if ven_id != nil && ven_id != ''
+          evt_ven = Venue.where(id: ven_id)
+          if evt_ven != nil
+            evt.venue_name = evt_ven.first.name
+          end
+        end
+      end
+      @events = all_events
     end
   
     # def new
