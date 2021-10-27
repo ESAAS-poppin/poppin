@@ -8,20 +8,8 @@ When /^(?:|I )go to the events list page$/ do
     visit events_path
 end
 
-When /^(?:|I )follow "([^"]*)"$/ do |link|
-    click_link(link)
-end
-
-Then /^(?:|I )should see "([^"]*)"$/ do |text|
-    if page.respond_to? :should
-        page.should have_content(text)
-    else
-        assert page.has_content?(text)
-    end
-end
-
-Then /I should be on the Venues list page$/ do
-    visit venues_path
+Then /I should be on the events list page$/ do
+    visit events_path
 end
 
 Then /I should see all the events/ do
