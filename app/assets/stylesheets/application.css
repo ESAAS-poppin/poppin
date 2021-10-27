@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+@import "./list.css";
+
+.btn
+{
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+.Search-tabs
+{
+    display: flex;
+}
+
+.Search-tab
+{
+    width: 110px;
+    height: 40px;
+    margin-right: 2px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #9bc1c7;
+}
+
+.Search-tab.highlight
+{
+    background-color: #c7f5fc;
+}
+
+.Search-search
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}

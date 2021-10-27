@@ -1,0 +1,49 @@
+.List-wrapper
+ {
+    margin: 40px;
+    font-family: Verdana, sans-serif;
+ }
+
+ .List-title
+ {
+    font-size: 40px;
+ }
+
+ .List-tableWrapper
+ {
+     border: 1px solid black;
+ }
+
+ .List-table
+ {
+     width: 100%;
+ }
+
+ .List-row
+ {
+     height: 50px;
+ }
+
+ .List-table td
+ {
+    border: 1px solid black;
+ }
+
+ .List-item
+ {
+     padding: 10px;
+ }
+
+ input#event_name
+ {
+    width: 400px;
+    height: 20px;
+    border-radius: 5px;
+ }
+
+ input#venue_name
+ {
+    width: 400px;
+    height: 20px;
+    border-radius: 5px;
+ }
