@@ -3,7 +3,7 @@
         <%= link_to "All Events", events_path %>
     </div>
     <h2 class="Event-name">
-        <%= "#{@event.name} @ #{@event.venue_name}, #{@event.date.strftime("%B %-d, %Y")}"%>
+        <%= "#{@event.name} @ #{@event.venue.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}"%>
     </h2>
     <div class="Event-info">
         <div class="Event-infoTop">

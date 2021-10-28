@@ -1,10 +1,6 @@
 class EventsController < ApplicationController
     def index
-      all_events = Event.all
-      all_events.each do |evt|
-        Event.add_venue_name(evt)
-      end
-      @events = all_events
+      @events = Event.all
     end
 
     def show
@@ -13,7 +9,6 @@ class EventsController < ApplicationController
       if event == nil
         redirect_to events_path(), :flash => { :error => "Event not found." }
       else
-        Event.add_venue_name(event)
         @event = event
       end
     end
