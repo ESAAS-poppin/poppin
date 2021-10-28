@@ -22,5 +22,5 @@ Scenario: go to Venues list page from Events list page
 
 Scenario: go to details list page from Events list page
   When I go to the events list page
-  And I follow "Halloween Party, 2021-10-31"
+  And I follow "Halloween Party"
   Then I should be on the "Halloween Party" event details page

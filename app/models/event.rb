@@ -1,3 +1,3 @@
 class Event < ApplicationRecord
-    attr_accessor :venue_name
+  belongs_to :venue
 end

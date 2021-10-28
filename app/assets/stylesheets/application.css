@@ -15,6 +15,7 @@
  */
 
 @import "./list.css";
+@import "./event.css";
 
 .btn
 {
@@ -22,6 +23,18 @@
     border-radius: 5px;
     outline: none;
     border: none;
+}
+
+.flash
+{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.flash-error
+{
+    background-color: #f7bbb7;
 }
 
 .Search-tabs
