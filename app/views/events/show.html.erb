@@ -1,6 +1,7 @@
 <div class="Event-detailsPage">
     <div class="Event-link">
         <%= link_to "All Events", events_path %>
+        <%= link_to "My Dashboard", user_path %>
     </div>
     <h2 class="Event-name">
         <%= "#{@event.name} @ #{@event.venue.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}"%>
