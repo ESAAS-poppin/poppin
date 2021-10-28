@@ -12,6 +12,8 @@ Background: events in database
   | Happy Hour      |      $      |   2021-06-25 |
   | Halloween Party |     $$$     |   2021-10-31 |
 
+  And I am logged in
+
 Scenario: go to events list page from event details page
   When I go to the "Happy Hour" event details page
   And I follow "All Events"

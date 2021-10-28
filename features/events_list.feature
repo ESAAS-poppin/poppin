@@ -11,6 +11,8 @@ Background: events in database
   | Happy Hour      |      $      |   2021-06-25 |
   | Halloween Party |     $$$     |   2021-10-31 |
 
+  And I am logged in
+
 Scenario: correct events rendered
   When I go to the events list page
   Then I should see all the events

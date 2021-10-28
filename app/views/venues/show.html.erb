@@ -1,0 +1,54 @@
+<div class="Venue-detailsPage">
+    <div class="Venue-links">
+        <%= link_to "All Venues", venues_path %>
+        <%= link_to "My Dashboard", user_path %>
+    </div>
+    <h2 class="Venue-name">
+        <%= @venue.name %>
+    </h2>
+    <div class="Venue-info">
+        <div class="Venue-infoTop">
+            <%# TODO: Venue image %>
+            <div class="Venue-imageWrapper">
+                image placeholder
+            </div>
+            <%# TODO: Map image %>
+            <div class="Venue-mapWrapper">
+                map placeholder
+            </div>
+        </div>
+        <div class="Venue-infoBottom">
+            <div class="Venue-details">
+                <div class="Venue-description Venue-detail">
+                    <%= @venue.name %>
+                </div>
+                <div class="Venue-attire Venue-detail">
+                    <%= @venue.attire %>
+                </div>
+                <div class="Venue-price Venue-detail">
+                    <%= @venue.price_range %>
+                </div>
+                <%# TODO: Save button functionality %>
+                <button class="Venue-save btn">
+                    Save as favorite bar
+                </button>
+            </div>
+            <div class="Venue-eventsWrapper">
+                <div class="Venue-eventsTitle">
+                    Upcoming events:
+                </div>
+                <table class="List-table table table-striped col-md-12" id="events">
+                    <tbody>
+                        <% @venue.events.each do |event| %>
+                            <tr class="List-row" border="1">
+                                <td class="List-item">
+                                    <%= link_to "#{event.name} @ #{event.venue.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
