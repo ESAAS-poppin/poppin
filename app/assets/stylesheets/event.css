@@ -1,0 +1,43 @@
+.Event-detailsPage
+{
+    margin: 40px;
+    font-family: Verdana, sans-serif;
+}
+
+.Event-name
+{
+    font-size: 30px;
+}
+
+.Event-infoTop
+{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.Event-infoBottom
+{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.Event-imageWrapper
+{
+    height: 300px;
+    width: 300px;
+    background-color: #f3d2fa;
+}
+
+.Event-mapWrapper
+{
+    height: 300px;
+    width: 300px;
+    background-color: #d2fae6;
+}
+
+.Event-detail
+{
+    margin-bottom: 30px;
+}
