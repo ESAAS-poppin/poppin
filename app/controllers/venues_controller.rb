@@ -1,13 +1,17 @@
 class VenuesController < ApplicationController
-
-    # def show
-    #   id = params[:id] # retrieve movie ID from URI route
-    #   @movie = Movie.find(id) # look up movie by unique ID
-    #   # will render app/views/movies/show.<extension> by default
-    # end
   
     def index
       @venues = Venue.all
+    end
+
+    def show
+      id = params[:id]
+      venue = Venue.find_by_id(id)
+      if venue == nil
+        redirect_to venues_path(), :flash => { :error => "Venue not found." }
+      else
+        @venue = venue
+      end
     end
   
     # def new
