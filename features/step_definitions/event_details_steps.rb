@@ -5,7 +5,7 @@ When /I go to the "([^"]*)" event details page$/ do |event_name|
 end
 
 Then /I should be on the "([^"]*)" event details page$/ do |event_name|
-    evt = Event.where(name: event_name).first
+    evt = Event.where(name: event_name).take
     evt_id = evt.id
     
     current_path = URI.parse(current_url).path

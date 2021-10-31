@@ -5,11 +5,19 @@ Feature: Events list rendering and functionality
   And also navigate to the venues list tab easily
 
 Background: events in database
+  Given the following venues exist:
+  | name         | price_range | venue_type |
+  | Sports Bar   |      $$     |    bar     |
+  | Rooftop Bar  |      $      |    bar     |
+  | Dance Club   |     $$$     |    club    |
+
   Given the following events exist:
-  | name            | price_range |     date     |
-  | Pitcher Night   |      $$     |   2021-05-25 |
-  | Happy Hour      |      $      |   2021-06-25 |
-  | Halloween Party |     $$$     |   2021-10-31 |
+  | name            | price_range |     date     | venue_id |
+  | Pitcher Night   |      $$     |   2021-05-25 | 1        |
+  | Happy Hour      |      $      |   2021-06-25 | 2        |
+  | Halloween Party |     $$$     |   2021-10-31 | 3        |
+
+  And I am logged in
 
 Scenario: correct events rendered
   When I go to the events list page

@@ -6,11 +6,19 @@ Feature: Event details rendering and functionality
   I should also be able to navigate back to the events list.
 
 Background: events in database
+  Given the following venues exist:
+  | name         | price_range | venue_type |
+  | Sports Bar   |      $$     |    bar     |
+  | Rooftop Bar  |      $      |    bar     |
+  | Dance Club   |     $$$     |    club    |
+
   Given the following events exist:
-  | name            | price_range |     date     |
-  | Pitcher Night   |      $$     |   2021-05-25 |
-  | Happy Hour      |      $      |   2021-06-25 |
-  | Halloween Party |     $$$     |   2021-10-31 |
+  | name            | price_range |     date     | venue_id |
+  | Pitcher Night   |      $$     |   2021-05-25 | 1        |
+  | Happy Hour      |      $      |   2021-06-25 | 2        |
+  | Halloween Party |     $$$     |   2021-10-31 | 3        |
+
+  And I am logged in
 
 Scenario: go to events list page from event details page
   When I go to the "Happy Hour" event details page

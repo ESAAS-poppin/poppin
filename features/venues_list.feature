@@ -11,6 +11,8 @@ Background: venues in database
   | Rooftop Bar  |      $      |    bar     |
   | Dance Club   |     $$$     |    club    |
 
+  And I am logged in
+
 Scenario: correct venues rendered
   When I go to the venues list page
   Then I should see all the venues
