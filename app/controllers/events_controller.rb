@@ -14,7 +14,13 @@ class EventsController < ApplicationController
     end
 
     def filter filter_by, paramter
-        @events = 
+        paramter = params[:paramter]
+        event = Event.find_by_paramter(paramter)
+        if event == nil
+          redirect_to events_path(), :flash => { :error => "No Event with that criteria." }
+        else
+          @matching_events = event
+        end
     end
   
     # def new
