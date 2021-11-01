@@ -2,57 +2,60 @@
     <%= submit_tag 'Sign Out', :class => 'btn btn-primary' %>
 <% end %>
 
-
 <h1><%= @user.username %>'s Dashboard</h1>
 
-<div class="List-wrapper">
-    <h2 class="List-title">Your Saved Events</h2>
-    <div class="List-content">
-        <div class="Search-tabs">
-            <div class="Search-tab">
-                <%= link_to "Past Events", events_path %>
-            </div>
-            <div class="Search-tab highlight">
-                Upcoming Events
-            </div>
-        </div>
-        <div class="List-tableWrapper">
-            <table class="List-table table table-striped col-md-12" id="venues">
-                <tbody>
-                    <% @events.each do |event| %>
-                        <tr class="List-row" border="1">
-                            <td class="List-item">
-                                <%= link_to "#{event.name} @ #{event.venue_name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
-                            </td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="top-links">
+  <%= link_to 'Find Friends', events_path %>
+  <%= link_to 'Search Events', events_path%>
+  <%= link_to 'Search Venues', venues_path%>
+  <%= link_to 'See What My Friends are Up To'%>
 </div>
 
-<div class="List-wrapper">
-    <h2 class="List-title">Your Favorite Venues</h2>
-    <div class="List-content">
-        <div class="List-tableWrapper">
-            <table class="List-table table table-striped col-md-12" id="venues">
-                <tbody>
-                    <% @venues.each do |venue| %>
-                        <tr class="List-row" border="1">
-                            <td class="List-item">
-                                <%= link_to "#{venue.venue_type}: #{venue.name}, #{venue.price_range}", venue_path(venue) %>
-                            </td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
+<div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>
+<div class="Lists-container">
+    <div class="List-wrapper">
+        <h2 class="List-title">Your Saved Events</h2>
+        <div class="List-content">
+            <div class="Search-tabs">
+                <div class="Search-tab">
+                    <%= link_to "Past Events", events_path %>
+                </div>
+                <div class="Search-tab highlight">
+                    Upcoming Events
+                </div>
+            </div>
+            <div class="List-tableWrapper">
+                <table class="List-table table table-striped col-md-12" id="venues">
+                    <tbody>
+                        <% @events.each do |event| %>
+                            <tr class="List-row" border="1">
+                                <td class="List-item">
+                                    <%= link_to "#{event.name} @ #{event.venue_name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-  <%= link_to 'Find Friends', events_path, :class => 'btn btn-primary col-2' %>
-  <%= link_to 'Search Events/Venues', events_path, :class => 'btn btn-primary col-2' %>
-  <%= link_to 'See What My Friends are Up To', events_path, :class => 'btn btn-primary col-2' %>
+    <div class="List-wrapper">
+        <h2 class="List-title">Your Favorite Venues</h2>
+        <div class="List-content">
+            <div class="List-tableWrapper">
+                <table class="List-table table table-striped col-md-12" id="venues">
+                    <tbody>
+                        <% @venues.each do |venue| %>
+                            <tr class="List-row" border="1">
+                                <td class="List-item">
+                                    <%= link_to "#{venue.venue_type}: #{venue.name}, #{venue.price_range}", venue_path(venue) %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

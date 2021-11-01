@@ -16,6 +16,7 @@
 
 @import "./list.css";
 @import "./event.css";
+@import "./dashboard.css";
 
 .btn
 {
@@ -23,6 +24,15 @@
     border-radius: 5px;
     outline: none;
     border: none;
+    background-color: #61063f;
+    color: white;
+    min-width: 70px;
+    font-weight: 700;
+}
+
+.btn:hover
+{
+    background-color: #e031a0;
 }
 
 .flash
@@ -30,9 +40,15 @@
     width: 100%;
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .flash-error
+{
+    background-color: #f7bbb7;
+}
+
+.flash-notice
 {
     background-color: #f7bbb7;
 }
@@ -51,12 +67,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #9bc1c7;
+    background-color: #61063f;
+    color: white;
+    font-weight: 700;
+    border-radius: 5px 15px 0px 0px;
+}
+
+.Search-tab > a
+{
+    color: white;
 }
 
 .Search-tab.highlight
 {
-    background-color: #c7f5fc;
+    background-color: #e2c5fa;
 }
 
 .Search-search
@@ -64,4 +88,61 @@
     display: flex;
     justify-content: space-between;
     padding: 30px;
+}
+
+.Search-bar
+{
+    outline: none;
+    border: none;
+    height: 30px !important;
+}
+
+html {
+    background-color: #170940;
+    font-family: Verdana, sans-serif;
+}
+
+a
+{
+    color: #e70342;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+h1
+{
+    font-family: Verdana, sans-serif;
+    font-size: 62px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    background: -webkit-linear-gradient(white, #e70342);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-title
+{
+    color: white;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.info-bar
+{
+    background-color: white;
+    flex-basis: 40%;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.top-links
+{
+    display: flex;
+}
+
+.top-links > a
+{
+    flex-basis: 20%;
 }
