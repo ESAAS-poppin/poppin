@@ -17,8 +17,21 @@ class UsersController < ApplicationController
     end
 
     def create
+        if params.key?(:user) and params[:user].key?(:age) and params[:user][:age].to_i < 21
+          flash[:notice] = "You must be at least 21 to make an account."
+          redirect_to new_user_path
+          return
+        end
+        if params.key?(:user) and params[:user].key?(:username)
+          tmp_username = params[:user][:username]
+          if User.find_by(username: tmp_username)
+            flash[:notice] = "Username already exists, please choose another"
+            redirect_to new_user_path
+            return
+          end
+        end
         @user = User.create(user_params)
-        if @user.valid?
+        if @user.valid? 
           session[:user_id] = @user.id
           redirect_to @user
         else
@@ -37,6 +50,6 @@ class UsersController < ApplicationController
     # Making "internal" methods private is not required, but is a common practice.
     # This helps make clear which methods respond to requests, and which ones do not.
     def user_params
-       params.require(:user).permit(:username, :password, :age, :id)
+       params.require(:user).permit(:username, :password, :confirm_password, :email, :age, :id)
     end
 end

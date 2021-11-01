@@ -9,6 +9,15 @@ Given /^I am logged in$/ do
     click_button "Login"
 end
 
+Given /^I am logged in to "([^"]*)"$/ do |user_name|
+    user = User.find_by(username: user_name)
+
+    visit '/sessions/new'
+    fill_in "user[username]", :with => user.username
+    fill_in "user[password]", :with => user.password
+    click_button "Login"
+end
+
 When /^(?:|I )follow "([^"]*)"$/ do |link|
     click_link(link)
 end
@@ -20,3 +29,14 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
         assert page.has_content?(text)
     end
 end
+
+When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+    fill_in(field, :with => value)
+end
+
+When /^(?:|I )press "([^"]*)"$/ do |button|
+    click_button(button)
+end
+
+
+  
