@@ -39,4 +39,49 @@ class User < ApplicationRecord
         return Following.find_by(user_id: user_id, following_user_id: following_user_id) != nil
     end
 
+    def self.save_event(user_id, event_id)
+        # TODO: check valid id
+        saved = SavedEvent.find_by(user_id: user_id, event_id: event_id)
+        if saved
+            # TODO: consider error
+        else
+            SavedEvent.create(user_id: user_id, event_id: event_id)
+        end
+    end
+
+    def self.unsave_event(user_id, event_id)
+        saved = SavedEvent.find_by(user_id: user_id, event_id: event_id)
+        if saved
+            saved.delete
+        else
+            # TODO: consider error
+        end
+    end
+
+    def self.is_event_saved?(user_id, event_id)
+        return SavedEvent.find_by(user_id: user_id, event_id: event_id) != nil
+    end
+
+    def self.save_venue(user_id, venue_id)
+        # TODO: check valid id
+        saved = SavedVenue.find_by(user_id: user_id, venue_id: venue_id)
+        if saved
+            # TODO: consider error
+        else
+            SavedVenue.create(user_id: user_id, venue_id: venue_id)
+        end
+    end
+
+    def self.unsave_venue(user_id, venue_id)
+        saved = SavedVenue.find_by(user_id: user_id, venue_id: venue_id)
+        if saved
+            saved.delete
+        else
+            # TODO: consider error
+        end
+    end
+
+    def self.is_venue_saved?(user_id, venue_id)
+        return SavedVenue.find_by(user_id: user_id, venue_id: venue_id) != nil
+    end
 end
