@@ -61,6 +61,42 @@ class UsersController < ApplicationController
       following = User.unfollow(user_id, following_user_id)
     end
 
+    def save_event
+      user_id = params[:id]
+      event_id = params[:event_id]
+      
+      saved = User.save_event(user_id, event_id)
+      flash[:notice] = "Saved event"
+      redirect_to event_path(event_id)
+    end
+
+    def unsave_event
+      user_id = params[:id]
+      event_id = params[:event_id]
+      
+      saved = User.unsave_event(user_id, event_id)
+      flash[:notice] = "Removed saved event"
+      redirect_to event_path(event_id)
+    end
+
+    def save_venue
+      user_id = params[:id]
+      venue_id = params[:venue_id]
+      
+      saved = User.save_venue(user_id, venue_id)
+      flash[:notice] = "Saved bar"
+      redirect_to venue_path(venue_id)
+    end
+
+    def unsave_venue
+      user_id = params[:id]
+      venue_id = params[:venue_id]
+      
+      saved = User.unsave_venue(user_id, venue_id)
+      flash[:notice] = "Removed saved bar"
+      redirect_to venue_path(venue_id)
+    end
+
     # private
     # Making "internal" methods private is not required, but is a common practice.
     # This helps make clear which methods respond to requests, and which ones do not.
