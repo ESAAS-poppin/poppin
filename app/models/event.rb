@@ -13,6 +13,13 @@ class Event < ApplicationRecord
         end
         def available_attires
             ['buisness casual', 'black tie', 'casual', 'fancy', 'cowboy']
+
+    def self.saved_by(users)
+        if !users or !users.kind_of?(Array) or users.length < 1
+            return Event.all
+        else
+            saved_events = SavedEvent.where(user_id: users)
+            return Event.where(id: saved_events.map {|event| event.event_id})
         end
         
     end
