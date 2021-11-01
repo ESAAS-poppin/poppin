@@ -9,7 +9,10 @@ class VenuesController < ApplicationController
     def index
       @venues = Venue.all
     end
-  
+    
+    def filter
+      @venues = Venue.filter(params.slice(:venue_type, :price_range, :attire))
+    end
     # def new
     #   # default: render 'new' template
     # end

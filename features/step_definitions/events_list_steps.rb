@@ -17,3 +17,8 @@ Then /I should see all the events/ do
         step %{I should see "#{event.name}"}
     end
 end
+
+When /I filter by "(.*)"/ do |filters|
+    filters.each do
+        
+end

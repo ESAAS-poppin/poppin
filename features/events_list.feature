@@ -20,6 +20,12 @@ Scenario: go to Venues list page from Events list page
   And I follow "Venues"
   Then I should be on the venues list page
 
+Scenario: filter by price_range
+  When I go to the events list page
+  And I follow "Filter"
+  Then I should be on the advanced filtering page
+  When 
+
 Scenario: go to details list page from Events list page
   When I go to the events list page
   And I follow "Halloween Party, 2021-10-31"
