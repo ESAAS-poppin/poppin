@@ -31,7 +31,8 @@ class UsersController < ApplicationController
             return
           end
         end
-        @user = User.create(user_params)
+        tmp = params.require(:user).permit(:username, :password, :email, :age)
+        @user = User.create(tmp)
         if @user.valid? 
           session[:user_id] = @user.id
           redirect_to @user
