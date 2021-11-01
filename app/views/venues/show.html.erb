@@ -46,20 +46,26 @@
                 </button>
             </div>
             <div class="Venue-eventsWrapper">
-                <div class="Venue-eventsTitle">
-                    Upcoming events:
-                </div>
-                <table class="List-table table table-striped col-md-12" id="events">
-                    <tbody>
-                        <% @venue.events.each do |event| %>
-                            <tr class="List-row" border="1">
-                                <td class="List-item">
-                                    <%= link_to "#{event.name} @ #{event.venue.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
-                                </td>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                </table>
+                <% if @venue_events.length() > 0 %>
+                    <div class="Venue-eventsTitle">
+                        Upcoming events:
+                    </div>
+                    <table class="List-table table table-striped col-md-12" id="events">
+                        <tbody>
+                            <% @venue_events.each do |event| %>
+                                <tr class="List-row" border="1">
+                                    <td class="List-item">
+                                        <%= link_to "#{event.name} @ #{event.venue.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                <% else %>
+                    <div class="Venue-eventsTitle">
+                        No upcoming events
+                    </div>         
+                <% end %>
             </div>
         </div>
     </div>

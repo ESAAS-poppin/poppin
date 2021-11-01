@@ -4,7 +4,11 @@
         <%= link_to "My Dashboard", user_path %>
     </div>
     <h2 class="Event-name">
-        <%= "#{@event.name} @ #{@event.venue.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}"%>
+        <% if @event.venue != nil -%>
+            <%= link_to "#{@event.name} @ #{@event.venue.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}", event_path(@event) %>
+        <% else -%>
+            <%= link_to "#{@event.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}", event_path(@event) %>
+        <% end -%>    
     </h2>
     <div class="Event-info">
         <div class="Event-infoTop">

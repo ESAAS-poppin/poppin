@@ -34,7 +34,11 @@
                     <% @events.each do |event| %>
                         <tr class="List-row" border="1">
                             <td class="List-item">
-                                <%= link_to "#{event.name} @ #{event.venue.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                <% if event.venue != nil -%>
+                                    <%= link_to "#{event.name} @ #{event.venue.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                <% else -%>
+                                    <%= link_to "#{event.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                <% end -%>
                             </td>
                         </tr>
                     <% end %>

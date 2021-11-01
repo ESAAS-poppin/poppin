@@ -9,6 +9,7 @@ class VenuesController < ApplicationController
       #puts(@client.spots(40.802256, -73.964269, :name => 'lion\'s head', :radius => 5)[0].inspect)
       id = params[:id]
       venue = Venue.find_by_id(id)
+      @venue_events = venue.events.where('date >= ?', DateTime.now)
       if venue == nil
         redirect_to venues_path(), :flash => { :error => "Venue not found." }
       else
