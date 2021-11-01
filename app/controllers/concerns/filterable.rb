@@ -6,7 +6,7 @@ module Filterable
             criteria.each do |key, value|
                 result = result.public_send("filter_by_#{key}", value) if value.present
             end
-            results
+            result
         end
     end
 end
