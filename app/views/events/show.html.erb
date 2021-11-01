@@ -1,3 +1,4 @@
+<% if false %>
 <% provide :head_tags do %>
     <meta name='turbolinks-visit-control' content='reload'>
     <script>
@@ -6,6 +7,8 @@
     });
     </script>
 <% end %>
+<% end %>
+
 
 
 <div class="Event-detailsPage">
@@ -28,9 +31,9 @@
             </div>
             <%# TODO: Map image %>
             <div class="Event-mapWrapper">
-                <p>
-                <div id="map"></div>
-                </p>
+                <% if false %>
+                    <p><div id="map"></div></p>
+                <% end %>
             </div>
         </div>
         <div class="Event-infoBottom">
