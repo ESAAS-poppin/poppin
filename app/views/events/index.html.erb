@@ -2,6 +2,9 @@
     <% flash.each do |type, msg| %>
         <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
     <% end %>
+    <% if session[:user_id] != nil %>
+        <%= link_to "My Dashboard", user_path(session[:user_id]) %>
+    <% end %>
     <h2 class="List-title">All Events</h2>
     <div class="List-content">
         <%# TODO: Filter functionality %>

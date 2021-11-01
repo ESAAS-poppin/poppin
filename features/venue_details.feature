@@ -29,7 +29,6 @@ Scenario: see venue info on the venue details page
   When I go to the "Sports Bar" venue details page
   Then I should see "Sports Bar"
   And I should see "$$"
-  And I should see "Save as favorite bar"
 
 Scenario: see upcoming events on the venue details page
   When I go to the "Sports Bar" venue details page
@@ -38,3 +37,14 @@ Scenario: see upcoming events on the venue details page
 Scenario: no upcoming events on the venue details page
   When I go to the "Rooftop Bar" venue details page
   Then I should see "No upcoming events"
+
+Scenario: save venue
+  When I go to the "Rooftop Bar" venue details page
+  And I press "Save bar"
+  Then I should see "Saved bar"
+
+Scenario: unsave venue
+  When I go to the "Sports Bar" venue details page
+  And I press "Save bar"
+  And I press "Remove saved bar"
+  Then I should see "Removed saved bar"

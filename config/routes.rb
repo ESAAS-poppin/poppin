@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   resource :sessions
 
   root :to => redirect('/sessions/new')
+
   put '/users/:id/follow/:following_id', to: 'users#follow', as: 'follow'
   delete '/users/:id/follow/:following_id', to: 'users#unfollow', as: 'unfollow'
+
+  put '/users/:id/save_event/:event_id', to: 'users#save_event', as: 'save_event'
+  delete '/users/:id/save_event/:event_id', to: 'users#unsave_event', as: 'unsave_event'
+
+  put '/users/:id/save_venue/:venue_id', to: 'users#save_venue', as: 'save_venue'
+  delete '/users/:id/save_venue/:venue_id', to: 'users#unsave_venue', as: 'unsave_venue'
 end

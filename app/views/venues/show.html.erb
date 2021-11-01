@@ -10,6 +10,9 @@
 <% end %>
 
 <div class="Venue-detailsPage">
+    <% flash.each do |type, msg| %>
+        <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
+    <% end %> 
     <div class="Venue-links">
         <%= link_to "All Venues", venues_path %>
         <%= link_to "My Dashboard", user_path %>
@@ -47,10 +50,11 @@
                 <div class="Venue-price Venue-detail">
                     <%= @venue.price_range %>
                 </div>
-                <%# TODO: Save button functionality %>
-                <button class="Venue-save btn">
-                    Save as favorite bar
-                </button>
+                <% if session[:user_id] != nil and User.is_venue_saved?(session[:user_id], @venue.id) %>
+                    <%= button_to "Remove saved bar", unsave_venue_path(:id => session[:user_id], :venue_id => @venue.id), method: "delete" %>
+                <% else %>
+                    <%= button_to "Save bar", save_venue_path(:id => session[:user_id], :venue_id => @venue.id), method: "put" %>
+                <% end %>
             </div>
             <div class="Venue-eventsWrapper">
                 <% if @venue_events.length() > 0 %>
