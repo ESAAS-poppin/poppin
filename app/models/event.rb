@@ -33,4 +33,9 @@ class Event < ApplicationRecord
     scope :search, -> (query) {
         where("name like ?", "%#{query}%")
     }
+
+    scope :saved_by, -> (users) {
+        where(id: saved_events.map {|event| event.event_id})
+    }
+
 end

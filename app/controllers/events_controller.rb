@@ -6,6 +6,7 @@ class EventsController < ApplicationController
       @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
       @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
       @events = @events.search(params[:search]) if params[:search].present?
+      @events = @events.saved_by(params[:saved_by]) if params[:saved_by].present?
     end
 
     def new
