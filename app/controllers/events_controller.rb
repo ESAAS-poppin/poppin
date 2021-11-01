@@ -20,7 +20,7 @@ class EventsController < ApplicationController
       end
     end
 
-    def filter
+    def self.filter
       @events = Event.filter(params.slice(:event_type, :price_range, :date))
     end
 

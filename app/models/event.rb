@@ -4,4 +4,7 @@ class Event < ApplicationRecord
 
   has_many :users, :through => :saved_events
   belongs_to :venue
+
+  
+
 end
