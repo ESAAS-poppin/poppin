@@ -7,4 +7,13 @@ class User < ApplicationRecord
     has_many :events, :through => :saved_events
     has_many :venues, :through => :saved_venues
 
+    def self.search(search_text)
+        if search_text
+
+            return User.where("username LIKE ?", "%#{search_text}%")
+        else
+            return User.all
+        end
+    end
+
 end

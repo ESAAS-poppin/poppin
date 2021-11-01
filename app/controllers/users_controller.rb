@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
 
     def index
+      @users = User.search(params[:search])
     end
 
     def new
@@ -51,5 +52,6 @@ class UsersController < ApplicationController
     # This helps make clear which methods respond to requests, and which ones do not.
     def user_params
        params.require(:user).permit(:username, :password, :confirm_password, :email, :age, :id)
+       params.permit(:search)
     end
 end
