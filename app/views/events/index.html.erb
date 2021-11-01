@@ -5,7 +5,7 @@
     <h2 class="List-title">All Events</h2>
     <div class="List-content">
         <%# TODO: Filter functionality %>
-        <%= form_with(url: event_paths, method: :get, local: true) %>    
+        <%= form_with(url: events_path, method: :get, local: true) %>    
             <%= form.select :event_type, options_for_select(Event.event_type, @event.event_type) %>
             <%= form.select :price_range, options_for_select(Event.price_range, @event.price_range) %>
             <%= form.select :attire, options_for_select(Event.attire, @event.attire) %>
