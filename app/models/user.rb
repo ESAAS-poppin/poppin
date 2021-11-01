@@ -16,6 +16,16 @@ class User < ApplicationRecord
         end
     end
 
+    def self.followers(user_id)
+        return Following.where(following_user_id: user_id)
+    end
+
+    def self.following(user_id)
+        following = Following.where(user_id: user_id)
+        byebug
+        return following
+    end
+
     def self.follow(user_id, following_user_id)
         # TODO: check valid id
         following = Following.find_by(user_id: user_id, following_user_id: following_user_id)

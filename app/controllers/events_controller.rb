@@ -1,6 +1,12 @@
 class EventsController < ApplicationController
     def index
-      @events = Event.all
+      byebug
+      if params[:saved_by]
+        @events = Event.saved_by params[:saved_by]
+        
+      else
+        @events = Event.all
+      end
     end
 
     def show
@@ -54,8 +60,9 @@ class EventsController < ApplicationController
     # private
     # Making "internal" methods private is not required, but is a common practice.
     # This helps make clear which methods respond to requests, and which ones do not.
-    # def movie_params
-    #   params.require(:movie).permit(:title, :rating, :description, :release_date, :director)
-    # end
+
+    def event_params
+      # params.permit(:saved_by)
+    end
   end
   

@@ -49,5 +49,5 @@
 <div class="row">
   <%= link_to 'Find Friends', events_path, :class => 'btn btn-primary col-2' %>
   <%= link_to 'Search Events/Venues', events_path, :class => 'btn btn-primary col-2' %>
-  <%= link_to 'See What My Friends are Up To', events_path, :class => 'btn btn-primary col-2' %>
+  <%= link_to 'See What My Friends are Up To', events_path(:saved_by => User.following(@user.id).map { |u| u.id }), :class => 'btn btn-primary col-2' %>
 </div>
