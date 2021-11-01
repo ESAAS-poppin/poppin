@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :venues
   resources :users
   resource :sessions
+
+  root :to => redirect('/sessions/new')
 end
