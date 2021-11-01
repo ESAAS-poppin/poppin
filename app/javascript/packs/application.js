@@ -9,7 +9,6 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 //= require_tree .
-require("./../../assets/javascripts/")
 
 Rails.start()
 Turbolinks.start()
