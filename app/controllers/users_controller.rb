@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        #puts("in create")
         if params.key?(:user) and params[:user].key?(:age) and params[:user][:age].to_i < 21
           flash[:notice] = "You must be at least 21 to make an account."
           redirect_to new_user_path
@@ -32,12 +31,9 @@ class UsersController < ApplicationController
             return
           end
         end
-        #puts("creating user")
-        #puts(params)
         tmp = params.require(:user).permit(:username, :password, :email, :age)
         @user = User.create(tmp)
         if @user.valid? 
-          #puts("user valid")
           session[:user_id] = @user.id
           redirect_to @user
         else
