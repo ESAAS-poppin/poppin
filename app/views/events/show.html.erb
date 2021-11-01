@@ -1,3 +1,13 @@
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMap(<%=@event.latitude%>, <%=@event.longitude%>)
+    });
+    </script>
+<% end %>
+
+
 <div class="Event-detailsPage">
     <div class="Event-link">
         <%= link_to "All Events", events_path %>
@@ -18,7 +28,9 @@
             </div>
             <%# TODO: Map image %>
             <div class="Event-mapWrapper">
-                map placeholder
+                <p>
+                <div id="map"></div>
+                </p>
             </div>
         </div>
         <div class="Event-infoBottom">
