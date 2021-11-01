@@ -5,7 +5,9 @@
     <h2 class="List-title">All Events</h2>
     <div class="List-content">
         <%# TODO: Filter functionality %>
-        <%= link_to  "Filter", filter_path(events) %>
+        <%= f.select :event_type, options_for_select(Event.event_type, @event.event_type) %>
+        <%= f.select :price_range, options_for_select(Event.price_range, @event.price_range) %>
+        <%= f.select :attire, options_for_select(Event.attire, @event.attire) %>
         <div class="Search-tabs">
             <div class="Search-tab highlight">
                 Events
@@ -25,8 +27,8 @@
                     </div>
                 </div>
                 <div class="Search-filterWrapper">
-                    <button class="Search-filterButton btn">
-                        Filter
+                    <div class="Search-filterButton btn">
+                        <%= link_to "Filter", filter(path) %>
                     </button>
                 </div>
             </div>

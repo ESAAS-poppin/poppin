@@ -8,5 +8,4 @@ module Filterable
             end
         end
     end
-
 end

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_10_26_153134) do
     t.string "attire"
     t.string "price_range"
     t.integer "venue_id"
-    t.datetime "date"
+    t.date "date"
     t.integer "duration"
     t.string "location"
     t.string "image_url"

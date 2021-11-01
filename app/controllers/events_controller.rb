@@ -3,6 +3,29 @@ class EventsController < ApplicationController
       @events = Event.all
     end
 
+    def new
+      @event = Event.new
+    end
+
+    def search
+      session[:name] ||= params[:name]
+      session[:filter] = params[:filter]
+    end  
+
+    #def handle_search
+      #if session[:search_name]
+       # @events = Event.where()
+      #else
+      #  @events = Event.all
+     # end
+    #end
+
+    #def handle_filters
+      #def handle_filters
+      #  if session[:filter_option]
+     # end
+    #end
+
     def show
       id = params[:id]
       event = Event.find_by_id(id)
@@ -13,18 +36,11 @@ class EventsController < ApplicationController
       end
     end
 
-    def filter(filter_list)
-      
-      filter_list.each do 
-        @events = Event.filter(filter_list)
-      end
-      event = @events
-      if event.nil?
-        redirect_to events_path(), :flash => { :error => "No events with those criteria." }
-      end
-      @events
+    def filter
+      @events = Event.filter(params.slice(:date, :attire, :price_range, :description))
     end
-  
+    
+    
     # def new
     #   # default: render 'new' template
     # end
