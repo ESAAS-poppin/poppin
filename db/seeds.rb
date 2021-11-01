@@ -17,10 +17,10 @@ users.each do |user|
 end
 
 
-venues = [{:name => 'Amity Hall', :address => '123 4th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :latitude => 40.802256, :longitude => -73.964269, :image_url => ''},
-          {:name => 'Lion\'s Head', :address => '234 5th st', :description => 'bar with outdoor seating', :venue_type => 'bar', :attire => 'casual', :price_range => '$', :latitude => 51.501564, :longitude => -0.141944, :image_url => ''},
-    	  {:name => '1020', :address => '345 6th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :latitude => 51.501564, :longitude => -0.141944, :image_url => ''},
-          {:name => 'Mel\s', :address => '456 7th st', :description => 'bar near columbia with cornhole', :venue_type => 'club', :attire => 'casual', :price_range => '$$$', :latitude => 51.501564, :longitude => -0.141944, :image_url => ''},
+venues = [{:name => 'Amity Hall', :address => '123 4th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :latitude => 40.802250, :longitude => -73.964616, :image_url => ''},
+          {:name => 'Lion\'s Head', :address => '234 5th st', :description => 'bar with outdoor seating', :venue_type => 'bar', :attire => 'casual', :price_range => '$', :latitude => 40.802256, :longitude => -73.964269, :image_url => ''},
+    	  {:name => '1020', :address => '345 6th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :latitude => 40.8033355, :longitude => -73.9640311, :image_url => ''},
+          {:name => 'Mel\'s Burger Bar', :address => '456 7th st', :description => 'bar near columbia with cornhole', :venue_type => 'club', :attire => 'casual', :price_range => '$$$', :latitude => 40.78775, :longitude => -73.9788558, :image_url => ''},
   	 ]
 
 venues.each do |venue|

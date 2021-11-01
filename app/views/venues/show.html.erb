@@ -1,6 +1,5 @@
 <% provide :head_tags do %>
     <meta name='turbolinks-visit-control' content='reload'>
-    <%= puts(@venue.latitude) %>
     <script>
     document.addEventListener("DOMContentLoaded", function(){
         initMap(<%=@venue.latitude%>, <%=@venue.longitude%>)
@@ -20,7 +19,11 @@
         <div class="Venue-infoTop">
             <%# TODO: Venue image %>
             <div class="Venue-imageWrapper">
-                placeholder
+                <% if not @image_url.nil? %>
+                    <%= image_tag @image_url %>
+                <% else %>
+                    No Photo Available
+                <% end %>
             </div>
             <%# TODO: Map image %>
             <div class="Venue-mapWrapper">
