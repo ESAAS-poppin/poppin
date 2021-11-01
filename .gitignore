@@ -34,3 +34,5 @@
 
 .DS_Store
 db/.DS_Store
+
+coverage/
