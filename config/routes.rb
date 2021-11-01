@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :venues
   resources :users
   resource :sessions
-
+  put '/events/:id/filter/', to: 'events#filter', as: 'filter'
   put '/users/:id/follow/:following_id', to: 'users#follow', as: 'follow'
   delete '/users/:id/follow/:following_id', to: 'users#unfollow', as: 'unfollow'
 end

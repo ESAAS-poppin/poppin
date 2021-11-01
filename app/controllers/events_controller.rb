@@ -12,6 +12,18 @@ class EventsController < ApplicationController
         @event = event
       end
     end
+
+    def filter(filter_list)
+      
+      filter_list.each do 
+        @events = Event.filter(filter_list)
+      end
+      event = @events
+      if event.nil?
+        redirect_to events_path(), :flash => { :error => "No events with those criteria." }
+      end
+      @events
+    end
   
     # def new
     #   # default: render 'new' template
