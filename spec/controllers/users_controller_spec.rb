@@ -22,4 +22,18 @@ describe UsersController, :type => :controller do
           expect(response).to render_template("users/show")
         end
     end
+    it 'save venue' do
+      testUsr = User.new(username: 'test_user_123')
+      login(testUsr)
+      ven = Venue.create(name:'Dave and Busters')
+      put :save_venue, params: { id: 1, venue_id: ven.id }
+      expect(response).to redirect_to(venue_path(1))
+    end
+    it 'save event' do
+      testUsr = User.new(username: 'test_user_123')
+      login(testUsr)
+      evt = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+      put :save_event, params: { id: 1, event_id: 1 }
+      expect(response).to redirect_to(event_path(1))
+    end
 end

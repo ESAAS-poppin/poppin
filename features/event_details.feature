@@ -26,3 +26,14 @@ Scenario: go to events list page from event details page
   Then I should be on the events list page
 
 Scenario: see which friends are attending the event
+
+Scenario: save event
+  When I go to the "Happy Hour" event details page
+  And I press "Save event"
+  Then I should see "Saved event"
+
+Scenario: unsave event
+  When I go to the "Happy Hour" event details page
+  And I press "Save event"
+  And I press "Remove saved event"
+  Then I should see "Removed saved event"
