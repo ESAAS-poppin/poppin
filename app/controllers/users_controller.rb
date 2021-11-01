@@ -34,6 +34,20 @@ class UsersController < ApplicationController
         redirect_to new_session_path
     end
 
+    def follow
+      user_id = params[:id]
+      following_user_id = params[:following_id]
+      
+      following = User.follow(user_id, following_user_id)
+    end
+
+    def unfollow
+      user_id = params[:id]
+      following_user_id = params[:following_id]
+      
+      following = User.unfollow(user_id, following_user_id)
+    end
+
     # private
     # Making "internal" methods private is not required, but is a common practice.
     # This helps make clear which methods respond to requests, and which ones do not.
