@@ -17,10 +17,10 @@ users.each do |user|
 end
 
 
-venues = [{:name => 'Amity Hall', :address => '123 4th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :location => 'will be geolocation', :image_url => ''},
-          {:name => 'Lion\'s Head', :address => '234 5th st', :description => 'bar with outdoor seating', :venue_type => 'bar', :attire => 'casual', :price_range => '$', :location => 'will be geolocation', :image_url => ''},
-    	  {:name => '1020', :address => '345 6th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :location => 'will be geolocation', :image_url => ''},
-          {:name => 'Mel\s', :address => '456 7th st', :description => 'bar near columbia with cornhole', :venue_type => 'club', :attire => 'casual', :price_range => '$$$', :location => 'will be geolocation', :image_url => ''},
+venues = [{:name => 'Amity Hall', :address => '123 4th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :latitude => 40.802250, :longitude => -73.964616, :image_url => ''},
+          {:name => 'Lion\'s Head', :address => '234 5th st', :description => 'bar with outdoor seating', :venue_type => 'bar', :attire => 'casual', :price_range => '$', :latitude => 40.802256, :longitude => -73.964269, :image_url => ''},
+    	  {:name => '1020', :address => '345 6th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :latitude => 40.8033355, :longitude => -73.9640311, :image_url => ''},
+          {:name => 'Mel\'s Burger Bar', :address => '456 7th st', :description => 'bar near columbia with cornhole', :venue_type => 'club', :attire => 'casual', :price_range => '$$$', :latitude => 40.78775, :longitude => -73.9788558, :image_url => ''},
   	 ]
 
 venues.each do |venue|
@@ -36,7 +36,8 @@ events = [{:name => 'Trivia Night',
                 :venue_id => 1,
                 :date => DateTime.strptime("10/30/2021 18:00", "%m/%d/%Y %H:%M"),
                 :duration => 120,
-                :location => 'will be geolocation', 
+                :latitude => 40.802250, 
+                :longitude => -73.964616,
                 :image_url => ''},
           {:name => 'Line Dancing', 
                 :address => '345 5th st', 
@@ -47,7 +48,8 @@ events = [{:name => 'Trivia Night',
                 :venue_id => 3,
                 :date => DateTime.strptime("11/01/2021 17:00", "%m/%d/%Y %H:%M"),
                 :duration => 180,
-                :location => 'will be geolocation', 
+                :latitude => 40.802250, 
+                :longitude => -73.964616, 
                 :image_url => ''},
   	 ]
 

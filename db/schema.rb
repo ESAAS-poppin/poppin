@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 2021_10_26_153134) do
     t.integer "venue_id"
     t.datetime "date"
     t.integer "duration"
-    t.string "location"
+    t.decimal "latitude"
+    t.decimal "longitude"
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -73,7 +74,8 @@ ActiveRecord::Schema.define(version: 2021_10_26_153134) do
     t.string "venue_type"
     t.string "attire"
     t.string "price_range"
-    t.string "location"
+    t.decimal "latitude"
+    t.decimal "longitude"
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

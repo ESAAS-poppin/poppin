@@ -1,3 +1,16 @@
+<% if false %>
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMap(<%=@event.latitude%>, <%=@event.longitude%>)
+    });
+    </script>
+<% end %>
+<% end %>
+
+
+
 <div class="Event-detailsPage">
     <% flash.each do |type, msg| %>
         <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
@@ -21,7 +34,9 @@
             </div>
             <%# TODO: Map image %>
             <div class="Event-mapWrapper">
-                map placeholder
+                <% if false %>
+                    <p><div id="map"></div></p>
+                <% end %>
             </div>
         </div>
         <div class="Event-infoBottom">

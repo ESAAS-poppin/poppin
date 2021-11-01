@@ -12,7 +12,6 @@ Background: users in database
   | jorger   | password | jorge@columbia.edu | ''        | 22  |
   | ryank    | password | ryan@columbia.edu  | ''        | 22  |
 
-
 Scenario: login page rendered
   When I go to the login page
   Then I should see "Welcome to Poppin"
@@ -32,9 +31,8 @@ Scenario: login with invalid account stays on login page
   Then I should see "Invalid Login"
   Then I should be on the login page
 
-Scenario: login with invalid account stays on login page
+Scenario: navigate to the create account page
   Given I am on the login page
-  When I fill in "Username" with "idontexist"
-  And I fill in "Password" with "password"
-  And I press "Login"
-  Then I should be on the login page
+  When I follow "Create Account"
+  Then I should be on the create account page
+

@@ -1,3 +1,8 @@
+<%= form_tag sessions_path, :method => :delete do %>
+    <%= submit_tag 'Sign Out', :class => 'btn btn-primary' %>
+<% end %>
+
+
 <h1><%= @user.username %>'s Dashboard</h1>
 
 <div class="List-wrapper">

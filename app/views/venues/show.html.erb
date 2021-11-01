@@ -1,3 +1,14 @@
+<% if false %>
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMap(<%=@venue.latitude%>, <%=@venue.longitude%>)
+    });
+    </script>
+<% end %>
+<% end %>
+
 <div class="Venue-detailsPage">
     <% flash.each do |type, msg| %>
         <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
@@ -13,11 +24,19 @@
         <div class="Venue-infoTop">
             <%# TODO: Venue image %>
             <div class="Venue-imageWrapper">
-                image placeholder
+                <% if false %>
+                <% if not @image_url.nil? %>
+                    <%= image_tag @image_url %>
+                <% else %>
+                    No Photo Available
+                <% end %>
+                <% end %>
             </div>
             <%# TODO: Map image %>
             <div class="Venue-mapWrapper">
-                map placeholder
+                <% if false %>
+                <p><div id="map"></div></p>
+                <% end %>
             </div>
         </div>
         <div class="Venue-infoBottom">
