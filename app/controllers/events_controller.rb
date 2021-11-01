@@ -12,6 +12,10 @@ class EventsController < ApplicationController
         @event = event
       end
     end
+
+    def filter filter_by, paramter
+        @events = 
+    end
   
     # def new
     #   # default: render 'new' template
