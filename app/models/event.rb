@@ -5,7 +5,6 @@ class Event < ApplicationRecord
     belongs_to :venue
 
     def self.saved_by(users)
-        byebug
         if !users or !users.kind_of?(Array) or users.length < 1
             return Event.all
         else

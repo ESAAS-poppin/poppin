@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
     def index
-      byebug
       if params[:saved_by]
         @events = Event.saved_by params[:saved_by]
         

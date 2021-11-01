@@ -21,9 +21,7 @@ class User < ApplicationRecord
     end
 
     def self.following(user_id)
-        following = Following.where(user_id: user_id)
-        byebug
-        return following
+        return Following.where(user_id: user_id)
     end
 
     def self.follow(user_id, following_user_id)
