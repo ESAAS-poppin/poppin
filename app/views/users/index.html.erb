@@ -19,8 +19,6 @@
                         <tr class="List-row" border="1">
                             <td class="List-item">
                                 <%="#{user.username}"%>
-                            </td>
-                            <td class="List-item">
                                 <!--  TODO: maybe check if signed in -->
                                 <% if session[:user_id] != nil and User.follows?(session[:user_id], user.id) %>
                                   <%= button_to "Unfollow", follow_path(:id => session[:user_id], :following_id => user.id), method: "delete" %>
