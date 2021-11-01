@@ -1,0 +1,35 @@
+<!--  app/views/users/index.html.erb -->
+<div class="List-wrapper">
+    <h2 class="List-title">Find Friends</h2>
+    <div class="List-content">
+        <div class="List-tableWrapper">
+            <div class="Search-search">
+                <div class="Search-searchBarWrapper">
+                    <div class="Search-searchBar">
+                        <%= form_tag users_path, {:method => 'get', :class => 'form'} do %>
+                            <%= text_field_tag :search, params[:search], :class => 'form-control' %>
+                            <%= submit_tag 'Search', name: nil, :class => 'Search-submit btn btn-primary' %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <table class="List-table table table-striped col-md-12" id="users">
+                <tbody>
+                    <% @users.each do |user| %>
+                        <tr class="List-row" border="1">
+                            <td class="List-item">
+                                <%="#{user.username}"%>
+                                <!--  TODO: maybe check if signed in -->
+                                <% if session[:user_id] != nil and User.follows?(session[:user_id], user.id) %>
+                                  <%= button_to "Unfollow", follow_path(:id => session[:user_id], :following_id => user.id), method: "delete" %>
+                                <% else %>
+                                  <%= button_to "Follow", follow_path(:id => session[:user_id], :following_id => user.id), method: "put" %>
+                                <% end %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+! ! ! POPPIN ! ! !
 
-Things you may want to cover:
+* Run locally: `bundle exec rackup --host 0.0.0.0` and visit localhost:9292
 
-* Ruby version
+* Run rspec tests: `bundle exec rspec {spec/<filename>.rb}`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Run cucumber tests: `cucumber {features/<filename>.feature}`

@@ -1,0 +1,43 @@
+.Venue-detailsPage
+{
+    margin: 40px;
+    font-family: Verdana, sans-serif;
+}
+
+.Venue-name
+{
+    font-size: 30px;
+}
+
+.Venue-infoTop
+{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.Venue-infoBottom
+{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.Venue-imageWrapper
+{
+    height: 300px;
+    width: 300px;
+    background-color: #f3d2fa;
+}
+
+.Venue-mapWrapper
+{
+    height: 300px;
+    width: 300px;
+    background-color: #d2fae6;
+}
+
+.Venue-detail
+{
+    margin-bottom: 30px;
+}
