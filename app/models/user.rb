@@ -16,4 +16,27 @@ class User < ApplicationRecord
         end
     end
 
+    def self.follow(user_id, following_user_id)
+        # TODO: check valid id
+        following = Following.find_by(user_id: user_id, following_user_id: following_user_id)
+        if following
+            # TODO: consider error
+        else
+            Following.create(user_id: user_id, following_user_id: following_user_id)
+        end
+    end
+
+    def self.unfollow(user_id, following_user_id)
+        following = Following.find_by(user_id: user_id, following_user_id: following_user_id)
+        if following
+            following.delete
+        else
+            # TODO: consider error
+        end
+    end
+
+    def self.follows?(user_id, following_user_id)
+        return Following.find_by(user_id: user_id, following_user_id: following_user_id) != nil
+    end
+
 end
