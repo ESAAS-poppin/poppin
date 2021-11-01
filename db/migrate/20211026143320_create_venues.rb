@@ -7,7 +7,8 @@ class CreateVenues < ActiveRecord::Migration[6.1]
       t.string :venue_type
       t.string :attire
       t.string :price_range
-      t.string :location
+      t.decimal :latitude
+      t.decimal :longitude
       t.string :image_url
       t.timestamps
     end

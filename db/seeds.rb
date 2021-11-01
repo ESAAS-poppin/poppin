@@ -17,10 +17,10 @@ users.each do |user|
 end
 
 
-venues = [{:name => 'Amity Hall', :address => '123 4th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :location => 'will be geolocation', :image_url => ''},
-          {:name => 'Lion\'s Head', :address => '234 5th st', :description => 'bar with outdoor seating', :venue_type => 'bar', :attire => 'casual', :price_range => '$', :location => 'will be geolocation', :image_url => ''},
-    	  {:name => '1020', :address => '345 6th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :location => 'will be geolocation', :image_url => ''},
-          {:name => 'Mel\s', :address => '456 7th st', :description => 'bar near columbia with cornhole', :venue_type => 'club', :attire => 'casual', :price_range => '$$$', :location => 'will be geolocation', :image_url => ''},
+venues = [{:name => 'Amity Hall', :address => '123 4th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :latitude => 40.802256, :longitude => -73.964269, :image_url => ''},
+          {:name => 'Lion\'s Head', :address => '234 5th st', :description => 'bar with outdoor seating', :venue_type => 'bar', :attire => 'casual', :price_range => '$', :latitude => 51.501564, :longitude => -0.141944, :image_url => ''},
+    	  {:name => '1020', :address => '345 6th st', :description => 'bar near columbia', :venue_type => 'bar', :attire => 'casual', :price_range => '$$', :latitude => 51.501564, :longitude => -0.141944, :image_url => ''},
+          {:name => 'Mel\s', :address => '456 7th st', :description => 'bar near columbia with cornhole', :venue_type => 'club', :attire => 'casual', :price_range => '$$$', :latitude => 51.501564, :longitude => -0.141944, :image_url => ''},
   	 ]
 
 venues.each do |venue|

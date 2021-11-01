@@ -5,12 +5,16 @@ class VenuesController < ApplicationController
     end
 
     def show
+      #puts(@client.spots(40.802256, -73.964269, :name => 'lion\'s head', :radius => 5))
+      #puts(@client.spots(40.802256, -73.964269, :name => 'lion\'s head', :radius => 5)[0].inspect)
       id = params[:id]
       venue = Venue.find_by_id(id)
       if venue == nil
         redirect_to venues_path(), :flash => { :error => "Venue not found." }
       else
         @venue = venue
+        #@client = GooglePlaces::Client.new(Rails.application.credentials.google_maps_api_key)
+        #@google_venue = @client.spots(@venue.latitude, @venue.longitude, :name => @venue.name, :radius => 5)
       end
     end
   

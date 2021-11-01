@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield(:head_tags) %>
     <title>Poppin</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
