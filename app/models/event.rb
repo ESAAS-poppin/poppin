@@ -16,17 +16,6 @@ class Event < ApplicationRecord
         end
     end
 
-    def self.saved_by(users)
-        if !users or !users.kind_of?(Array) or users.length < 1
-            return Event.all
-        else
-            saved_events = SavedEvent.where(user_id: users)
-            return Event.where(id: saved_events.map {|event| event.event_id})
-        end
-        
-    end
-
-
     scope :with_price_range, -> (range) { 
       where(price_range: range)
     }
