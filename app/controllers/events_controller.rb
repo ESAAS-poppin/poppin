@@ -21,6 +21,7 @@ class EventsController < ApplicationController
       else
         @event = event
       end
+      @friends_who_saved = User.followed_by(id).that_saved_event(@event.id)
     end
   end
   

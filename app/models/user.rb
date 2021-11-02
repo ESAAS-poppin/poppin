@@ -16,13 +16,25 @@ class User < ApplicationRecord
         end
     end
 
-    def self.followers(user_id)
-        return Following.where(following_user_id: user_id)
-    end
+    scope :followed_by, -> (user_id) {
+        followings = Following.where(user_id: user_id)
+        where(id: followings.map { |following| following.following_user_id })
+    }
 
-    def self.following(user_id)
-        return Following.where(user_id: user_id)
-    end
+    scope :that_follow, -> (user_id) {
+        followings = Following.where(following_user_id: user_id)
+        where(id: followings.map { |following| following.user_id })
+    }
+
+    scope :that_saved_event, -> (event_id) {
+        saved_events = SavedEvent.where(event_id: event_id)
+        where(id: saved_events.map { |saved_event| saved_event.user_id })
+    }
+
+    scope :that_saved_venue, -> (venue_id) {
+        saved_venues = SavedVenue.where(venue_id: venue_id)
+        where(id: saved_venues.map { |saved_venue| saved_venue.user_id })
+    }
 
     def self.follow(user_id, following_user_id)
         # TODO: check valid id

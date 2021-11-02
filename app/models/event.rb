@@ -44,6 +44,7 @@ class Event < ApplicationRecord
     }
 
     scope :saved_by, -> (users) {
+        saved_events = SavedEvent.where(user_id: users)
         where(id: saved_events.map {|event| event.event_id})
     }
 
