@@ -21,7 +21,11 @@ class EventsController < ApplicationController
         redirect_to events_path(), :flash => { :error => "Event not found." }
       else
         @event = event
-        @friends_who_saved = User.followed_by(id).that_saved_event(@event.id)
+        if session and session[:user_id]
+          @friends_who_saved = User.followed_by(session[:user_id]).that_saved_event(@event.id)
+        else
+          @friends_who_saved = []
+        end
       end
       
     end
