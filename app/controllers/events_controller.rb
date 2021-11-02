@@ -1,30 +1,16 @@
 class EventsController < ApplicationController
+
     def index
       @events = Event.all
+      @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
+      @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
+      @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
+      @events = @events.search(params[:search]) if params[:search].present?
     end
 
     def new
       @event = Event.new
     end
-
-    def search
-      session[:name] ||= params[:name]
-      session[:filter] = params[:filter]
-    end  
-
-    #def handle_search
-      #if session[:search_name]
-       # @events = Event.where()
-      #else
-      #  @events = Event.all
-     # end
-    #end
-
-    #def handle_filters
-      #def handle_filters
-      #  if session[:filter_option]
-     # end
-    #end
 
     def show
       id = params[:id]
@@ -35,55 +21,5 @@ class EventsController < ApplicationController
         @event = event
       end
     end
-
-    def filter
-      @events = Event.filter(params.slice(:date, :attire, :price_range, :description))
-    end
-    
-    
-    # def new
-    #   # default: render 'new' template
-    # end
-  
-    # def create
-    #   @movie = Movie.create!(movie_params)
-    #   flash[:notice] = "#{@movie.title} was successfully created."
-    #   redirect_to movies_path
-    # end
-  
-    # def edit
-    #   @movie = Movie.find params[:id]
-    # end
-    
-    # def similar
-    #   movie = Movie.find params[:id]
-    #   director = movie.director
-    #   if director == nil || director == ""
-    #     flash[:notice] = "'#{movie.title}' has no director info"
-    #     redirect_to movies_path
-    #   end
-    #   @movies = Movie.where(director: director)
-    # end
-  
-    # def update
-    #   @movie = Movie.find params[:id]
-    #   @movie.update_attributes!(movie_params)
-    #   flash[:notice] = "#{@movie.title} was successfully updated."
-    #   redirect_to movie_path(@movie)
-    # end
-  
-    # def destroy
-    #   @movie = Movie.find(params[:id])
-    #   @movie.destroy
-    #   flash[:notice] = "Movie '#{@movie.title}' deleted."
-    #   redirect_to movies_path
-    # end
-  
-    # private
-    # Making "internal" methods private is not required, but is a common practice.
-    # This helps make clear which methods respond to requests, and which ones do not.
-    # def movie_params
-    #   params.require(:movie).permit(:title, :rating, :description, :release_date, :director)
-    # end
   end
   
