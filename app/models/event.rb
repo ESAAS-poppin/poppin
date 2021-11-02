@@ -13,6 +13,8 @@ class Event < ApplicationRecord
         end
         def available_attires
             ['buisness casual', 'black tie', 'casual', 'fancy', 'cowboy']
+        end
+    end
 
     def self.saved_by(users)
         if !users or !users.kind_of?(Array) or users.length < 1
