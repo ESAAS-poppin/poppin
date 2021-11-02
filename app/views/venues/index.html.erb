@@ -4,7 +4,7 @@
     <% end %>
     <h2 class="List-title page-title">All Venues</h2>
     <div class="List-content">
-        <%# TODO: Filter functionality %>
+        <% # TODO: Filter functionality %>
         <div class="Search-tabs">
             <div class="Search-tab">
                 <%= link_to "Events", events_path %>
@@ -14,21 +14,23 @@
             </div>
         </div>
         <div class="List-tableWrapper">
-            <div class="Search-search">
-                <div class="Search-searchBarWrapper">
-                    <div class="Search-searchBar">
-                        <%= form_tag venues_path, :class => 'form' do %>
-                            <%= text_field :venue, :name, :class => 'form-control Search-bar' %>
-                            <%= submit_tag 'Search', :class => 'Search-submit btn btn-primary' %>
-                        <% end %>
-                    </div>
-                </div>
-                <div class="Search-filterWrapper">
-                    <button class="Search-filterButton btn">
-                        Filter
-                    </button>
-                </div>
-            </div>
+            <%= form_tag venues_url, method: :get do %>   
+                Venue Types <br> <br>
+
+                <%= label_tag :search %>
+                <%= search_field_tag :search, params[:search] %>
+
+                <%= label_tag :filter_venue_type, "Venue Type:" %>
+                <%= select_tag :filter_venue_type, options_for_select(Venue.available_venue_types, params[:filter_venue_type]), include_blank: true %>       
+
+                <%= label_tag :filter_price_range, "Price Range:" %>
+                <%= select_tag :filter_price_range, options_for_select(Venue.available_price_ranges, params[:filter_price_range]), include_blank: true %>
+                
+                <%= label_tag :filter_attire, "Usual Attire:" %>
+                <%= select_tag :filter_attire, options_for_select(Venue.available_attires, params[:filter_attire]), include_blank: true %>
+
+                <%= submit_tag "Go" %>
+            <% end %>    
             <table class="List-table table table-striped col-md-12" id="venues">
                 <tbody>
                     <% @venues.each do |venue| %>
