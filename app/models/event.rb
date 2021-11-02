@@ -14,6 +14,15 @@ class Event < ApplicationRecord
         def available_attires
             ['buisness casual', 'black tie', 'casual', 'fancy', 'cowboy']
         end
+    end
+
+    def self.saved_by(users)
+        if !users or !users.kind_of?(Array) or users.length < 1
+            return Event.all
+        else
+            saved_events = SavedEvent.where(user_id: users)
+            return Event.where(id: saved_events.map {|event| event.event_id})
+        end
         
     end
 
@@ -33,4 +42,10 @@ class Event < ApplicationRecord
     scope :search, -> (query) {
         where("name like ?", "%#{query}%")
     }
+
+    scope :saved_by, -> (users) {
+        saved_events = SavedEvent.where(user_id: users)
+        where(id: saved_events.map {|event| event.event_id})
+    }
+
 end

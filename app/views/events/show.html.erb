@@ -58,9 +58,27 @@
             </div>
             <%# TODO: Friends section %>
             <div class="Event-friendsWrapper info-bar">
-                <div class="Event-friendsTitle">
-                    My friends who saved
-                </div> 
+                <% if @friends_who_saved.length() > 0 %>
+                    <div class="Event-friendsTitle">
+                        My friends who saved:
+                    </div>
+                    <table class="List-table table table-striped col-md-12" id="events">
+                        <tbody>
+                            <% @friends_who_saved.each do |friend| %>
+                                <tr class="List-row" border="1">
+                                    <td class="List-item">
+                                        <%# TODO: Maybe link to user profile (if we want to implement that feature) %>
+                                        <%= friend.username %>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                <% else %>
+                    <div class="Venue-eventsTitle">
+                        No friends have saved
+                    </div>         
+                <% end %>
             </div>
         </div>
     </div>
