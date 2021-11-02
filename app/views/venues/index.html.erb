@@ -2,7 +2,7 @@
     <% if session[:user_id] != nil %>
         <%= link_to "My Dashboard", user_path(session[:user_id]) %>
     <% end %>
-    <h2 class="List-title">All Venues</h2>
+    <h2 class="List-title page-title">All Venues</h2>
     <div class="List-content">
         <%# TODO: Filter functionality %>
         <div class="Search-tabs">
@@ -18,7 +18,7 @@
                 <div class="Search-searchBarWrapper">
                     <div class="Search-searchBar">
                         <%= form_tag venues_path, :class => 'form' do %>
-                            <%= text_field :venue, :name, :class => 'form-control' %>
+                            <%= text_field :venue, :name, :class => 'form-control Search-bar' %>
                             <%= submit_tag 'Search', :class => 'Search-submit btn btn-primary' %>
                         <% end %>
                     </div>
@@ -34,7 +34,7 @@
                     <% @venues.each do |venue| %>
                         <tr class="List-row" border="1">
                             <td class="List-item">
-                                <%= link_to "#{venue.venue_type}: #{venue.name}, #{venue.price_range}", venue_path(venue) %>
+                                <%= link_to "#{venue.name}", venue_path(venue) %>
                             </td>
                         </tr>
                     <% end %>
