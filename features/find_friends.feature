@@ -49,18 +49,21 @@ Scenario: navigate to the Find Friends page from the Dashboard page
   When I follow "Find Friends"
   Then I should be on the find friends page
 
+# Scenario: not display the username of the logged in user
+#   Given I am logged in to "jorger"
+#   And I am on the find friends page
+#   And I should not see user 'jorger'
+
 Scenario: see "Unfollow" next to all the users that are followed by the user
   Given I am logged in to "jorger"
   And I am on the find friends page
   Then I should see users 'caseyo', 'elies', 'ryank'
-  # And I should not see user 'jorger'
   And I should see 'Unfollow' beside users 'caseyo', 'elies', 'ryank'
 
 Scenario: see "Follow" next to all the users that are not followed by the user
   Given I am logged in to "ryank"
   And I am on the find friends page
   Then I should see users 'caseyo', 'elies', 'jorger'
-  # And I should not see user 'ryank'
   And I should see 'Follow' beside users 'caseyo', 'elies', 'jorger'
 
 Scenario: follow a user when "Follow" is pressed
