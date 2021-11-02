@@ -43,39 +43,39 @@ Background: users in database
   | 2       | 4       |
   | 3       | 4       |
 
-Scenario:
+Scenario: navigate to the Find Friends page from the Dashboard page
   Given I am logged in to "jorger"
   And I am on the "jorger" dashboard page
   When I follow "Find Friends"
   Then I should be on the find friends page
 
-Scenario:
+Scenario: see "Unfollow" next to all the users that are followed by the user
   Given I am logged in to "jorger"
   And I am on the find friends page
   Then I should see users 'caseyo', 'elies', 'ryank'
   # And I should not see user 'jorger'
   And I should see 'Unfollow' beside users 'caseyo', 'elies', 'ryank'
 
-Scenario:
+Scenario: see "Follow" next to all the users that are not followed by the user
   Given I am logged in to "ryank"
   And I am on the find friends page
   Then I should see users 'caseyo', 'elies', 'jorger'
   # And I should not see user 'ryank'
   And I should see 'Follow' beside users 'caseyo', 'elies', 'jorger'
 
-Scenario:
+Scenario: follow a user when "Follow" is pressed
   Given I am logged in to "ryank"
   And I am on the find friends page
   And I press "Follow" on 'jorger'
   Then 'ryank' should follow 'jorger'
 
-Scenario:
+Scenario: unfollow a user when "Unfollow" is pressed
   Given I am logged in to "jorger"
   And I am on the find friends page
   And I press "Unfollow" on 'ryank'
   Then 'jorger' should not follow 'ryank'
 
-Scenario:
+Scenario: filter users by the text in the search bar
   Given I am logged in to "jorger"
   And I am on the find friends page
   And I fill in "search-text-field" with "elies"
