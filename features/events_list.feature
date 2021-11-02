@@ -12,10 +12,10 @@ Background: events in database
   | Dance Club   |     $$$     |    club    |
 
   Given the following events exist:
-  | name            | price_range |     date     | venue_id |
-  | Pitcher Night   |      $$     |   2021-05-25 | 1        |
-  | Happy Hour      |      $      |   2021-06-25 | 2        |
-  | Halloween Party |     $$$     |   2021-10-31 | 3        |
+  | name            | price_range |     date     | venue_id | event_type   | attire  |
+  | Pitcher Night   |      $$     |   2021-05-25 | 1        | cheap drinks | casual  |
+  | Happy Hour      |      $      |   2021-06-25 | 2        | cheap drinks | casual  |
+  | Halloween Party |     $$$     |   2021-10-31 | 3        | party        | costume |
 
   And I am logged in
 
@@ -32,3 +32,28 @@ Scenario: go to details list page from Events list page
   When I go to the events list page
   And I follow "Halloween Party"
   Then I should be on the "Halloween Party" event details page
+
+Scenario: when I search for Happy
+  When I go to the events list page
+  And I search for "Happy"
+  Then I should see "Happy Hour"
+
+Scenario: filter checks
+  When I go to the events list page
+  And I now filter by "$" and "costume"
+  And I press "Go"
+  Then I should see ""
+  And I now filter by "$" and "casual"
+  And I press "Go"
+  Then I should see "Happy Hour"
+  And I now filter by "$" and "cheap drinks" and "casual"
+  And I press "Go"
+  Then I should see "Happy Hour"
+  And I now filter by "$$" and cheap drinks" and casual
+  And I press "Go"
+  Then I should see "Pitcher Night"
+  And I now filter by "$$$" and "costume" and "party"
+  And I press "Go"
+  Then I should see "Halloween Party"
+  Then I should see ""
+

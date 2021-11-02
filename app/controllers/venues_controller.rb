@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+    before_action :require_login
     def index
       @venues = Venue.all
       @venues = @venues.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
@@ -6,6 +7,10 @@ class VenuesController < ApplicationController
       @venues = @venues.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
       @venues = @venues.search(params[:search]) if params[:search].present?
     end
+
+    #def new
+     # @venue = Venue.new
+    #end
 
     def show
       id = params[:id]

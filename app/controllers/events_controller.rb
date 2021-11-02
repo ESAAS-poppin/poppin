@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-
+    skip_before_action :require_login
+    
     def index
       @events = Event.all
       @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
@@ -9,9 +10,9 @@ class EventsController < ApplicationController
       @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
 
-    def new
-      @event = Event.new
-    end
+    #def new
+     # @event = Event.new
+    #end
 
     def show
       id = params[:id]
