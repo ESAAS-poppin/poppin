@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe UsersController, :type => :controller do
+    before(:each) do
+      user = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+      session[:user_id] = 1
+      expect(session).to include(:user_id)
+    end
+
     describe "check defined" do
         it "should be defined" do
           expect { UsersController }.not_to raise_error
@@ -12,13 +18,33 @@ describe UsersController, :type => :controller do
           get :new
           expect(response).to render_template("users/new")
         end
+
+        it "create a new user" do
+          post :create, params: { user: {username: "elies", password: "password", email: "elie@columbia.edu", age:22} }
+          expect(response).to redirect_to("/users/2")
+        end
+
+        it "throws error for being under 21" do
+          post :create, params: { user: {username: "jorger", password: "password", email: "jorge@columbia.edu", age:20} }
+          expect(response).to redirect_to("/users/new")
+        end
+
+        it "throws error for being an alredy existing username" do
+          post :create, params: { user: {username: "caseyo", password: "password", email: "casey@columbia.edu", age:22} }
+          expect(response).to redirect_to("/users/new")
+        end
+
+        it "throws error for nil username" do
+          post :create, params: { user: {username: nil} }
+          expect(response).to redirect_to("/users/new")
+        end
     end
 
     describe "GET dashboard for caseyo" do
         it "shows dashboard for caseyo" do
           user = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
           User.stub(:find_by).and_return(user)
-          get :show, params: { id: 1 }, session: {'user_id' => 1}
+          get :show, params: { id: 2 }, session: {'user_id' => 2}
           expect(response).to render_template("users/show")
         end
     end
