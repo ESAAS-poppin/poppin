@@ -32,7 +32,7 @@ end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
     if page.respond_to? :should
-        page.should !have_content(text)
+        page.should_not have_content(text)
     else
         assert !page.has_content?(text)
     end

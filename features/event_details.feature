@@ -26,6 +26,10 @@ Scenario: go to events list page from event details page
   Then I should be on the events list page
 
 Scenario: see which friends are attending the event
+  # Given I am logged in to "jorger"
+  # When I go to the "Happy Hour" event details page
+  # Then I should see event "Pitcher Night"
+  # And I should not see events "Happy Hour", "Halloween Party"
 
 Scenario: save event
   When I go to the "Happy Hour" event details page
