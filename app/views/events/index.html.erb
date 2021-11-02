@@ -5,10 +5,11 @@
     <h2 class="List-title">All Events</h2>
     <div class="List-content">
         <%# TODO: Filter functionality %>
-        <%= form_with(url: events_path, method: :get, local: true) %>    
-            <%= form.select :event_type, options_for_select(Event.event_type, @event.event_type) %>
-            <%= form.select :price_range, options_for_select(Event.price_range, @event.price_range) %>
-            <%= form.select :attire, options_for_select(Event.attire, @event.attire) %>
+        <%= form_with url: "/search", method: :get do |form| %>    
+            <%= form.radio_button :event_type, "trivia" %>
+            <%= form.label :event_type_trivia, "trivia" %>
+            <%= form.radio_button :event_type, "Live Music" %>
+        <% end %>>
         <div class="Search-tabs">
             <div class="Search-tab highlight">
                 Events
@@ -29,7 +30,7 @@
                 </div>
                 <div class="Search-filterWrapper">
                     <div class="Search-filterButton btn">
-                        <%= link_to "Filter", filter(path) %>
+                        Filter
                     </button>
                 </div>
             </div>
