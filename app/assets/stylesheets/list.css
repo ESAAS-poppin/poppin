@@ -7,7 +7,7 @@
 
  .List-tableWrapper
  {
-     background-color: #e2c5fa;
+     border: 2px solid yellow;
      border-radius: 0px 5px 5px 5px;
  }
 
@@ -34,6 +34,12 @@
      background-color: white;
      border-radius: 20px;
      font-size: 20px;
+     box-shadow: 10px 5px 5px #052617;
+ }
+
+ .List-item > a
+ {
+     color: #165659;
  }
 
  input#event_name
@@ -59,7 +65,12 @@
  .Lists-container > .List-wrapper
  {
     flex-basis: 40%;
-    background-color: white;
+    border: 2px solid yellow;
     border-radius: 10px;
     padding: 20px;
+ }
+
+ .List-title
+ {
+    color: white;
  }

@@ -1,13 +1,17 @@
-<!--  app/views/users/index.html.erb -->
+<div class="top-links">
+  <%= link_to 'Search Events', events_path%>
+  <%= link_to 'Search Venues', venues_path%>
+</div>
+
 <div class="List-wrapper">
-    <h2 class="List-title">Find Friends</h2>
+    <h2 class="List-title page-title">Find Friends</h2>
     <div class="List-content">
-        <div class="List-tableWrapper">
+        <div class="List-tableWrapper find-friends-table">
             <div class="Search-search">
                 <div class="Search-searchBarWrapper">
                     <div class="Search-searchBar">
                         <%= form_tag users_path, {:method => 'get', :class => 'form'} do %>
-                            <%= text_field_tag :search, params[:search], :class => 'form-control' %>
+                            <%= text_field_tag :search, params[:search], :class => 'form-control Search-bar' %>
                             <%= submit_tag 'Search', name: nil, :class => 'Search-submit btn btn-primary' %>
                         <% end %>
                     </div>
@@ -17,13 +21,13 @@
                 <tbody>
                     <% @users.each do |user| %>
                         <tr class="List-row" border="1">
-                            <td class="List-item">
+                            <td class="List-item item-friends">
                                 <%="#{user.username}"%>
                                 <!--  TODO: maybe check if signed in -->
                                 <% if session[:user_id] != nil and User.follows?(session[:user_id], user.id) %>
-                                  <%= button_to "Unfollow", follow_path(:id => session[:user_id], :following_id => user.id), method: "delete" %>
+                                  <%= button_to "Unfollow", follow_path(:id => session[:user_id], :following_id => user.id), method: "delete", class: "btn" %>
                                 <% else %>
-                                  <%= button_to "Follow", follow_path(:id => session[:user_id], :following_id => user.id), method: "put" %>
+                                  <%= button_to "Follow", follow_path(:id => session[:user_id], :following_id => user.id), method: "put", class: "btn" %>
                                 <% end %>
                             </td>
                         </tr>
