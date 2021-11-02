@@ -47,10 +47,21 @@ Scenario:
   Given I am logged in to "jorger"
   And I am on the "jorger" dashboard page
   When I follow "Find Friends"
+  Then I should be on the find friends page
 
 Scenario:
   Given I am logged in to "jorger"
   And I am on the find friends page
+  Then I should see users 'caseyo', 'elies', 'ryank'
+  And I should not see user 'jorger'
+  # And I should see 'Unfollow' beside users 'caseyo', 'elies', 'ryank'
+
+Scenario:
+  Given I am logged in to "ryank"
+  And I am on the find friends page
+  Then I should see users 'caseyo', 'elies', 'jorger'
+  And I should not see user 'ryank'
+  # And I should see 'Follow' beside users 'caseyo', 'elies', 'jorger'
 
 Scenario:
   Given I am logged in to "jorger"
