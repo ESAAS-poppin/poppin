@@ -6,10 +6,10 @@ class VenuesController < ApplicationController
     def show
       id = params[:id]
       venue = Venue.find_by_id(id)
-      @venue_events = venue.events.where('date >= ?', DateTime.now)
       if venue == nil
         redirect_to venues_path(), :flash => { :error => "Venue not found." }
       else
+        @venue_events = venue.events.where('date >= ?', DateTime.now)
         @venue = venue
         # uncomment this code to get image
         #@client = GooglePlaces::Client.new(Rails.application.credentials.google_maps_api_key)
