@@ -5,7 +5,7 @@
     <% if session[:user_id] != nil %>
         <%= link_to "My Dashboard", user_path(session[:user_id]) %>
     <% end %>
-    <h2 class="List-title">All Events</h2>
+    <h2 class="List-title page-title">All Events</h2>
     <div class="List-content">
         <%# TODO: Filter functionality %>
         <div class="Search-tabs">
@@ -21,7 +21,7 @@
                 <div class="Search-searchBarWrapper">
                     <div class="Search-searchBar">
                         <%= form_tag events_path, :class => 'form' do %>
-                            <%= text_field :event, :name, :class => 'form-control' %>
+                            <%= text_field :event, :name, :class => 'form-control Search-bar' %>
                             <%= submit_tag 'Search', :class => 'Search-submit btn btn-primary' %>
                         <% end %>
                     </div>
@@ -32,10 +32,10 @@
                     </button>
                 </div>
             </div>
-            <table class="List-table table table-striped col-md-12" id="events">
+            <table class="List-table" id="events">
                 <tbody>
                     <% @events.each do |event| %>
-                        <tr class="List-row" border="1">
+                        <tr class="List-row">
                             <td class="List-item">
                                 <% if event.venue != nil -%>
                                     <%= link_to "#{event.name} @ #{event.venue.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>

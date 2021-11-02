@@ -39,5 +39,10 @@
 
 .Event-detail
 {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.button_to
+{
+    text-align: center;
 }

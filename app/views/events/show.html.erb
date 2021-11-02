@@ -15,15 +15,15 @@
     <% flash.each do |type, msg| %>
         <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
     <% end %>    
-    <div class="Event-link">
+    <div class="Event-link top-links">
         <%= link_to "All Events", events_path %>
         <%= link_to "My Dashboard", user_path %>
     </div>
-    <h2 class="Event-name">
+    <h2 class="Event-name page-title">
         <% if @event.venue != nil -%>
-            <%= link_to "#{@event.name} @ #{@event.venue.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}", event_path(@event) %>
+            <%= "#{@event.name} @ #{@event.venue.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}"%>
         <% else -%>
-            <%= link_to "#{@event.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}", event_path(@event) %>
+            <%= "#{@event.name}, #{@event.date.strftime("%B %-d, %Y %H:%M")}"%>
         <% end -%>    
     </h2>
     <div class="Event-info">
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="Event-infoBottom">
-            <div class="Event-details">
+            <div class="Event-details info-bar">
                 <div class="Event-description Event-detail">
                     <%= @event.name %>
                 </div>
@@ -51,13 +51,13 @@
                     <%= @event.price_range %>
                 </div>
                 <% if session[:user_id] != nil and User.is_event_saved?(session[:user_id], @event.id) %>
-                    <%= button_to "Remove saved event", unsave_event_path(:id => session[:user_id], :event_id => @event.id), method: "delete" %>
+                    <%= button_to "Remove saved event", unsave_event_path(:id => session[:user_id], :event_id => @event.id), method: "delete", class:'btn Save-button' %>
                 <% else %>
-                    <%= button_to "Save event", save_event_path(:id => session[:user_id], :event_id => @event.id), method: "put" %>
+                    <%= button_to "Save event", save_event_path(:id => session[:user_id], :event_id => @event.id), method: "put", class: 'btn Save-button' %>
                 <% end %>
             </div>
             <%# TODO: Friends section %>
-            <div class="Event-friendsWrapper">
+            <div class="Event-friendsWrapper info-bar">
                 <div class="Event-friendsTitle">
                     My friends who saved
                 </div> 

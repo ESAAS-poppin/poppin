@@ -1,0 +1,10 @@
+.find-friends-table
+{
+    border-radius: 5px;
+}
+
+.item-friends
+{
+    display: flex;
+    justify-content: space-between;
+}

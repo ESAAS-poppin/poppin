@@ -18,6 +18,12 @@ class UsersController < ApplicationController
     end
 
     def create
+        tmp = params.require(:user).permit(:username, :password, :email, :age)
+        if tmp[:username].nil? or tmp[:username].empty?
+          flash[:notice] = "Invalid Username."
+          redirect_to new_user_path
+          return
+        end
         if params.key?(:user) and params[:user].key?(:age) and params[:user][:age].to_i < 21
           flash[:notice] = "You must be at least 21 to make an account."
           redirect_to new_user_path
@@ -31,21 +37,11 @@ class UsersController < ApplicationController
             return
           end
         end
-        tmp = params.require(:user).permit(:username, :password, :email, :age)
         @user = User.create(tmp)
         if @user.valid? 
           session[:user_id] = @user.id
           redirect_to @user
-        else
-          flash[:error] = "Error creating account."
-          redirect_to new_user_path
         end
-    end
-
-    def destroy
-        session[:user_id] = nil
-        flash[:notice] = "You have signed out"
-        redirect_to new_session_path
     end
 
     def follow

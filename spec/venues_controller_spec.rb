@@ -36,5 +36,11 @@ describe VenuesController do
         get :show, params: { id: ven.id }
         expect(assigns(:venue_events).length()).to eq(1)
       end
+      it 'redirects to venues if invalid venue id' do
+        testUsr = User.new(username: 'test_user_123')
+        login(testUsr)
+        get :show, params: { id: 'hi' }
+        expect(response).to redirect_to venues_path
+      end
     end
 end

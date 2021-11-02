@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe SessionsController, :type => :controller do
+    before(:each) do
+      user = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+      session[:user_id] = 1
+      expect(session).to include(:user_id)
+    end
+
     describe "Check defined" do
         it "should be defined" do
           expect { SessionsController }.not_to raise_error
@@ -19,7 +25,7 @@ describe SessionsController, :type => :controller do
         user = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
         User.stub(:find_by).and_return(user)
         post :create, params: { user: {username: "caseyo", password: "password"} }
-        expect(response).to redirect_to("/users/1")
+        expect(response).to redirect_to("/users/2")
       end
 
       it "throws error for invalid login" do
@@ -33,7 +39,7 @@ describe SessionsController, :type => :controller do
     describe "DELETE a session" do
       it "log a user out" do
         delete :destroy
-        expect(session).not_to include(:user_id)
+        expect(session[:user_id]).to be_nil
         expect(response).to redirect_to("/sessions/new")
       end
     end

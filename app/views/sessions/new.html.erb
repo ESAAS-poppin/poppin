@@ -1,4 +1,4 @@
-<h1>Welcome to Poppin!</h1>
+<div class="page-title login-title">Welcome to Poppin!</div>
 
 <% flash.each do |type, msg| %>
     <div>
@@ -6,12 +6,16 @@
     </div>
   <% end %>
 
-<%= form_tag sessions_path, :class => 'form' do %>
-    <%= label :user, :username, 'Username', :class => 'col-form-label' %>
+<%= form_tag sessions_path, :class => 'form login-form' do %>
+    <%= label :user, :username, 'Username', :class => 'login-form-label' %>
     <%= text_field :user, :username, :class => 'form-control' %>
-    <%= label :user, :password, 'Password', :class => 'col-form-label' %>
+    <br/>
+    <br/>
+    <%= label :user, :password, 'Password', :class => 'login-form-label' %>
     <%= text_field :user, :password, :class => 'form-control' %>
     <br/>
-    <%= submit_tag 'Login', :class => 'btn btn-primary' %>
-    <%= link_to 'Create Account', new_user_path, :class => 'btn btn-primary' %>
+    <br/>
+    <%= submit_tag 'Login', :class => 'btn btn-primary login-button' %>
+    <br/>
+    <%= link_to 'Create Account', new_user_path, :class => 'link' %>
 <% end %>

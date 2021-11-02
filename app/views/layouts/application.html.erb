@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key %>
+    <%#= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= yield(:head_tags) %>
     <title>Poppin</title>
@@ -11,7 +11,14 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <div class="divider-1"></div>
+  <h1>POPPIN</h1>
+  <div class="dots">
+    <span class="dot"></span>
+    <span class="dot dot-2"></span>
+    <span class="dot dot-3"></span>
+  </div>
+  <div class="divider-2"></div>
   <body>
     <%= yield %>
   </body>
