@@ -7,9 +7,9 @@ Feature: Find Friends Page rendering and functionality
 Background: users in database
   Given the following users exist:
   | id | username | password | email              | image_url | age |
-  | 1  | caseyo   | password | casey@columbia.edu | ''        | 22  |
+  | 1  | jorger   | password | jorge@columbia.edu | ''        | 22  |
   | 2  | elies    | password | elie@columbia.edu  | ''        | 24  |
-  | 3  | jorger   | password | jorge@columbia.edu | ''        | 22  |
+  | 3  | caseyo   | password | casey@columbia.edu | ''        | 22  |
   | 4  | ryank    | password | ryan@columbia.edu  | ''        | 22  |
 
   Given the following venues exist:
@@ -53,16 +53,32 @@ Scenario:
   Given I am logged in to "jorger"
   And I am on the find friends page
   Then I should see users 'caseyo', 'elies', 'ryank'
-  And I should not see user 'jorger'
-  # And I should see 'Unfollow' beside users 'caseyo', 'elies', 'ryank'
+  # And I should not see user 'jorger'
+  And I should see 'Unfollow' beside users 'caseyo', 'elies', 'ryank'
 
 Scenario:
   Given I am logged in to "ryank"
   And I am on the find friends page
   Then I should see users 'caseyo', 'elies', 'jorger'
-  And I should not see user 'ryank'
-  # And I should see 'Follow' beside users 'caseyo', 'elies', 'jorger'
+  # And I should not see user 'ryank'
+  And I should see 'Follow' beside users 'caseyo', 'elies', 'jorger'
+
+Scenario:
+  Given I am logged in to "ryank"
+  And I am on the find friends page
+  And I press "Follow" on 'jorger'
+  Then 'ryank' should follow 'jorger'
 
 Scenario:
   Given I am logged in to "jorger"
   And I am on the find friends page
+  And I press "Unfollow" on 'ryank'
+  Then 'jorger' should not follow 'ryank'
+
+Scenario:
+  Given I am logged in to "jorger"
+  And I am on the find friends page
+  And I fill in "search-text-field" with "elies"
+  And I press "Search"
+  Then I should see user 'elies'
+  And I should not see users 'caseyo', 'ryank'

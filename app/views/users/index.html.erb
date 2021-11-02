@@ -11,7 +11,7 @@
                 <div class="Search-searchBarWrapper">
                     <div class="Search-searchBar">
                         <%= form_tag users_path, {:method => 'get', :class => 'form'} do %>
-                            <%= text_field_tag :search, params[:search], :class => 'form-control Search-bar' %>
+                            <%= text_field_tag :search, params[:search], { :class => 'form-control Search-bar', :id => "search-text-field" } %>
                             <%= submit_tag 'Search', name: nil, :class => 'Search-submit btn btn-primary' %>
                         <% end %>
                     </div>
@@ -25,7 +25,7 @@
                                 <%="#{user.username}"%>
                                 <!--  TODO: maybe check if signed in -->
                                 <% if session[:user_id] != nil and User.follows?(session[:user_id], user.id) %>
-                                  <%= button_to "Unfollow", follow_path(:id => session[:user_id], :following_id => user.id), method: "delete", class: "btn" %>
+                                  <%= button_to "Unfollow", unfollow_path(:id => session[:user_id], :following_id => user.id), method: "delete", class: "btn" %>
                                 <% else %>
                                   <%= button_to "Follow", follow_path(:id => session[:user_id], :following_id => user.id), method: "put", class: "btn" %>
                                 <% end %>
