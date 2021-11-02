@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
 
     def index
-      byebug
       @events = Event.all
       @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
       @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
