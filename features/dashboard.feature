@@ -44,3 +44,9 @@ Scenario: Click to event list
   Given I am on the "caseyo" dashboard page
   When I follow "Search Events/Venues"
   Then I should be on the events list page
+
+Scenario: Sign out of my account
+  Given I am on the "caseyo" dashboard page
+  When I press "Sign Out"
+  Then I should be on the login page
+  Then I should see "You have signed out"
