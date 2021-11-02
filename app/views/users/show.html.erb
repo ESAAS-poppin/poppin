@@ -6,7 +6,7 @@
   <%= link_to 'Find Friends', users_path %>
   <%= link_to 'Search Events', events_path%>
   <%= link_to 'Search Venues', venues_path%>
-  <%= link_to 'See What My Friends are Up To', events_path(:saved_by => User.followed_by(@user.id).map { |u| u.id })%>
+  <%= link_to 'See What My Friends are Up To', events_path(:saved_by => User.followed_by(@user.id).map { |u| u.id }.join(','))%>
 </div>
 
 <div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>
