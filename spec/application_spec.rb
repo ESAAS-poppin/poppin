@@ -9,3 +9,9 @@ class ApplicationCable::Connection < ActionCable::Connection::Base
       reject_unauthorized_connection unless user_id.present?
     end
 end
+
+describe ApplicationMailer do
+    it "should be defined" do
+      expect { ApplicationMailer }.not_to raise_error
+    end
+end
