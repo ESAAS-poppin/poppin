@@ -93,11 +93,4 @@ class UsersController < ApplicationController
       flash[:notice] = "Removed saved bar"
       redirect_to venue_path(venue_id)
     end
-
-    # private
-    # Making "internal" methods private is not required, but is a common practice.
-    # This helps make clear which methods respond to requests, and which ones do not.
-    def user_params
-       params.require(:user).permit(:username, :password, :confirm_password, :email, :age, :id)
-    end
 end
