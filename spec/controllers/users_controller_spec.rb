@@ -40,6 +40,50 @@ describe UsersController, :type => :controller do
         end
     end
 
+    describe "GET users page" do
+      before(:each) do
+        User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+        user = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+        session[:user_id] = 1
+        expect(session).to include(:user_id)
+      end
+
+      it "renders the users page" do
+        get :index
+        expect(response).to render_template("users/index")
+      end
+
+      it "lists all users" do
+        get :index
+        expect(assigns(:users)).to eq User.all
+      end
+
+      it "returns users that match the search input" do
+        get :index, :params => { :search => "jo" }
+        expect(assigns(:users)).to eq [User.find_by_username("jorger")]
+      end
+    end
+
+    describe "PUT following" do
+      before(:each) do
+        User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+        user = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+        session[:user_id] = 1
+        expect(session).to include(:user_id)
+      end
+
+      it "adds a follower for a user" do
+        put :follow, :params => { :id => 1, :following_id => 2}
+        expect(Following.find_by(user_id: 1, following_user_id: 2)).to be_truthy
+      end
+
+      it "removes a follower for a user" do
+        Following.create(user_id: 1, following_user_id: 2)
+        delete :unfollow, :params => { :id => 1, :following_id => 2}
+        expect(Following.find_by(user_id: 1, following_user_id: 2)).to be_nil
+      end
+    end
+
     describe "GET dashboard for caseyo" do
         it "shows dashboard for caseyo" do
           user = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)

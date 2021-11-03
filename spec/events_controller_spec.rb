@@ -11,6 +11,21 @@ describe EventsController do
           get :index
           expect(assigns(:events)).to eq evts
          end
+
+         it 'returns events saved by accounts that the user follows' do
+          user_1 = User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+          user_2 = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+          Following.create(user_id: 1, following_user_id: 2)
+          Venue.create(name:'Dave and Busters')
+          event_1 = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+          SavedEvent.create(user_id: 2, event_id: 1)
+  
+          session[:user_id] = 1
+          expect(session).to include(:user_id)
+  
+          get :index, :params => { :saved_by => [user_2] }
+          expect(assigns(:events)).to eq([event_1])
+         end
     end
     describe 'Event Venue Name' do
         it 'venue correctly linked to event' do
@@ -35,5 +50,20 @@ describe EventsController do
         expect(assigns(:event)).not_to eq(nil)
       end
       
+
+      it 'displays the usernames of accounts that the user follows that have saved this event' do
+        user_1 = User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+        user_2 = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+        Following.create(user_id: 1, following_user_id: 2)
+        Venue.create(name:'Dave and Busters')
+        Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+        SavedEvent.create(user_id: 2, event_id: 1)
+
+        session[:user_id] = 1
+        expect(session).to include(:user_id)
+
+        get :show, :params => { :id => 1 }
+        expect(assigns(:friends_who_saved)).to eq([user_2])
+      end
     end
 end

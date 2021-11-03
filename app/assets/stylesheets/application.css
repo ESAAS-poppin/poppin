@@ -17,6 +17,7 @@
 @import "./list.css";
 @import "./event.css";
 @import "./dashboard.css";
+@import "./filters.css";
 
 .btn
 {
@@ -96,6 +97,7 @@
     outline: none;
     border: none;
     height: 30px !important;
+    width: 300px;
     border-radius: 5px;
 }
 
