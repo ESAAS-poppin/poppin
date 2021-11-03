@@ -34,5 +34,6 @@ describe EventsController do
         get :show, params: { id: 1 }
         expect(assigns(:event)).not_to eq(nil)
       end
+      
     end
 end

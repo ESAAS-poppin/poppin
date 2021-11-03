@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+    attr_accessor :event
     attr_accessor :venue_name
     has_many :users, :through => :saved_events
     belongs_to :venue
@@ -12,7 +13,7 @@ class Event < ApplicationRecord
             ['$', '$$', '$$$']
         end
         def available_attires
-            ['buisness casual', 'black tie', 'casual', 'fancy', 'cowboy', 'costume']
+            ['business casual', 'black tie', 'casual', 'fancy', 'cowboy', 'costume']
         end
     end
 

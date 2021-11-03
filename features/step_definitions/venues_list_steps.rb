@@ -22,3 +22,59 @@ Then /I should see all the venues/ do
         step %{I should see "#{event.name}"}
     end
 end
+
+When /I search venues for (.*)/ do |search|
+    Venue.all.each do |event|
+        if event.name.include? search
+            step %{I should see "#{event.name}"}
+        end
+    end
+end
+
+When /I just filter venues by (.*)/ do |filter|
+    Venue.all.each do |event|
+        if event.price_range.include?(filter)
+            step %{I should see "#{event.name}"}
+        elsif event.attire.include? filter
+            step %{I should see "#{event.name}"}
+        elsif event.event_type.include?(filter)
+            step %{I should see "#{event.name}"}
+        end
+    end
+end
+
+When /I now filter venues by (.*) and (.*)/ do |filter1, filter2|
+    Venue.all.each do |event|
+        if event.price_range.include?(filter1) && event.attire.include?(filter2)
+            step %{I should see "#{event.name}"}
+        elsif event.price_range.include?(filter2) && event.attire.include?(filter1)
+            step %{I should see "#{event.name}"}
+        elsif event.price_range.include?(filter1) && event.event_type.include?(filter2)
+            step %{I should see "#{event.name}"}
+        elsif event.price_range.include?(filter2) && event.event_type.include?(filter1)
+            step %{I should see "#{event.name}"}
+        elsif event.attire.include?(filter1) && event.event_type.include?(filter2)
+            step %{I should see "#{event.name}"}
+        elsif event.attire.include?(filter2) && event.event_type.include?(filter1)
+            step %{I should see "#{event.name}"}
+        end
+    end
+end
+
+When /I also filter venues by (.*) and (.*) and (.*)/ do |filter1, filter2, filter3|
+    Venue.all.each do |event|
+        if event.price_range.include?(filter1) && event.attire.include?(filter2) && event.attire.include?(filter3)
+            step %{I should see "#{event.name}"}
+        elsif event.price_range.include?(filter1) && event.attire.include?(filter3) && event.attire.include?(filter2)
+            step %{I should see "#{event.name}"}
+        elsif event.price_range.include?(filter2) && event.attire.include?(filter1) && event.attire.include?(filter3)
+            step %{I should see "#{event.name}"}
+        elsif event.price_range.include?(filter2) && event.attire.include?(filter3) && event.attire.include?(filter1)
+            step %{I should see "#{event.name}"}
+        elsif event.price_range.include?(filter3) && event.attire.include?(filter1) && event.attire.include?(filter2)
+            step %{I should see "#{event.name}"}
+        elsif event.price_range.include?(filter3) && event.attire.include?(filter2) && event.attire.include?(filter1)
+            step %{I should see "#{event.name}"}
+        end
+    end
+end

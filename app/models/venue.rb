@@ -10,7 +10,7 @@ class Venue < ApplicationRecord
             ['$', '$$', '$$$']
         end
         def available_attires
-            ['buisness casual', 'black tie', 'casual', 'fancy', 'cowboy']
+            ['business casual', 'black tie', 'casual', 'fancy', 'cowboy']
         end
         
     end
