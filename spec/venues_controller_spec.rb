@@ -42,5 +42,19 @@ describe VenuesController do
         get :show, params: { id: 'hi' }
         expect(response).to redirect_to venues_path
       end
+      it 'fails to get image for nonexistent venue' do
+        testUsr = User.new(username: 'test_user_123')
+        login(testUsr)
+        ven = Venue.create(name:'Dave and Busters', latitude: 10, longitude: -10)
+        get :show, params: { id: ven.id }
+        expect(:image_url).not_to be_nil
+      end
+      it 'has a image url with valid lat and long' do
+        testUsr = User.new(username: 'test_user_123')
+        login(testUsr)
+        ven = Venue.create(name:'Amity Hall', latitude: 40.802250, longitude: -73.964616)
+        get :show, params: { id: ven.id }
+        expect(:image_url).not_to be_nil
+      end
     end
 end

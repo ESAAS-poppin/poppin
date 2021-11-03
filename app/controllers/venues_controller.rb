@@ -21,13 +21,18 @@ class VenuesController < ApplicationController
         @venue_events = venue.events.where('date >= ?', DateTime.now)
         @venue = venue
         # uncomment this code to get image
-        #@client = GooglePlaces::Client.new(Rails.application.credentials.google_maps_api_key)
-        #@google_venue = @client.spots(@venue.latitude, @venue.longitude, :name => @venue.name, :radius => 5)[0]
-        #if not @google_venue.nil? and @google_venue.respond_to? :photos
-        #  @image_url = @google_venue.photos[0].fetch_url(400) 
-        #else
-        #  @image_url = nil
-        #end
+        if not @venue.latitude.nil? and not @venue.longitude.nil?
+          @client = GooglePlaces::Client.new(Rails.application.credentials.google_maps_api_key)
+          @google_venue = @client.spots(@venue.latitude, @venue.longitude, :name => @venue.name, :radius => 5)
+          puts(@google_venue.inspect)
+          if not @google_venue.nil? and not @google_venue.empty? and @google_venue[0].respond_to? :photos
+            @image_url = @google_venue[0].photos[0].fetch_url(400) 
+          else
+            @image_url = nil
+          end
+        else
+          @image_url = nil
+        end
       end
     end
   end
