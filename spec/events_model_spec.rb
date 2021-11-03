@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Event, :type => :model do
     it "should have defined event types" do
-        expect(Event.available_event_types).to match_array(['trivia', 'live music', 'dancing', 'sports', 'cheap drinks', 'party'])
+        expect(Event.available_event_types).to match_array(['trivia', 'live music', 'dancing', 'sports', 'cheap drinks', 'party', 'brunch'])
     end
 
     it "should have defined attire types" do
