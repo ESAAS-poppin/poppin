@@ -24,7 +24,6 @@ class VenuesController < ApplicationController
         if not @venue.latitude.nil? and not @venue.longitude.nil?
           @client = GooglePlaces::Client.new(Rails.application.credentials.google_maps_api_key)
           @google_venue = @client.spots(@venue.latitude, @venue.longitude, :name => @venue.name, :radius => 5)
-          puts(@google_venue.inspect)
           if not @google_venue.nil? and not @google_venue.empty? and @google_venue[0].respond_to? :photos
             @image_url = @google_venue[0].photos[0].fetch_url(400) 
           else
