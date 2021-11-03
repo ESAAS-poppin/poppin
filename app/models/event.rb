@@ -7,7 +7,7 @@ class Event < ApplicationRecord
     class << self
     
         def available_event_types
-            ['trivia', 'live music', 'dancing', 'sports', 'cheap drinks', 'party']
+            ['trivia', 'live music', 'dancing', 'sports', 'cheap drinks', 'party', 'brunch']
         end
         def available_price_ranges
             ['$', '$$', '$$$']
