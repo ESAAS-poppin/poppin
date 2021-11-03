@@ -40,8 +40,11 @@
                 <div class="Event-description Event-detail">
                     <%= @event.name %>
                 </div>
+                <div class="Venue-address Venue-detail">
+                    <%= @event.address %>
+                </div>
                 <div class="Event-attire Event-detail">
-                    <%= @event.attire %>
+                    <%= "attire: #{@event.attire}" %>
                 </div>
                 <div class="Event-price Event-detail">
                     <%= @event.price_range %>
