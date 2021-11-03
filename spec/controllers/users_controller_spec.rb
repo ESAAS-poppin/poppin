@@ -114,8 +114,11 @@ describe UsersController, :type => :controller do
     it 'unsave event' do
       testUsr = User.new(username: 'test_user_123')
       login(testUsr)
+      ven = Venue.create(name:'Dave and Busters')
       evt = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
-      put :unsave_event, params: { id: 1, event_id: 1 }
+      SavedEvent.create(user_id: 1, event_id: 1)
+      delete :unsave_event, params: { id: 1, event_id: 1 }
+      expect(SavedEvent.find_by(user_id: 1, event_id: 1)).to be_nil
       expect(response).to redirect_to(event_path(1))
       expect(flash[:notice]).to eq("Removed saved event")
     end
@@ -124,7 +127,9 @@ describe UsersController, :type => :controller do
       testUsr = User.new(username: 'test_user_123')
       login(testUsr)
       ven = Venue.create(name:'Dave and Busters')
-      put :unsave_venue, params: { id: 1, venue_id: 1 }
+      SavedVenue.create(user_id: 1, venue_id: 1)
+      delete :unsave_venue, params: { id: 1, venue_id: 1 }
+      expect(SavedVenue.find_by(user_id: 1, venue_id: 1)).to be_nil
       expect(response).to redirect_to(venue_path(1))
       expect(flash[:notice]).to eq("Removed saved bar")
     end
