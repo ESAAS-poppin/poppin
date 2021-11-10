@@ -1,0 +1,37 @@
+<%= form_tag sessions_path, :method => :delete do %>
+    <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
+<% end %>
+
+<div class="top-links">
+  <%= link_to 'Update Info', users_path %>
+  <%= link_to 'Create Event', events_path%>
+</div>
+
+<div class="Dashboard-title page-title"><%= @venue.name %>'s Dashboard</div>
+<div class="Lists-container">
+    <div class="List-wrapper">
+        <h2 class="List-title">Your Events</h2>
+        <div class="List-content">
+            <div class="Search-tabs">
+                <div class="Search-tab">
+                    <%= link_to "Past Events", events_path %>
+                </div>
+                <div class="Search-tab highlight">
+                    Upcoming Events
+                </div>
+            </div>
+            <div class="List-tableWrapper">
+                <table class="List-table table table-striped col-md-12" id="venues">
+                    <tbody>
+                        <% @events.each do |event| %>
+                            <tr class="List-row" border="1">
+                                <td class="List-item">
+                                    <%= link_to "#{event.name} @ #{event.venue_name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

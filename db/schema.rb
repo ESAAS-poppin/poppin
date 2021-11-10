@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_153134) do
+ActiveRecord::Schema.define(version: 2021_11_10_014314) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(version: 2021_10_26_153134) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "venue_admins", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "venues", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -77,8 +85,10 @@ ActiveRecord::Schema.define(version: 2021_10_26_153134) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.string "image_url"
+    t.integer "venue_admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["venue_admin_id"], name: "index_venues_on_venue_admin_id"
   end
 
   add_foreign_key "events", "venues"
@@ -88,4 +98,5 @@ ActiveRecord::Schema.define(version: 2021_10_26_153134) do
   add_foreign_key "saved_events", "users"
   add_foreign_key "saved_venues", "users"
   add_foreign_key "saved_venues", "venues"
+  add_foreign_key "venues", "venue_admins"
 end
