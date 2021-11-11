@@ -6,14 +6,15 @@ class VenueAdminsController < ApplicationController
     end 
 
     def show
-        @venue_admin = VenueAdmin.find_by(id: params[:id])
+        @venue_admin = VenueAdmin.find_by(id: session[:user_id])
         @venue = @venue_admin.venue
         @events = @venue_admin.events
     end
 
     def create
-        tmp = params.require(:user).permit(:username, :password, :email)
-        if tmp[:username].nil? or tmp[:username].empty?
+        # Create Venue Admin
+        admin_params = params.require(:venue_admin).permit(:username, :password, :email)
+        if admin_params[:username].nil? or admin_params[:username].empty?
           flash[:notice] = "Invalid Username."
           redirect_to new_user_path
           return
@@ -26,10 +27,21 @@ class VenueAdminsController < ApplicationController
             return
           end
         end
-        @venue_admin = VenueAdmin.create(tmp)
+        @venue_admin = VenueAdmin.create(admin_params)
         if @venue_admin.valid? 
+          puts('created')
           session[:user_id] = @venue_admin.id
-          redirect_to @venue_admin
+        end
+
+        # Create Venue
+        venue_params = params.require(:venue).permit(:name, :address, :description, :type, :attire, :price, :latitude, :longitude)
+        venue_params[:venue_admin_id] = @venue_admin.id
+        venue_params[:attire] = params[:attire]
+        venue_params[:price_range] = params[:price_range]
+        venue_params[:venue_type] = params[:venue_type]
+        @venue = Venue.create(venue_params)
+        if @venue.valid?
+          redirect_to venue_admin_path(@venue_admin)
         end
     end
 end
