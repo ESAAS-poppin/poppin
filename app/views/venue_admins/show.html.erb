@@ -4,7 +4,7 @@
 
 <div class="top-links">
   <%= link_to 'Update Info', users_path %>
-  <%= link_to 'Create Event', events_path%>
+  <%= link_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id) %>
 </div>
 
 <div class="Dashboard-title page-title"><%= @venue.name %>'s Dashboard</div>
