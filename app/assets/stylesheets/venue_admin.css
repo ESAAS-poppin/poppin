@@ -1,0 +1,19 @@
+
+
+.space-evenly {
+    display: flex;
+    justify-content: space-between;
+}
+
+.business-info {
+    width: 600px;
+}
+
+
+ .Admin-container 
+ {
+    width: 700px;
+    border: 2px solid yellow;
+    border-radius: 10px;
+    padding: 20px;
+ }
