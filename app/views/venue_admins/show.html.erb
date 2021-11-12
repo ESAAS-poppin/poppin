@@ -1,0 +1,72 @@
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMap(<%=@venue.latitude%>, <%=@venue.longitude%>)
+    });
+    </script>
+<% end %>
+
+
+<%= form_tag sessions_path, :method => :delete do %>
+    <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
+<% end %>
+
+<div class="top-links">
+  <%= link_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id) %>
+</div>
+
+<div class="Dashboard-title page-title"><%= @venue.name %>'s Dashboard</div>
+<div class="dashboard-body space-evenly">
+    <div class="Admin-container">
+        <h2 class="List-title">Your Business Info</h2><br>
+        <div class="Venue-details info-bar business-info">
+            <div class="Venue-description Venue-detail">
+                <%= "Description: #{@venue.description}" %>
+            </div>
+            <div class="Venue-address Venue-detail">
+                <%= "Address: #{@venue.address}" %>
+            </div>
+            <div class="Venue-attire Venue-detail">
+                <%= "Attire: #{@venue.attire}" %>
+            </div>
+            <div class="Venue-price Venue-detail">
+                <%= "Price Range: #{@venue.price_range}" %>
+            </div>
+            <div class="Venue-mapWrapper">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Admin-container">
+        <div class="Admin-wrapper">
+            <h2 class="List-title">Your Events</h2><br>
+            <%= link_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id) %>
+            <div class="List-content">
+                <div class="Search-tabs">
+                    <div class="Search-tab">
+                        <%= link_to "Past Events", events_path %>
+                    </div>
+                    <div class="Search-tab highlight">
+                        Upcoming Events
+                    </div>
+                </div>
+                <div class="List-tableWrapper">
+                    <table class="List-table table table-striped col-md-12" id="venues">
+                        <tbody>
+                            <% @events.each do |event| %>
+                                <tr class="List-row" border="1">
+                                    <td class="List-item">
+                                        <%= link_to "#{event.name} @ #{event.venue_name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
