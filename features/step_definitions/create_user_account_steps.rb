@@ -1,9 +1,9 @@
 
-Given /^(?:|I )am on the create account page$/ do 
+Given /^(?:|I )am on the create user account page$/ do 
     visit new_user_path
 end
 
-Then /I should be on the create account page$/ do
+Then /I should be on the create user account page$/ do
     current_path = URI.parse(current_url).path
     if current_path.respond_to? :should
       current_path.should == new_user_path
