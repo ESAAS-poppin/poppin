@@ -10,8 +10,6 @@ class CreateVenues < ActiveRecord::Migration[6.1]
       t.decimal :latitude
       t.decimal :longitude
       t.string :image_url
-      t.references :venue_admin, index: true, foreign_key: {to_table: :venue_admins}
-
       t.timestamps
     end
   end
