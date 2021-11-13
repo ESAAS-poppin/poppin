@@ -85,10 +85,8 @@ ActiveRecord::Schema.define(version: 2021_11_10_014314) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.string "image_url"
-    t.integer "venue_admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["venue_admin_id"], name: "index_venues_on_venue_admin_id"
   end
 
   add_foreign_key "events", "venues"
@@ -98,5 +96,4 @@ ActiveRecord::Schema.define(version: 2021_11_10_014314) do
   add_foreign_key "saved_events", "users"
   add_foreign_key "saved_venues", "users"
   add_foreign_key "saved_venues", "venues"
-  add_foreign_key "venues", "venue_admins"
 end
