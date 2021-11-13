@@ -8,7 +8,7 @@
 
 <%= form_tag sessions_path, :class => 'form login-form' do %>
     <label for="type" class="login-form-label">I am a:</label>
-    <% [ 'venue admin', 'user'  ].each do |type| %>
+    <% [ 'venue_admin', 'user'  ].each do |type| %>
       <%= radio_button_tag 'type', type, @type == type, checked: true %>
       <%= label_tag "#{type}" %>
     <% end %>
