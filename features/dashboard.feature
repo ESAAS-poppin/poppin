@@ -18,7 +18,7 @@ Background: users in database
   Given the following events exist:
   | id | name            | price_range |     date     | venue_id |
   | 10 | Pitcher Night   |      $$     |   2021-05-25 | 1        |
-  | 11 | Happy Hour      |      $      |   2021-06-25 | 2        |
+  | 11 | Happy Hour      |      $      |   2022-06-25 | 2        |
   | 12 | Halloween Party |     $$$     |   2021-10-31 | 3        |
 
   Given the following saved_venues exist:
@@ -39,6 +39,12 @@ Scenario: Renders the dashboard page
   Then I should see "Your Saved Events"
   Then I should see "Your Favorite Venues"
   Then I should see "Sports Bar"
+  And I should see "Happy Hour"
+
+Scenario: Sign out of my account
+  Given I am on the "caseyo" dashboard page
+  When I follow "Past Events"
+  Then I should see "Pitcher Night"
 
 Scenario: Click to event list
   Given I am on the "caseyo" dashboard page
