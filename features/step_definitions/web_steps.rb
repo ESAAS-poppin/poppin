@@ -4,6 +4,7 @@ Given /^I am logged in$/ do
     User.new(:username => username, :password => password).save!
 
     visit '/sessions/new'
+    choose('type_user')
     fill_in "user[username]", :with => username
     fill_in "user[password]", :with => password
     click_button "Login"
@@ -13,6 +14,7 @@ Given /^I am logged in to "([^"]*)"$/ do |user_name|
     user = User.find_by(username: user_name)
 
     visit '/sessions/new'
+    choose('type_user')
     fill_in "user[username]", :with => user.username
     fill_in "user[password]", :with => user.password
     click_button "Login"

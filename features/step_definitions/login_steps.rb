@@ -13,6 +13,10 @@ When /^(?:|I )go to the login page$/ do
     visit new_sessions_path
 end
 
+When /^(?:|I )choose "([^"]*)"$/ do |user_type|
+  choose(user_type)
+end
+
 Then /I should be on the "([^"]*)" user dashboard$/ do |user_name|
     user = User.where(username: user_name).first
     user_id = user.id

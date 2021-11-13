@@ -18,6 +18,7 @@ Scenario: login page rendered
 
 Scenario:  login with valid account
   Given I am on the login page
+  When I choose "type_user"
   When I fill in "Username" with "caseyo"
   And I fill in "Password" with "password"
   And I press "Login"
@@ -33,6 +34,6 @@ Scenario: login with invalid account stays on login page
 
 Scenario: navigate to the create account page
   Given I am on the login page
-  When I follow "Create Account"
+  When I follow "Create User Account"
   Then I should be on the create account page
 

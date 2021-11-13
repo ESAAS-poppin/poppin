@@ -1,6 +1,6 @@
 class Venue < ApplicationRecord
     has_many :events
-    belongs_to :venue_admin
+    belongs_to :venue_admin, optional: true
 
     class << self
     
