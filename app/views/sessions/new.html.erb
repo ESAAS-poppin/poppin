@@ -7,12 +7,6 @@
   <% end %>
 
 <%= form_tag sessions_path, :class => 'form login-form' do %>
-    <label for="type" class="login-form-label">I am a:</label>
-    <% [ 'venue admin', 'user'  ].each do |type| %>
-      <%= radio_button_tag 'type', type, @type == type, checked: true %>
-      <%= label_tag "#{type}" %>
-    <% end %>
-    <br><br>
     <%= label :user, :username, 'Username', :class => 'login-form-label' %>
     <%= text_field :user, :username, :class => 'form-control' %>
     <br/>
@@ -23,6 +17,5 @@
     <br/>
     <%= submit_tag 'Login', :class => 'btn btn-primary login-button' %>
     <br/>
-    <%= link_to 'Create User Account', new_user_path, :class => 'link' %>
-    <%= link_to 'Create Business Account', new_venue_admin_path, :class => 'link' %>
+    <%= link_to 'Create Account', new_user_path, :class => 'link' %>
 <% end %>

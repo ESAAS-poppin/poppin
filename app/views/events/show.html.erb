@@ -15,11 +15,7 @@
     <% end %>    
     <div class="Event-link top-links">
         <%= link_to "All Events", events_path %>
-        <% if session[:user_type] == 'user' -%>
-            <%= link_to "My Dashboard", user_path %>
-        <% else -%>
-            <%= link_to "My Dashboard", venue_admin_path %>
-        <% end -%>  
+        <%= link_to "My Dashboard", user_path %>
     </div>
     <h2 class="Event-name page-title">
         <% if @event.venue != nil -%>
