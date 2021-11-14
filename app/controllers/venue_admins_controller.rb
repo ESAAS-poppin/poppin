@@ -42,7 +42,6 @@ class VenueAdminsController < ApplicationController
 
         @venue_admin = VenueAdmin.create(admin_params)
         if @venue_admin.valid? 
-          puts('created')
           session[:user_id] = @venue_admin.id
         end
         
