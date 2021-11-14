@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe EventsController do
+describe EventsController , :type => :controller do
     describe 'Events Index', type: :controller do
         it 'returns all events' do
           testUsr = User.new(username: 'test_user_123')
@@ -66,4 +66,23 @@ describe EventsController do
         expect(assigns(:friends_who_saved)).to eq([user_2])
       end
     end
+
+    describe "GET create event page", type: :controller do
+      it "renders the create event page" do
+        get :new, params: {venue_id: 1, venue_admin_id: 1}
+        expect(response).to render_template("events/new")
+      end
+
+      it "create a new event" do
+        venue_admin = VenueAdmin.create(username:'amityHall', password: 'password', email: 'amity@hall.com')
+        session[:user_id] = venue_admin.id
+        session[:type] = 'venue_admin'
+        expect(session).to include(:user_id)
+        expect(session).to include(:type)
+        venue = Venue.create(name: 'Amity Hall', venue_admin_id: venue_admin.id)
+
+        post :create, params: { event: {name: "Trivia Night", description: "trivia"}, venue_id: 1 }
+        expect(response).to redirect_to("/events/1")
+      end
+  end
 end

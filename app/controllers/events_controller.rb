@@ -31,7 +31,6 @@ class EventsController < ApplicationController
 
     def new
       @event = Event.new
-      puts(params)
       @venue_id = params[:venue_id]
       @venue_admin_id = params[:venue_admin_id]
 
@@ -40,14 +39,11 @@ class EventsController < ApplicationController
     def create
       @venue = Venue.find_by(id: params[:venue_id])
       @venue_admin = VenueAdmin.find_by(id: params[:venue_admin_id])
-      puts(params)
-
 
       event_params = params.require(:event).permit(:name, :description, :datetime, :duration, :date)
       additional_params = {:venue_id => params[:venue_id], :attire => params[:attire], :price_range => params[:price_range],
         :event_type => params[:event_type], :latitude => @venue.latitude, :longitude => @venue.longitude}
       all_params = event_params.merge(additional_params)
-      puts(all_params)
       @event = Event.create(all_params)
       if @event.valid? 
           redirect_to @event

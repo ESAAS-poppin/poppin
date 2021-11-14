@@ -45,7 +45,6 @@ describe VenueAdminsController do
         end
         it 'successful create' do
             post :create, params: { venue_admin: {username: 'admin_user', password: 'pass', email: 'email@email.com'}, venue:{ name: 'test venue 123', address: '951 Amsterdam Ave, New York, NY 10025', description: 'desc', venue_type: 'bar', attire: 'casual', price_range: '$'} }
-            expect(session[:user_id]).to eq 1
             created_venue = Venue.find_by_name('test venue 123')
             expect(created_venue).to_not eq nil
         end
