@@ -84,6 +84,7 @@ class VenueAdminsController < ApplicationController
         Venue.find(params[:id]).update(venue_params)
         
         flash[:notice] = "Successfully updated venue information."
+        redirect_to venue_admin_path(@venue_admin)
         # TODO error check
     end
 end
