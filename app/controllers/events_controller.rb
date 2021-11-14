@@ -10,8 +10,8 @@ class EventsController < ApplicationController
       @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
 
-    #def new
-     # @event = Event.new
+    #def mapview
+     # @events.each do
     #end
 
     def show
