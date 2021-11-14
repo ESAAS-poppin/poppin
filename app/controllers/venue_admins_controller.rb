@@ -8,9 +8,6 @@ class VenueAdminsController < ApplicationController
     def show
         @venue_admin = VenueAdmin.find_by(id: session[:user_id])
         @venue = @venue_admin.venue
-        search = Geocoder.search("951 Amsterdam Ave, New York, NY 10025")
-        puts search.first.coordinates[0]
-        puts search.first.coordinates[1]
         @events = @venue_admin.events
     end
 
