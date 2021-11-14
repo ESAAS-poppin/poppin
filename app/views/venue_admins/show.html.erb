@@ -44,11 +44,11 @@
             <h2 class="List-title">Your Events</h2><br>
             <div class="List-content">
                 <div class="Search-tabs">
-                    <div class="Search-tab">
-                        <%= link_to "Past Events", events_path %>
+                    <div class="Search-tab <% if @past %>highlight<% end %>">
+                        <%= link_to "Past Events", venue_admin_path(:past => true) %>
                     </div>
-                    <div class="Search-tab highlight">
-                        Upcoming Events
+                    <div class="Search-tab <% if not @past %>highlight<% end %>">
+                        <%= link_to "Upcoming Events", venue_admin_path %>
                     </div>
                 </div>
                 <div class="List-tableWrapper">

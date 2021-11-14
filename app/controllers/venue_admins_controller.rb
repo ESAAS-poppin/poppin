@@ -8,7 +8,15 @@ class VenueAdminsController < ApplicationController
     def show
         @venue_admin = VenueAdmin.find_by(id: session[:user_id])
         @venue = @venue_admin.venue
-        @events = @venue_admin.events
+        past = params[:past]
+        @upcoming_events = @venue_admin.events.where('date >= ?', DateTime.now)
+        @past_events = @venue_admin.events.where('date < ?', DateTime.now)
+        if past
+          @events = @past_events
+          @past = true
+        else
+          @events = @upcoming_events
+        end
     end
 
     def create
