@@ -51,8 +51,6 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-    field.gsub(" ", "_")
-    puts field
     fill_in(field, :with => value)
 end
 
