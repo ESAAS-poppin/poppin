@@ -8,13 +8,22 @@ describe VenueAdminsController do
           expect(assigns(:venue_admin)).not_to eq nil
           expect(response).to render_template("venue_admins/new")
         end
-        it 'show correctly assigns venue and events' do
+        it 'show correctly assigns venue and upcoming events' do
             testUsr = VenueAdmin.create(username: 'admin_user', password: 'pass', email: 'email@email.com')
             session[:user_id] = testUsr.id
             ven = Venue.create(name:'Dave and Busters', venue_admin_id: 1)
-            evt_1 = Event.create(name:'Dancing', venue_id:1)
+            evt_1 = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
             get :show, params: { id: 1 }, session: {'user_id' => 1}
             expect(assigns(:venue)).to eq ven
+            expect(assigns(:events)).to eq [evt_1]
+            expect(response).to render_template("venue_admins/show")
+        end
+        it 'show correctly assigns past events' do
+            testUsr = VenueAdmin.create(username: 'admin_user', password: 'pass', email: 'email@email.com')
+            session[:user_id] = testUsr.id
+            ven = Venue.create(name:'Dave and Busters', venue_admin_id: 1)
+            evt_1 = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2020 17:00", "%m/%d/%Y %H:%M"))
+            get :show, params: { id: 1 , past: true}, session: {'user_id' => 1}
             expect(assigns(:events)).to eq [evt_1]
             expect(response).to render_template("venue_admins/show")
         end
