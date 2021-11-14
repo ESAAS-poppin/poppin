@@ -17,9 +17,9 @@ Background: users in database
 
   Given the following events exist:
   | id | name            | price_range |     date     | venue_id |
-  | 10 | Pitcher Night   |      $$     |   2021-05-25 | 1        |
-  | 11 | Happy Hour      |      $      |   2022-06-25 | 2        |
-  | 12 | Halloween Party |     $$$     |   2021-10-31 | 3        |
+  | 10 | Pitcher Night   |      $$     |   2021-05-25 | 10        |
+  | 11 | Happy Hour      |      $      |   2022-06-25 | 11        |
+  | 12 | Halloween Party |     $$$     |   2021-10-31 | 12        |
 
   Given the following saved_venues exist:
   | user_id | venue_id |
