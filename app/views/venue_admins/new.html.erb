@@ -31,12 +31,6 @@
 
     <%= label :type, 'Type', :class => 'login-form-label' %>
     <%= select_tag :venue_type, options_for_select( VenueAdmin.available_venue_types, "bar")  %><br><br/>
-
-    <%= label :venue_admin, :latitude, 'Latitude', :class => 'login-form-label' %>
-    <%= number_field :venue, :latitude, step: 0.5, :class => 'form-control' %><br><br/>
-
-    <%= label :venue_admin, :longitude, 'Longitude', :class => 'login-form-label' %>
-    <%= number_field :venue, :longitude, step: 0.00001, :class => 'form-control' %><br><br/>
     <br/><br/>
     <%= submit_tag 'Create Account', :class => 'btn btn-primary' %>
     <br/><br/>

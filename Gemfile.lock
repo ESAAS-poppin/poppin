@@ -130,6 +130,7 @@ GEM
     docile (1.4.0)
     erubi (1.10.0)
     ffi (1.15.4)
+    geocoder (1.7.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
     google_places (2.0.0)
@@ -301,6 +302,7 @@ DEPENDENCIES
   cucumber-rails
   cucumber-rails-training-wheels
   database_cleaner
+  geocoder
   google_places
   jbuilder (~> 2.7)
   listen (~> 3.3)
