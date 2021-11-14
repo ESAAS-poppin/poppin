@@ -7,9 +7,7 @@ class VenueAdminsController < ApplicationController
 
     def show
         @venue_admin = VenueAdmin.find_by(id: session[:user_id])
-        puts(@venue_admin.inspect)
         @venue = @venue_admin.venue
-        puts(@venue.inspect)
         @events = @venue_admin.events
     end
 
