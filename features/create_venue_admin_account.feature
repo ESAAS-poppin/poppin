@@ -14,6 +14,7 @@ Scenario: create a new account
   When I fill in "Username" with "melsburgers"
   And I fill in "Password" with "password"
   And I fill in "Email" with "mels@burgers.com"
+  And I fill in "venue_address" with "951 Amsterdam Ave, New York, NY 10025"
   And I press "Create Account"
   Then I should be on the "melsburgers" venue admin dashboard
 
