@@ -20,6 +20,16 @@ Given /^I am logged in to "([^"]*)"$/ do |user_name|
     click_button "Login"
 end
 
+Given /^I am logged in to venue admin "([^"]*)"$/ do |venue_admin_name|
+    venue_admin = VenueAdmin.find_by(username: venue_admin_name)
+
+    visit '/sessions/new'
+    choose('type_venue_admin')
+    fill_in "user[username]", :with => venue_admin.username
+    fill_in "user[password]", :with => venue_admin.password
+    click_button "Login"
+end
+
 When /^(?:|I )follow "([^"]*)"$/ do |link|
     click_link(link)
 end
