@@ -8,8 +8,6 @@ class EventsController < ApplicationController
 
     def display_full_map
       @events = @events.map{|event| [event.address, event.latitude, event.longitude]}
-      puts @events
-      logger.info "Events:  #{@events.inspect}"
     end
 
 
