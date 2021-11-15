@@ -31,7 +31,7 @@ window.initMultiMapPage = function InitMultiMap(events) {
     console.log("events: ", events)
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
-        center: new google.maps.LatLng(40.790903, -73.969497),
+        center: new google.maps.LatLng(40.805415, -73.957641),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     var infowindow = new google.maps.InfoWindow();
