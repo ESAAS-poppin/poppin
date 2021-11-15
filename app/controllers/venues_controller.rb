@@ -8,9 +8,7 @@ class VenuesController < ApplicationController
       @venues = @venues.search(params[:search]) if params[:search].present?
     end
 
-    #def new
-     # @venue = Venue.new
-    #end
+    
 
     def show
       id = params[:id]

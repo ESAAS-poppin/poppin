@@ -1,0 +1,12 @@
+<div class="page-title login-title">Map View</div>
+<div id="map" /div>
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <%= link_to "My Dashboard", user_path(session[:user_id])%>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMultiMapPage(<%= raw @events%>)
+
+    });
+    </script>
+<% end %>
