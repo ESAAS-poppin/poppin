@@ -91,6 +91,30 @@ describe UsersController, :type => :controller do
           get :show, params: { id: 2 }, session: {'user_id' => 2}
           expect(response).to render_template("users/show")
         end
+
+        it "assigns upcoming events" do
+          testUsr = User.new(username: 'test_user_123')
+          login(testUsr)
+          ven = Venue.create(name:'Dave and Busters')
+          evt = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+          evt_past = Event.create(name:'Very Fun Event', venue_id:1, date: DateTime.strptime("11/01/2020 17:00", "%m/%d/%Y %H:%M"))
+          SavedEvent.create(user_id: 1, event_id: 1)
+          SavedEvent.create(user_id: 1, event_id: 2)
+          get :show, params: { id: 1 }, session: {'user_id' => 1}
+          expect(assigns(:events)).to eq [Event.find_by(name: 'Dancing')]
+        end
+
+        it "assigns past events" do
+          testUsr = User.new(username: 'test_user_123')
+          login(testUsr)
+          ven = Venue.create(name:'Dave and Busters')
+          evt = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+          evt_past = Event.create(name:'Very Fun Event', venue_id:1, date: DateTime.strptime("11/01/2020 17:00", "%m/%d/%Y %H:%M"))
+          SavedEvent.create(user_id: 1, event_id: 1)
+          SavedEvent.create(user_id: 1, event_id: 2)
+          get :show, params: { id: 1, past: true }, session: {'user_id' => 1}
+          expect(assigns(:events)).to eq [Event.find_by(name: 'Very Fun Event')]
+        end
     end
 
     it 'save venue' do

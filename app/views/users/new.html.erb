@@ -1,7 +1,7 @@
 <div class="page-title login-title">Create an Account</div>
 
-<% if flash[:notice] %>
-  <%= content_tag :h1, flash[:notice] %>
+<% flash.each do |type, msg| %>
+  <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
 <% end %>
 
 <%= form_tag users_path, :class => 'form login-form' do %>

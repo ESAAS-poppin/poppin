@@ -10,9 +10,9 @@ class EventsController < ApplicationController
       @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
 
-    #def new
-     # @event = Event.new
-    #end
+    def new
+     @event = Event.new
+    end
 
     def show
       id = params[:id]
@@ -26,6 +26,27 @@ class EventsController < ApplicationController
         else
           @friends_who_saved = []
         end
+      end
+    end
+
+    def new
+      @event = Event.new
+      @venue_id = params[:venue_id]
+      @venue_admin_id = params[:venue_admin_id]
+
+    end
+
+    def create
+      @venue = Venue.find_by(id: params[:venue_id])
+      @venue_admin = VenueAdmin.find_by(id: params[:venue_admin_id])
+
+      event_params = params.require(:event).permit(:name, :description, :datetime, :duration, :date)
+      additional_params = {:venue_id => params[:venue_id], :attire => params[:attire], :price_range => params[:price_range],
+        :event_type => params[:event_type], :latitude => @venue.latitude, :longitude => @venue.longitude}
+      all_params = event_params.merge(additional_params)
+      @event = Event.create(all_params)
+      if @event.valid? 
+          redirect_to @event
       end
     end
   end
