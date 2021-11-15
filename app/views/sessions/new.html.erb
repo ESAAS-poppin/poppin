@@ -1,14 +1,12 @@
 <div class="page-title login-title">Welcome to Poppin!</div>
 
 <% flash.each do |type, msg| %>
-    <div>
-      <%= msg %>
-    </div>
-  <% end %>
+  <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
+<% end %>
 
 <%= form_tag sessions_path, :class => 'form login-form' do %>
     <label for="type" class="login-form-label">I am a:</label>
-    <% [ 'venue admin', 'user'  ].each do |type| %>
+    <% [ 'venue_admin', 'user'  ].each do |type| %>
       <%= radio_button_tag 'type', type, @type == type, checked: true %>
       <%= label_tag "#{type}" %>
     <% end %>
@@ -18,7 +16,7 @@
     <br/>
     <br/>
     <%= label :user, :password, 'Password', :class => 'login-form-label' %>
-    <%= text_field :user, :password, :class => 'form-control' %>
+    <%= password_field :user, :password, :class => 'form-control' %>
     <br/>
     <br/>
     <%= submit_tag 'Login', :class => 'btn btn-primary login-button' %>

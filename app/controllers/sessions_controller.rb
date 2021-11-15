@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create
     session_params = params.permit(:email, :password, :type)
-    if params[:type] == "venue admin"
+    if params[:type] == "venue_admin"
       login_business()
       return
     end
@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
   def login_business
     temp = params[:user]
     @venue_admin = VenueAdmin.find_by(username: temp[:username], password: temp[:password])
+    puts(@venue_admin.inspect)
     if @venue_admin
       session[:user_id] = @venue_admin.id
       session[:user_type] = 'venue_admin'

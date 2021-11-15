@@ -1,7 +1,7 @@
 <div class="page-title login-title">Create an Event</div>
 
-<% if flash[:notice] %>
-  <%= content_tag :h1, flash[:notice] %>
+<% flash.each do |type, msg| %>
+  <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
 <% end %>
 
 <%= form_tag events_path, :class => 'form login-form' do %>

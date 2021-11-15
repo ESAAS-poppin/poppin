@@ -10,10 +10,18 @@ class UsersController < ApplicationController
     end 
 
     def show
+       past = params[:past]
        @user = current_user
        @saved_events = @user.saved_events
        @saved_venues = @user.saved_venues
-       @events = @user.events
+       @upcoming_events = @user.events.where('date >= ?', DateTime.now)
+       @past_events = @user.events.where('date < ?', DateTime.now)
+       if past
+        @events = @past_events
+        @past = true
+       else
+        @events = @upcoming_events
+       end
        @venues = @user.venues
     end
 

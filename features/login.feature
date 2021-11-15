@@ -12,27 +12,59 @@ Background: users in database
   | jorger   | password | jorge@columbia.edu | ''        | 22  |
   | ryank    | password | ryan@columbia.edu  | ''        | 22  |
 
+  Given the following venue admins exist:
+  | username  | password | email          |
+  | amityHall | password | amity@hall.com |
+  | lionshead | password | lions@head.com |
+
+  Given the following venues exist:
+  | name         | price_range | venue_type | venue_admin_id |
+  | Amity Hall   |      $$     |    bar     | 1              |
+
 Scenario: login page rendered
   When I go to the login page
   Then I should see "Welcome to Poppin"
 
-Scenario:  login with valid account
+Scenario: login as user with valid account
   Given I am on the login page
+  When I choose "type_user"
   When I fill in "Username" with "caseyo"
   And I fill in "Password" with "password"
   And I press "Login"
   Then I should be on the "caseyo" user dashboard
 
-Scenario: login with invalid account stays on login page
+Scenario: login as user with invalid account stays on login page
   Given I am on the login page
+  When I choose "type_user"
   When I fill in "Username" with "idontexist"
   And I fill in "Password" with "password"
   And I press "Login"
   Then I should see "Invalid Login"
   Then I should be on the login page
 
-Scenario: navigate to the create account page
+Scenario: navigate to the create user account page
   Given I am on the login page
-  When I follow "Create Account"
-  Then I should be on the create account page
+  When I follow "Create User Account"
+  Then I should be on the create user account page
 
+Scenario: login as venue admin with valid account
+  Given I am on the login page
+  When I choose "type_venue_admin"
+  When I fill in "Username" with "amityHall"
+  And I fill in "Password" with "password"
+  And I press "Login"
+  Then I should be on the "amityHall" venue admin dashboard
+
+Scenario: login as venue admin with invalid account stays on login page
+  Given I am on the login page
+  When I choose "type_venue_admin"
+  When I fill in "Username" with "idontexist"
+  And I fill in "Password" with "password"
+  And I press "Login"
+  Then I should see "Invalid Login"
+  Then I should be on the login page
+
+Scenario: navigate to the create venue admin account page
+  Given I am on the login page
+  When I follow "Create Business Account"
+  Then I should be on the create venue admin account page
