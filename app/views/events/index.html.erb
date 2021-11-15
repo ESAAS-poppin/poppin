@@ -4,6 +4,7 @@
     <% end %>
     <% if session[:user_id] != nil %>
         <%= link_to "My Dashboard", user_path(session[:user_id]) %>
+        
     <% end %>
     <h2 class="List-title page-title">All Events</h2>
     <div class="List-content">
@@ -32,6 +33,7 @@
 
                     <%= submit_tag "Go", class: "btn" %>
                 <% end %>
+                <button id="full_map_view">View Full Map</button>
             </div>      
             <table class="List-table table table-striped col-md-12" style="width 80%" id="events">
                 <tbody>
@@ -50,5 +52,4 @@
             </table>
         </div>
     </div>
-    <%= link_to "Map View", events_path(mapview) %>
 </div>

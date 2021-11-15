@@ -1,18 +1,16 @@
 class EventsController < ApplicationController
     skip_before_action :require_login
+    before_action :filter_events, only: [:index, :display_full_map]
     
+
     def index
-      @events = Event.all
-      @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
-      @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
-      @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
-      @events = @events.search(params[:search]) if params[:search].present?
-      @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
 
-    #def mapview
-     # @events.each do
-    #end
+    def display_full_map
+      @events = @events.map{|event| [event.address, event.latitude, event.longitude]}
+      puts @events
+      logger.info "Events:  #{@events.inspect}"
+     end
 
     def show
       id = params[:id]
@@ -52,6 +50,18 @@ class EventsController < ApplicationController
       if @event.valid? 
           redirect_to @event
       end
+    end
+
+
+    private
+
+    def filter_events
+      @events = Event.all
+      @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
+      @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
+      @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
+      @events = @events.search(params[:search]) if params[:search].present?
+      @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
   end
   

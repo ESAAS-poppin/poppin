@@ -1,10 +1,11 @@
 <div class="page-title login-title">Map View</div>
-
+<div id="map" /div>
 <% provide :head_tags do %>
     <meta name='turbolinks-visit-control' content='reload'>
     <script>
     document.addEventListener("DOMContentLoaded", function(){
-        initMap(<%=40.790903%>, <%=-73.969497%>)
+        initMultiMapPage(<%= raw @events%>)
+
     });
     </script>
 <% end %>
