@@ -58,6 +58,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
+  gem 'cucumber-create-meta', '6.0.2'
   gem 'simplecov', :require => false
   
   # required by cucumber for tests including databases

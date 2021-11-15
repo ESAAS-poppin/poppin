@@ -96,7 +96,7 @@ GEM
       cucumber-gherkin (~> 22.0, >= 22.0.0)
       cucumber-messages (~> 17.1, >= 17.1.1)
       cucumber-tag-expressions (~> 4.0, >= 4.0.2)
-    cucumber-create-meta (6.0.3)
+    cucumber-create-meta (6.0.2)
       cucumber-messages (~> 17.1, >= 17.1.1)
       sys-uname (~> 1.2, >= 1.2.2)
     cucumber-cucumber-expressions (14.0.0)
@@ -294,12 +294,13 @@ GEM
     zeitwerk (2.5.1)
 
 PLATFORMS
-  -darwin-20
+  ruby
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  cucumber-create-meta (= 6.0.2)
   cucumber-rails
   cucumber-rails-training-wheels
   database_cleaner
@@ -328,4 +329,4 @@ RUBY VERSION
    ruby 2.6.6p146
 
 BUNDLED WITH
-   2.2.30
+   1.17.2
