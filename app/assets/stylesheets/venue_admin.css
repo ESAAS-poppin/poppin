@@ -17,3 +17,13 @@
     border-radius: 10px;
     padding: 20px;
  }
+
+.Venue-adminMap
+{
+    width: 100%;
+}
+
+.Venue-adminMap > #map
+{
+    width: 100%;
+}
