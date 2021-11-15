@@ -10,9 +10,9 @@ class EventsController < ApplicationController
       @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
 
-    #def new
-     # @event = Event.new
-    #end
+    def new
+     @event = Event.new
+    end
 
     def show
       id = params[:id]
