@@ -34,7 +34,7 @@
         console.log({search,filter_event_type, filter_price_range, filter_attire})
 
         var pathString = `/display_full_map?search=${search}&filter_attire=${filter_attire}&filter_event_type=${filter_event_type}&filter_price_range=${filter_price_range}`;
-        var protocol = 'http://';
+        var protocol = window.location.protocol + '//';
         var host = window.location.host;
         window.location.href = protocol + host + pathString
 
