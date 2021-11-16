@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     end
 
     def display_full_map
-      @events = @events.map{|event| [event.address, event.latitude, event.longitude]}
+      @events = @events.map{|event| [event.name, event.address, event.latitude, event.longitude]}
     end
 
 

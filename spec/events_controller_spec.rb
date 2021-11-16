@@ -19,6 +19,7 @@ describe EventsController , :type => :controller do
           Venue.create(name:'Dave and Busters')
           event_1 = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
           SavedEvent.create(user_id: 2, event_id: 1)
+
   
           session[:user_id] = 1
           expect(session).to include(:user_id)
@@ -26,6 +27,21 @@ describe EventsController , :type => :controller do
           get :index, :params => { :saved_by => [user_2] }
           expect(assigns(:events)).to eq([event_1])
          end
+    end
+    describe 'Event mapview' do
+      it 'gets correct venues to display' do
+        user_1 = User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+        user_2 = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+        Following.create(user_id: 1, following_user_id: 2)
+        Venue.create(name:'Dave and Busters')
+        event_1 = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+        events_entry = ["Dancing", nil, nil, nil]
+        expected_events = [events_entry]
+        session[:user_id] = 1
+        expect(session).to include(:user_id)
+        get :display_full_map
+        expect(assigns(:events)).to eq(expected_events)
+      end
     end
     describe 'Event Venue Name' do
         it 'venue correctly linked to event' do
