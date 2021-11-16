@@ -16,9 +16,9 @@
     <div class="Event-link top-links">
         <%= link_to "All Events", events_path %>
         <% if session[:user_type] == 'user' -%>
-            <%= link_to "My Dashboard", user_path %>
+            <%= link_to "My Dashboard", user_path(session[:user_id]) %>
         <% else -%>
-            <%= link_to "My Dashboard", venue_admin_path %>
+            <%= link_to "My Dashboard", venue_admin_path(session[:user_id]) %>
         <% end -%>  
     </div>
     <h2 class="Event-name page-title">
