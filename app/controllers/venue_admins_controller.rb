@@ -66,4 +66,5 @@ class VenueAdminsController < ApplicationController
           redirect_to venue_admin_path(@venue_admin)
         end
     end
+
 end
