@@ -57,4 +57,26 @@ describe VenuesController do
         expect(:image_url).not_to be_nil
       end
     end
+    describe 'Update Venue', type: :controller do
+      before(:each) do
+        testUsr = VenueAdmin.create(username: 'admin_user', password: 'pass', email: 'email@email.com')
+        session[:user_id] = testUsr.id
+        ven = Venue.create(name:'Dave and Busters', venue_type: 'bar', price_range: '$$', venue_admin_id: 1)
+      end
+
+      it 'updates venue information' do
+        patch :update, params: { id: 1, venue:{ name: 'test venue 123', address: '951 Amsterdam Ave, New York, NY 10025', description: 'desc', venue_type: 'bar', attire: 'casual', price_range: '$'} }
+        expect(Venue.find(1).name).to eq('test venue 123')
+      end
+
+      it 'redirects to Venue Admin Dashboard' do
+        patch :update, params: { id: 1, venue:{ name: 'test venue 123', address: '951 Amsterdam Ave, New York, NY 10025', description: 'desc', venue_type: 'bar', attire: 'casual', price_range: '$'} }
+        expect(response).to redirect_to venue_admin_path
+      end
+
+      it 'notifies user of invalid address' do
+        patch :update, params: { id: 1, venue:{ name: 'test venue 123', address: '1l23 234k 5j23h434 l2h 3lk 45j4', description: 'desc', venue_type: 'bar', attire: 'casual', price_range: '$'} }
+        expect(flash[:notice]).to eq('Invalid address, please specify address in format: street address, city, state zip')
+      end
+    end
 end

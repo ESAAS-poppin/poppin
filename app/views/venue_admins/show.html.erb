@@ -1,9 +1,38 @@
 <% provide :head_tags do %>
     <meta name='turbolinks-visit-control' content='reload'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function(){
         initMap(<%=@venue.latitude%>, <%=@venue.longitude%>)
     });
+
+    var ready;
+    ready = function() {
+        setEditing(false);
+
+        $("#edit-venue-button").on("click", function(){
+            setEditing(true);
+        });
+        $("#cancel-update-venue-button").on("click", function(){
+            setEditing(false);
+        });
+
+        function setEditing(status) {
+            if (status) {
+                document.getElementById("edit-venue-form").style.display = "block";
+                document.getElementById("venue-details-container").style.display = "none";
+            } else {
+                document.getElementById("edit-venue-form").style.display = "none";
+                document.getElementById("venue-details-container").style.display = "block";
+            }
+        }
+
+    };
+
+    $(document).ready(ready);
+    $(document).on("page:load", ready);
+
+    
     </script>
 <% end %>
 
@@ -21,6 +50,36 @@
     <div class="Admin-container">
         <h2 class="List-title">Your Business Info</h2><br>
         <div class="Venue-details info-bar business-info">
+<%
+=begin%>
+  TODO: UPDATE CSS CLASSES
+<%
+=end%>
+        <div id ='edit-venue-form'>
+            <%= form_tag venue_path(:id => @venue.id), :class => 'form login-form', :method => :patch do %>
+                <%= label :name, 'Business Name', :class => 'login-form-label' %>
+                <%= text_field :venue, :name, :class => 'form-control' %><br><br/>
+
+                <%= label :address, 'Address', :class => 'login-form-label' %>
+                <%= text_field :venue, :address, :class => 'form-control' %><br><br/>
+
+                <%= label :description, 'Description', :class => 'login-form-label' %>
+                <%= text_field :venue, :description, :class => 'form-control' %><br><br/>
+
+                <%= label :attire, 'Attire', :class => 'login-form-label' %>
+                <%= select_tag :attire, options_for_select( VenueAdmin.available_attires, "casual")  %><br><br/>
+
+                <%= label :price, 'Price', :class => 'login-form-label' %>
+                <%= select_tag :price_range, options_for_select( VenueAdmin.available_price_ranges, "$")  %><br><br/>
+
+                <%= label :type, 'Type', :class => 'login-form-label' %>
+                <%= select_tag :venue_type, options_for_select( VenueAdmin.available_venue_types, "bar")  %><br><br/>
+                <br/><br/>
+                <%= submit_tag 'Update Venue', :class => 'btn btn-primary', :id => 'update-venue-button' %>
+            <% end %>
+            <button id="cancel-update-venue-button">Cancel</button>
+        </div>
+        <div id='venue-details-container'>
             <div class="Venue-description Venue-detail">
                 <%= "Description: #{@venue.description}" %>
             </div>
@@ -33,8 +92,13 @@
             <div class="Venue-price Venue-detail">
                 <%= "Price Range: #{@venue.price_range}" %>
             </div>
+            <div class="Venue-type Venue-detail">
+                <%= "Type: #{@venue.venue_type}" %>
+            </div>
             <div class="Venue-mapWrapper Venue-adminMap">
                 <div id="map"></div>
+            </div>
+            <button id="edit-venue-button">Edit</button>
             </div>
         </div>
     </div>
