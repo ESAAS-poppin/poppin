@@ -56,7 +56,7 @@
 <%
 =end%>
         <div id ='edit-venue-form'>
-            <%= form_tag venue_admin_path(:id => @venue.id), :class => 'form login-form', :method => :patch do %>
+            <%= form_tag venue_path(:id => @venue.id), :class => 'form login-form', :method => :patch do %>
                 <%= label :name, 'Business Name', :class => 'login-form-label' %>
                 <%= text_field :venue, :name, :class => 'form-control' %><br><br/>
 
