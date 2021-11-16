@@ -43,5 +43,25 @@ describe SessionsController, :type => :controller do
         expect(response).to redirect_to("/sessions/new")
       end
     end
+
+
+    describe "CREATE a session for venue admin" do
+      it "log in as venue admin" do
+        venue_admin = VenueAdmin.create(username:'amityHall', password: 'password', email: 'amity@hall.com')
+        session[:user_id] = venue_admin.id
+        session[:type] = 'venue admin'
+        expect(session).to include(:user_id)
+        expect(session).to include(:type)
+        post :create, params: { user: {username: "amityHall", password: "password"}, type: 'venue_admin' }
+        expect(response).to redirect_to("/venue_admins/1")
+      end
+
+      it "throws error for invalid login" do
+        VenueAdmin.stub(:find_by).and_return(nil)
+        expect(flash).not_to include(:notice)
+        post :create, params: { user: {username: "bad", password: "bad"}, type: 'venue_admin' }
+        expect(response).to redirect_to("/sessions/new")
+      end
+    end
     
 end

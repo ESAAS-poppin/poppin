@@ -1,0 +1,17 @@
+.Events-mapWrapper
+{
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 800px;
+    background-color: #d2fae6;
+}
+.Events-map > #map
+{
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 800px;
+}

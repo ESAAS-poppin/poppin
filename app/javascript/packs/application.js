@@ -27,4 +27,25 @@ window.initMap = function(lat, lng) {
         map: map
     });
 }
+window.initMultiMapPage = function InitMultiMap(events) {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: new google.maps.LatLng(40.8033668, -73.9638017),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+    for (i = 0; i < events.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(events[i][2], events[i][3]),
+            map: map
+        });
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                infowindow.setContent(events[i][0] +" @ "+ events[i][1]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+}
 

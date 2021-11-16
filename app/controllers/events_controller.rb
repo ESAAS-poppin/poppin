@@ -1,18 +1,15 @@
 class EventsController < ApplicationController
     skip_before_action :require_login
+    before_action :filter_events, only: [:index, :display_full_map]
     
+
     def index
-      @events = Event.all
-      @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
-      @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
-      @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
-      @events = @events.search(params[:search]) if params[:search].present?
-      @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
 
-    #def new
-     # @event = Event.new
-    #end
+    def display_full_map
+      @events = @events.map{|event| [event.name, event.address, event.latitude, event.longitude]}
+    end
+
 
     def show
       id = params[:id]
@@ -31,7 +28,6 @@ class EventsController < ApplicationController
 
     def new
       @event = Event.new
-      puts(params)
       @venue_id = params[:venue_id]
       @venue_admin_id = params[:venue_admin_id]
 
@@ -40,18 +36,27 @@ class EventsController < ApplicationController
     def create
       @venue = Venue.find_by(id: params[:venue_id])
       @venue_admin = VenueAdmin.find_by(id: params[:venue_admin_id])
-      puts(params)
-
 
       event_params = params.require(:event).permit(:name, :description, :datetime, :duration, :date)
       additional_params = {:venue_id => params[:venue_id], :attire => params[:attire], :price_range => params[:price_range],
         :event_type => params[:event_type], :latitude => @venue.latitude, :longitude => @venue.longitude}
       all_params = event_params.merge(additional_params)
-      puts(all_params)
       @event = Event.create(all_params)
       if @event.valid? 
           redirect_to @event
       end
+    end
+
+
+    private
+
+    def filter_events
+      @events = Event.all
+      @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
+      @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
+      @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
+      @events = @events.search(params[:search]) if params[:search].present?
+      @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
   end
   

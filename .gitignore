@@ -6,7 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-/config/credentials.yml.enc
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -43,5 +42,3 @@ coverage/
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-credentials.yml.enc

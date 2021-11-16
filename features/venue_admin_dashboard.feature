@@ -16,7 +16,7 @@ Background: info in database
 
   Given the following events exist:
   | id | name            | price_range |     date     | venue_id |
-  | 10 | Pitcher Night   |      $$     |   2021-05-25 | 1        |
+  | 10 | Pitcher Night   |      $$     |   2022-05-25 | 1        |
   | 11 | Happy Hour      |      $      |   2021-06-25 | 1        |
   | 12 | Halloween Party |     $$$     |   2021-10-31 | 1        |
 
@@ -26,6 +26,14 @@ Scenario: Renders the dashboard page
   Given I am on the "amityHall" venue admin dashboard
   Then I should see "Your Business Info"
   Then I should see "Your Events"
+  And I should see "Pitcher Night"
+
+Scenario: Renders past events on the dashboard page
+  Given I am on the "amityHall" venue admin dashboard
+  And I follow "Past Events"
+  Then I should see "Your Business Info"
+  Then I should see "Your Events"
+  And I should see "Happy Hour"
 
 Scenario: Click to event list
   Given I am on the "amityHall" venue admin dashboard

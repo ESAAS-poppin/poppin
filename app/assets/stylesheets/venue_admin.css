@@ -22,3 +22,13 @@
 {
     color: black;
 }
+
+.Venue-adminMap
+{
+    width: 100%;
+}
+
+.Venue-adminMap > #map
+{
+    width: 100%;
+}

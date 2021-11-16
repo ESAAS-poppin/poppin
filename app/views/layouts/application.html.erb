@@ -21,5 +21,25 @@
   <div class="divider-2"></div>
   <body>
     <%= yield %>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function($) {
+    $( "#full_map_view" ).click(function() {
+  
+        var search = document.querySelector('#search').value;
+        var filter_event_type = document.querySelector('#filter_event_type').value;
+        var filter_price_range = document.querySelector('#filter_price_range').value;
+        var filter_attire = document.querySelector('#filter_attire').value;
+
+        console.log({search,filter_event_type, filter_price_range, filter_attire})
+
+        window.location.href = `http://0.0.0.0:9292/display_full_map?search=${search}&filter_attire=${filter_attire}&filter_event_type=${filter_event_type}&filter_price_range=${filter_price_range}`;
+
+        
+    });
+    });
+
+</script>
   </body>
+  
 </html>

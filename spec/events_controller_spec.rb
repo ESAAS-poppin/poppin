@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-describe EventsController do
+describe EventsController , :type => :controller do
     describe 'Events Index', type: :controller do
         it 'returns all events' do
           testUsr = User.new(username: 'test_user_123')
@@ -19,6 +19,7 @@ describe EventsController do
           Venue.create(name:'Dave and Busters')
           event_1 = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
           SavedEvent.create(user_id: 2, event_id: 1)
+
   
           session[:user_id] = 1
           expect(session).to include(:user_id)
@@ -26,6 +27,21 @@ describe EventsController do
           get :index, :params => { :saved_by => [user_2] }
           expect(assigns(:events)).to eq([event_1])
          end
+    end
+    describe 'Event mapview' do
+      it 'gets correct venues to display' do
+        user_1 = User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+        user_2 = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+        Following.create(user_id: 1, following_user_id: 2)
+        Venue.create(name:'Dave and Busters')
+        event_1 = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+        events_entry = ["Dancing", nil, nil, nil]
+        expected_events = [events_entry]
+        session[:user_id] = 1
+        expect(session).to include(:user_id)
+        get :display_full_map
+        expect(assigns(:events)).to eq(expected_events)
+      end
     end
     describe 'Event Venue Name' do
         it 'venue correctly linked to event' do
@@ -66,4 +82,23 @@ describe EventsController do
         expect(assigns(:friends_who_saved)).to eq([user_2])
       end
     end
+
+    describe "GET create event page", type: :controller do
+      it "renders the create event page" do
+        get :new, params: {venue_id: 1, venue_admin_id: 1}
+        expect(response).to render_template("events/new")
+      end
+
+      it "create a new event" do
+        venue_admin = VenueAdmin.create(username:'amityHall', password: 'password', email: 'amity@hall.com')
+        session[:user_id] = venue_admin.id
+        session[:type] = 'venue_admin'
+        expect(session).to include(:user_id)
+        expect(session).to include(:type)
+        venue = Venue.create(name: 'Amity Hall', venue_admin_id: venue_admin.id)
+
+        post :create, params: { event: {name: "Trivia Night", description: "trivia"}, venue_id: 1 }
+        expect(response).to redirect_to("/events/1")
+      end
+  end
 end
