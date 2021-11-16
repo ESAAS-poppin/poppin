@@ -37,4 +37,12 @@ Scenario: Sign out of my account
   When I press "Sign Out"
   Then I should be on the login page
   Then I should see "You have signed out"
-  
+
+Scenario: Update venue
+  Given I am on the "amityHall" venue admin dashboard
+  When I press "Edit"
+  And I fill in "venue_address" with "951 Amsterdam Ave, New York, NY 10025"
+  And I press "Update"
+  Then I should be on the "amityHall" venue admin dashboard
+  And I should not see "123 4th St"
+  And I should see "951 Amsterdam Ave, New York, NY 10025"
