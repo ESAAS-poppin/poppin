@@ -8,3 +8,16 @@
     display: flex;
     justify-content: space-between;
 }
+
+.Dash-topWrapper
+{
+    display: flex;
+}
+
+.User-image
+{
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+    object-fit: cover;
+}

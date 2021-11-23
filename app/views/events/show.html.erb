@@ -59,7 +59,7 @@
     <div class="Event-info">
         <div class="Event-infoTop">
             <div class="Event-imageWrapper">
-                <%= image_tag(@event.event_image) if @event.event_image.attached? %>
+                <%= image_tag(@event.event_image, class: 'Event-image') if @event.event_image.attached? %>
             </div>
             <div class="Event-mapWrapper">
                     <div id="map"></div>

@@ -23,11 +23,9 @@
     margin-bottom: 40px;
 }
 
-.Event-imageWrapper
+.Event-image
 {
     height: 300px;
-    width: 300px;
-    background-color: #f3d2fa;
 }
 
 .Event-mapWrapper
