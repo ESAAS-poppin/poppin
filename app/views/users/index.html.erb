@@ -1,6 +1,13 @@
-<div class="top-links">
-  <%= link_to 'Search Events', events_path%>
-  <%= link_to 'Search Venues', venues_path%>
+<div class="header">
+    <%= form_tag sessions_path, :method => :delete do %>
+        <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
+    <% end %>
+
+    <div class="top-links">
+        <%= link_to "My Dashboard", user_path(session[:user_id]) %>
+        <%= link_to 'Search Events', events_path%>
+        <%= link_to 'Search Venues', venues_path%>
+    </div>
 </div>
 
 <div class="List-wrapper">

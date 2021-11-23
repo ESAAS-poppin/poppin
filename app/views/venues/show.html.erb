@@ -8,11 +8,13 @@
     </script>
 <% end %>
 
-
-<div class="Venue-detailsPage">
-    <% flash.each do |type, msg| %>
-        <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
-    <% end %> 
+<% flash.each do |type, msg| %>
+    <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
+<% end %>
+<div class="header">
+    <%= form_tag sessions_path, :method => :delete do %>
+        <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
+    <% end %>
     <div class="Venue-links top-links">
         <%= link_to "All Venues", venues_path %>
         <% if session[:user_type] == 'user' -%>
@@ -21,6 +23,8 @@
             <%= link_to "My Dashboard", venue_admin_path(session[:user_id]) %>
         <% end -%>
     </div>
+</div>
+<div class="Venue-detailsPage">
     <h2 class="Venue-name page-title">
         <%= @venue.name %>
     </h2>

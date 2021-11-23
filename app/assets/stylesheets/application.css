@@ -192,3 +192,9 @@ h1
     height: 300px;
     width: 300px;
 }
+
+.header
+{
+    margin-right: 15px;
+    margin-left: 15px;
+}

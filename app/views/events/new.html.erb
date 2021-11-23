@@ -3,6 +3,15 @@
 <% flash.each do |type, msg| %>
   <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
 <% end %>
+<div class="header">
+  <%= form_tag sessions_path, :method => :delete do %>
+    <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
+  <% end %>
+
+  <div class="top-links">
+    <%= link_to "My Dashboard", venue_admin_path(session[:user_id]) %>
+  </div>
+</div>
 
 <%= form_tag events_path, :class => 'form login-form', multipart: true do %>
     <%= label :event, :name, 'Event Name', :class => 'login-form-label' %>
