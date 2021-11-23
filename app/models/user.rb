@@ -6,6 +6,7 @@ class User < ApplicationRecord
     has_many :followings
     has_many :events, :through => :saved_events
     has_many :venues, :through => :saved_venues
+    has_one_attached :profile_image
 
     def self.search(search_text)
         if search_text

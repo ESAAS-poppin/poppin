@@ -4,7 +4,7 @@
   <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
 <% end %>
 
-<%= form_tag users_path, :class => 'form login-form' do %>
+<%= form_tag users_path, :class => 'form login-form', multipart: true do %>
     <%= label :user, :username, 'Username', :class => 'login-form-label' %>
     <%= text_field :user, :username, :class => 'form-control' %><br><br/>
     <%= label :user, :password, 'Password', :class => 'login-form-label' %>
@@ -14,6 +14,8 @@
     <%= label :user, :age, 'Age', :class => 'login-form-label' %>
     <%= number_field :user, :age, :class => 'form-control' %>
     <br/><br/>
+    <%= label :user, :profile_image, 'Profile Picture', :class => 'login-form-label' %>
+    <%= file_field :user, :profile_image %><br/><br/>
     <%= submit_tag 'Create Account', :class => 'btn btn-primary' %>
     <br/><br/>
     <%= link_to 'Back to Login', new_sessions_path, :class => 'link' %>

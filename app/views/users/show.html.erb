@@ -10,6 +10,9 @@
 </div>
 
 <div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>
+    <div class="User-imageWrapper">
+        <%= image_tag(@user.profile_image) if @user.profile_image.attached? %>
+    </div>
 <div class="Lists-container">
     <div class="List-wrapper">
         <h2 class="List-title">Your Saved Events</h2>

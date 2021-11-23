@@ -39,11 +39,13 @@ class EventsController < ApplicationController
       @venue = Venue.find_by(id: params[:venue_id])
       @venue_admin = VenueAdmin.find_by(id: params[:venue_admin_id])
 
-      event_params = params.require(:event).permit(:name, :description, :datetime, :duration, :date)
+      event_params = params.require(:event).permit(:name, :description, :datetime, :duration, :date, :event_image)
       additional_params = {:venue_id => params[:venue_id], :attire => params[:attire], :price_range => params[:price_range],
         :event_type => params[:venue_type], :address => @venue.address, :latitude => @venue.latitude, :longitude => @venue.longitude}
       all_params = event_params.merge(additional_params)
       @event = Event.create(all_params)
+      # puts params
+      # @event.event_image.attach(params[:event][:event_image])
       if @event.valid? 
           redirect_to @event
       end

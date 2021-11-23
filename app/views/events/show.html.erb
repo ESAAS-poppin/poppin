@@ -58,11 +58,9 @@
     </h2>
     <div class="Event-info">
         <div class="Event-infoTop">
-            <%# TODO: Event image %>
             <div class="Event-imageWrapper">
-                image placeholder
+                <%= image_tag(@event.event_image) if @event.event_image.attached? %>
             </div>
-            <%# TODO: Map image %>
             <div class="Event-mapWrapper">
                     <div id="map"></div>
             </div>
