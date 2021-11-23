@@ -9,10 +9,12 @@
   <%= link_to 'See What My Friends are Up To', events_path(:saved_by => User.followed_by(@user.id).map { |u| u.id }.join(','))%>
 </div>
 
-<div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>
+<div class="Dash-topWrapper">
     <div class="User-imageWrapper">
-        <%= image_tag(@user.profile_image) if @user.profile_image.attached? %>
-    </div>
+        <%= image_tag(@user.profile_image, class: 'User-image') if @user.profile_image.attached? %>
+    </div>    
+    <div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>
+</div>
 <div class="Lists-container">
     <div class="List-wrapper">
         <h2 class="List-title">Your Saved Events</h2>
