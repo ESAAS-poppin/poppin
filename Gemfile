@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'rspec-rails'
 gem 'rails-controller-testing'
 gem 'geocoder'
+# For image storage in S3
+gem "aws-sdk-s3", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
