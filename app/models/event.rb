@@ -2,6 +2,7 @@ class Event < ApplicationRecord
     attr_accessor :event
     attr_accessor :venue_name
     has_many :users, :through => :saved_events
+    has_one_attached :event_image
     belongs_to :venue
 
     class << self
