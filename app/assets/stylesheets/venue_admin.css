@@ -18,6 +18,21 @@
     padding: 20px;
  }
 
+ .Admin-eventTop
+ {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+
+ .Admin-title
+ {
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+ }
+
  .login-form-label
 {
     color: black;

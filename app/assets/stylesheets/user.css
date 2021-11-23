@@ -21,3 +21,8 @@
     border-radius: 100px;
     object-fit: cover;
 }
+
+input[type="file"] {
+    color: white;
+    font-family: Verdana, sans-serif;
+}
