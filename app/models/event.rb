@@ -15,6 +15,9 @@ class Event < ApplicationRecord
         def available_attires
             ['business casual', 'black tie', 'casual', 'fancy', 'cowboy', 'costume']
         end
+        def available_dates
+            dates = [Date.current(), Date.current().advance({:days =>  1}), Date.current().advance({:days =>  2}), Date.current().advance({:days =>  3}), Date.current().advance({:days =>  4}), Date.current().advance({:days =>  5}), Date.current().advance({:days =>  6}), Date.current().advance({:days =>  7}), Date.current().advance({:days =>  8}), Date.current().advance({:days =>  9})]
+        end
     end
 
     scope :with_price_range, -> (range) { 
@@ -25,9 +28,14 @@ class Event < ApplicationRecord
       where(event_type: types)
     }
 
+    scope :with_date, -> (dates) {
+        where("date like ?", "%#{dates}%")
+    }
+    
+
     scope :with_attire, -> (attires) { 
         where(attire: attires)
-      }
+    }
 
     scope :search, -> (query) {
         where("name like ?", "%#{query}%")

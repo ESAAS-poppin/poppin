@@ -32,6 +32,9 @@
                     <%= label_tag :filter_attire, "Usual Attire:" %>
                     <%= select_tag :filter_attire, options_for_select(Event.available_attires, params[:filter_attire]), include_blank: true, class: "form-select" %>
 
+                    <%= label_tag :filter_date, "Date:" %>
+                    <%= select_tag :filter_date, options_for_select(Event.available_dates, params[:filter_date]), include_blank: true, class: "form_select" %>
+
                     <%= submit_tag "Go", class: "btn" %>
                 <% end %>
                 <button id="full_map_view">View Full Map</button>
