@@ -104,7 +104,7 @@
         <div class="Admin-wrapper">
             <div class="Admin-eventTop">
                 <div class="Admin-title">Your Events</div>
-                <%= button_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id), class: 'btn create-event-button' %>
+                <%= link_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id), class: 'btn create-event-button' %>
             </div>
             <div class="List-content">
                 <div class="Search-tabs">

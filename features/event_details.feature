@@ -39,7 +39,7 @@ Background: events in database
 
 Scenario: go to events list page from event details page
   When I go to the "Happy Hour" event details page
-  And I follow "All Events"
+  And I follow "Search Events"
   Then I should be on the events list page
 
 Scenario: see which friends are attending the event
