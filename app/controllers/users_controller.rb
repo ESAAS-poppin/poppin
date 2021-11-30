@@ -9,6 +9,25 @@ class UsersController < ApplicationController
         @user = User.new
     end 
 
+    def edit
+      @user = User.find(session[:user_id])
+    end 
+
+    def update
+      user_params = params.require(:user).permit(:username, :password, :email, :age)
+      User.find(params[:id]).update(user_params)
+
+      image_param = params.require(:user).permit(:profile_image)
+      if not image_param[:profile_image].blank?
+        @user = User.find(params[:id])
+        @user.profile_image.purge
+        @user.profile_image.attach(image_param[:profile_image])
+      end
+
+      flash[:notice] = "Successfully updated profile information."
+      redirect_to @user
+    end
+
     def show
        past = params[:past]
        @user = current_user
@@ -26,6 +45,7 @@ class UsersController < ApplicationController
     end
 
     def create
+        puts(params)
         tmp = params.require(:user).permit(:username, :password, :email, :age, :profile_image)
         if tmp[:username].nil? or tmp[:username].empty?
           flash[:notice] = "Invalid Username."

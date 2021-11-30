@@ -10,12 +10,17 @@
         <%= link_to 'See What My Friends are Up To', events_path(:saved_by => User.followed_by(@user.id).map { |u| u.id }.join(','))%>
     </div>
 </div>
+<br>
+<% flash.each do |type, msg| %>
+    <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
+<% end %>
 
 <div class="Dash-topWrapper">
     <div class="User-imageWrapper">
         <%= image_tag(@user.profile_image, class: 'User-image') if @user.profile_image.attached? %>
     </div>    
     <div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>
+    <%= link_to 'Edit Profile', edit_user_path(@user) %>
 </div>
 <div class="Lists-container">
     <div class="List-wrapper">
