@@ -132,7 +132,10 @@
                     <div class="Event-price Event-detail">
                         <%= "Price Range: #{@event.price_range}" %>
                     </div>
-                    <button id="edit-event-button">Edit</button>
+                    
+                    <% if session[:user_id] != nil and session[:user_id] == @venue_admin[:id] %>
+                        <button id="edit-event-button">Edit</button>
+                    <% end %>
                     <% if session[:user_id] != nil and User.is_event_saved?(session[:user_id], @event.id) %>
                         <%= button_to "Remove saved event", unsave_event_path(:id => session[:user_id], :event_id => @event.id), method: "delete", class:'btn Save-button' %>
                     <% else %>
