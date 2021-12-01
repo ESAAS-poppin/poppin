@@ -2,3 +2,24 @@
 {
     margin: 20px;
 }
+
+.edit-button-wrapper {
+    height: 30px;
+    width: 110px;
+    text-align: center;
+    background-color: yellow;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin-left: 20px;
+}
+
+.edit-button {
+    outline: none;
+    border: none;
+    color: #165659;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 30px;
+}
