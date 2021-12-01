@@ -100,5 +100,24 @@ describe EventsController , :type => :controller do
         post :create, params: { event: {name: "Trivia Night", description: "trivia"}, venue_id: 1 }
         expect(response).to redirect_to("/events/1")
       end
-  end
+    end
+
+    describe 'Update Event', type: :controller do
+      before(:each) do
+        testUsr = VenueAdmin.create(username: 'admin_user', password: 'pass', email: 'email@email.com')
+        session[:user_id] = testUsr.id
+        ven = Venue.create(name:'Dave and Busters', venue_type: 'bar', price_range: '$$', venue_admin_id: 1)
+        evt = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+      end
+
+      it 'updates venue information' do
+        patch :update, params: { id: 1, event:{ name: "Dancing2" }, venue_id: 1 }
+        expect(Event.find(1).name).to eq('Dancing2')
+      end
+
+      it 'redirects to Venue Admin Dashboard' do
+        patch :update, params: { id: 1, event:{ name: "Dancing2" }, venue_id: 1 }
+        expect(response).to redirect_to("/events/1")
+      end
+    end
 end
