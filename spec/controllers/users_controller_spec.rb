@@ -56,6 +56,20 @@ describe UsersController, :type => :controller do
         post :update, params: { user: {username: "updated", password: "updated"}, id: user.id }
         expect(response).to redirect_to(user_path(user.id))
       end
+
+      it "update profile image" do
+        user = User.create(username:'test', password: 'test', email: 'test@test.com', age: 24)
+        session[:user_id] = user.id
+        session[:type] = 'user'
+        expect(session).to include(:user_id)
+        expect(session).to include(:type)
+
+        @file = fixture_file_upload('../grey_profile.png', 'image/png')
+
+        post :update, params: { user: {username: "updated", password: "updated", profile_image: @file}, id: user.id }
+        expect(response).to redirect_to(user_path(user.id))
+      end
+
     end
 
     describe "GET users page" do
