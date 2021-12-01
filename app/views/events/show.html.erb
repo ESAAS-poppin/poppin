@@ -115,7 +115,7 @@
                             <%= link_to 'Back to Dashboard', venue_admin_path(id: @venue_admin[:id]), :class => 'link' %>
                         <% end %>
                     <% end %>
-                    <button id="cancel-update-event-button">Cancel</button>
+                    <button class="btn cancel-edit-btn" id="cancel-update-event-button">Cancel</button>
                 </div>
                 <div id="event-details-container">
                     <div class="Event-description Event-detail">
@@ -144,7 +144,7 @@
                     </div>
                     
                     <% if session[:user_type] == 'venue_admin' %>
-                        <button id="edit-event-button">Edit</button>
+                        <button class="btn edit-event-btn" id="edit-event-button">Edit</button>
                     <% end %>
                     <% if session[:user_id] and User.is_event_saved?(session[:user_id], @event.id) %>
                         <%= button_to "Remove saved event", unsave_event_path(:id => session[:user_id], :event_id => @event.id), method: "delete", class:'btn Save-button' %>
