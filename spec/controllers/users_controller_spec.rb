@@ -40,6 +40,38 @@ describe UsersController, :type => :controller do
         end
     end
 
+    describe "check edit/update" do
+      it "should render edit page" do
+        get :edit, :params => { :id => 1}
+        expect(response).to render_template("users/edit")
+      end
+
+      it "update existing user" do
+        user = User.create(username:'test', password: 'test', email: 'test@test.com')
+        session[:user_id] = user.id
+        session[:type] = 'user'
+        expect(session).to include(:user_id)
+        expect(session).to include(:type)
+
+        post :update, params: { user: {username: "updated", password: "updated"}, id: user.id }
+        expect(response).to redirect_to(user_path(user.id))
+      end
+
+      it "update profile image" do
+        user = User.create(username:'test', password: 'test', email: 'test@test.com', age: 24)
+        session[:user_id] = user.id
+        session[:type] = 'user'
+        expect(session).to include(:user_id)
+        expect(session).to include(:type)
+
+        @file = fixture_file_upload('../grey_profile.png', 'image/png')
+
+        post :update, params: { user: {username: "updated", password: "updated", profile_image: @file}, id: user.id }
+        expect(response).to redirect_to(user_path(user.id))
+      end
+
+    end
+
     describe "GET users page" do
       before(:each) do
         User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)

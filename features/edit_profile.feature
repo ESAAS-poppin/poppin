@@ -1,8 +1,8 @@
-Feature: Dashboard Page rendering and functionality
+Feature: Edit Profile Page rendering and functionality
 
   As an existing user of the site
   After I log into my account
-  I should see my saved events and venues
+  I be able to update my profile information
 
 Background: users in database
   Given the following users exist:
@@ -33,31 +33,18 @@ Background: users in database
 
   And I am logged in to "caseyo"
 
-Scenario: Renders the dashboard page
-  Given I am on the "caseyo" dashboard page
+Scenario: Renders the edit profile page
+  Given I am on the "caseyo" edit profile page
+  Then I should see "Edit Your Profile Information"
+
+Scenario: Cancel Update Profile
+  Given I am on the "caseyo" edit profile page
+  When I follow "Cancel"
   Then I should see "caseyo's Dashboard"
-  Then I should see "Your Saved Events"
-  Then I should see "Your Favorite Venues"
-  Then I should see "Sports Bar"
-  And I should see "Happy Hour"
+  Then I should be on the "caseyo" user dashboard
 
-Scenario: Sign out of my account
-  Given I am on the "caseyo" dashboard page
-  When I follow "Past Events"
-  Then I should see "Pitcher Night"
-
-Scenario: Click to event list
-  Given I am on the "caseyo" dashboard page
-  When I follow "Search Events"
-  Then I should be on the events list page
-
-Scenario: Sign out of my account
-  Given I am on the "caseyo" dashboard page
-  When I press "Sign Out"
-  Then I should be on the login page
-  Then I should see "You have signed out"
-  
-Scenario: Navigate to edit profile
-  Given I am on the "caseyo" dashboard page
-  When I follow "Edit Profile"
-  Then I should be on the "caseyo" edit profile page
+Scenario: Update Username
+  Given I am on the "caseyo" edit profile page
+  When I fill in "Username" with "newusername"
+  And I press "Update Profile"
+  Then I should see "newusername's Dashboard"
