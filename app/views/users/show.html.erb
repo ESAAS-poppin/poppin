@@ -20,8 +20,10 @@
         <%= image_tag(@user.profile_image, class: 'User-image') if @user.profile_image.attached? %>
         <%= image_tag("user-icon.png", class: 'User-image') if !@user.profile_image.attached? %>
     </div>    
-    <div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>
-    <%= link_to 'Edit Profile', edit_user_path(@user) %>
+    <div>
+        <div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>
+        <div class="edit-button-wrapper"><%= link_to 'Edit Profile', edit_user_path(@user), class:"edit-button" %></div>
+    </div>
 </div>
 <div class="Lists-container">
     <div class="List-wrapper">

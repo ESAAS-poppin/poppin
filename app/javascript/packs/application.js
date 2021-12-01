@@ -35,11 +35,16 @@ window.initMultiMapPage = function InitMultiMap(events) {
     });
     var infowindow = new google.maps.InfoWindow();
     var marker, i;
+    let marker_positions = []
     for (i = 0; i < events.length; i++) {
+        if (marker_positions.includes(events[i][2].toString() + "," + events[i][3].toString()))  {
+            continue;
+        }
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(events[i][2], events[i][3]),
             map: map
         });
+        marker_positions.push(events[i][2].toString() + "," + events[i][3].toString())
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {
                 infowindow.setContent(events[i][0] +" @ "+ events[i][1]);
