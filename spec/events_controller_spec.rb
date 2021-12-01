@@ -3,13 +3,14 @@ require 'spec_helper'
 
 describe EventsController , :type => :controller do
     describe 'Events Index', type: :controller do
-        it 'returns all events' do
+        it 'returns all events with date >= current' do
           testUsr = User.new(username: 'test_user_123')
           login(testUsr)
-          evts = [Event.create(name:'Dancing', date:'2021-01-01'), Event.create(name:'Litness', date:'2021-10-01')]
-          Event.stub(:all).and_return(evts)
+          evt1 = Event.create(name:'Dancing', date:'2021-01-01');
+          evt2 = Event.create(name:'Litness', date:'2021-10-01');
+          #Event.stub(:all).and_return(evts)
           get :index
-          expect(assigns(:events)).to eq evts
+          expect(assigns(:events)).not_to include(evt1)
          end
 
          it 'returns events saved by accounts that the user follows' do

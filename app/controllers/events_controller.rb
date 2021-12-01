@@ -77,7 +77,7 @@ class EventsController < ApplicationController
     private
 
     def filter_events
-      @events = Event.all
+      @events = Event.where("date >= :cur_date", cur_date: Time.current)
       @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
       @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
       @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present? 
