@@ -44,8 +44,6 @@ class EventsController < ApplicationController
         :event_type => params[:venue_type], :address => @venue.address, :latitude => @venue.latitude, :longitude => @venue.longitude}
       all_params = event_params.merge(additional_params)
       @event = Event.create(all_params)
-      # puts params
-      # @event.event_image.attach(params[:event][:event_image])
       if @event.valid? 
           redirect_to @event
       end
