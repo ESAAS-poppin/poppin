@@ -13,9 +13,9 @@ Background: events in database
 
   Given the following events exist:
   | name            | price_range |     date     | venue_id | event_type   | attire  |
-  | Pitcher Night   |      $$     |   2021-05-25 | 1        | cheap drinks | casual  |
-  | Happy Hour      |      $      |   2021-06-25 | 2        | cheap drinks | casual  |
-  | Halloween Party |     $$$     |   2021-10-31 | 3        | party        | costume |
+  | Pitcher Night   |      $$     |   2022-05-25 | 1        | cheap drinks | casual  |
+  | Happy Hour      |      $      |   2022-06-25 | 2        | cheap drinks | casual  |
+  | Halloween Party |     $$$     |   2022-10-31 | 3        | party        | costume |
 
   And I am logged in
 
