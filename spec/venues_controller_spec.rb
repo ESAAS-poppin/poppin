@@ -11,6 +11,20 @@ describe VenuesController do
           get :index
           expect(assigns(:venues)).to eq venues
          end
+
+         it 'returns venues saved by accounts that the user follows' do
+          user_1 = User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+          user_2 = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+          Following.create(user_id: 1, following_user_id: 2)
+          venue_1 = Venue.create(name:'Dave and Busters')
+          SavedVenue.create(user_id: 2, venue_id: 1)
+
+          session[:user_id] = 1
+          expect(session).to include(:user_id)
+  
+          get :index, :params => { :saved_by => [user_2] }
+          expect(assigns(:venues)).to eq([venue_1])
+         end
     end
     describe 'Venue mapview', type: :controller do
       it 'gets correct venues to display' do

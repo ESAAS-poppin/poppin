@@ -75,11 +75,6 @@
         <div class="Event-infoBottom">
             <div class="Event-details info-bar">
                 <div id='edit-event-form'>
-<%
-=begin%>
-  TODO: UPDATE CSS CLASSES
-<%
-=end%>
                     <%= form_tag event_path(:id => @event.id), :class => 'form login-form', :method => :patch do %>
                         <%= label :event, :name, 'Event Name', :class => 'login-form-label' %>
                         <%= text_field :event, :name, :class => 'form-control' %><br><br/>
@@ -153,7 +148,6 @@
                     <% end %>
                 </div>
             </div>
-            <%# TODO: Friends section %>
             <div class="Event-friendsWrapper info-bar">
                 <% if @friends_who_saved.length() > 0 %>
                     <div class="Event-friendsTitle">
