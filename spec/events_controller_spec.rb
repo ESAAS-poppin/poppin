@@ -112,7 +112,9 @@ describe EventsController , :type => :controller do
       end
 
       it 'updates venue information' do
-        patch :update, params: { id: 1, event:{ name: "Dancing2" }, venue_id: 1 }
+        @file = fixture_file_upload('grey_profile.png', 'image/png')
+
+        patch :update, params: { id: 1, event:{ name: "Dancing2", image: @file }, venue_id: 1 }
         expect(Event.find(1).name).to eq('Dancing2')
       end
 
