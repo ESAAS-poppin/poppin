@@ -98,12 +98,17 @@
                         <%= select_tag :price_range, options_for_select( Event.available_price_ranges, "$")  %><br><br/>
 
                         <%= hidden_field_tag :venue_id, @venue[:id]  %>
-                        <%= hidden_field_tag :venue_admin_id, @venue_admin[:id]  %>
+                        <% if @venue_admin != nil %>
+                            <%= hidden_field_tag :venue_admin_id, @venue_admin[:id]  %>
+                        <% end %>
+                        
 
                         <br/><br/>
                         <%= submit_tag 'Update Event', :class => 'btn btn-primary' %>
                         <br/><br/>
-                        <%= link_to 'Back to Dashboard', venue_admin_path(id: @venue_admin[:id]), :class => 'link' %>
+                        <% if @venue_admin != nil %>
+                            <%= link_to 'Back to Dashboard', venue_admin_path(id: @venue_admin[:id]), :class => 'link' %>
+                        <% end %>
                     <% end %>
                     <button id="cancel-update-event-button">Cancel</button>
                 </div>
@@ -133,10 +138,10 @@
                         <%= "Price Range: #{@event.price_range}" %>
                     </div>
                     
-                    <% if session[:user_id] != nil and session[:user_id] == @venue_admin[:id] %>
+                    <% if session[:user_type] == 'venue_admin' %>
                         <button id="edit-event-button">Edit</button>
                     <% end %>
-                    <% if session[:user_id] != nil and User.is_event_saved?(session[:user_id], @event.id) %>
+                    <% if session[:user_id] and User.is_event_saved?(session[:user_id], @event.id) %>
                         <%= button_to "Remove saved event", unsave_event_path(:id => session[:user_id], :event_id => @event.id), method: "delete", class:'btn Save-button' %>
                     <% else %>
                         <%= button_to "Save event", save_event_path(:id => session[:user_id], :event_id => @event.id), method: "put", class: 'btn Save-button' %>
