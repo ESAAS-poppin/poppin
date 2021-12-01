@@ -18,6 +18,7 @@
 <div class="Dash-topWrapper">
     <div class="User-imageWrapper">
         <%= image_tag(@user.profile_image, class: 'User-image') if @user.profile_image.attached? %>
+        <%= image_tag("user-icon.png", class: 'User-image') if !@user.profile_image.attached? %>
     </div>    
     <div>
         <div class="Dashboard-title page-title"><%= @user.username %>'s Dashboard</div>

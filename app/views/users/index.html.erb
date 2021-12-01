@@ -29,7 +29,11 @@
                     <% @users.each do |user| %>
                         <tr class="List-row" border="1">
                             <td class="List-item item-friends">
-                                <%="#{user.username}"%>
+                                <div class="friends-info">
+                                    <%= image_tag(user.profile_image, class: 'User-icon') if user.profile_image.attached? %>
+                                    <%= image_tag("user-icon.png", class: 'User-icon') if !user.profile_image.attached? %>
+                                    <div class="friends-username"><%="#{user.username}"%></div>
+                                </div>
                                 <!--  TODO: maybe check if signed in -->
                                 <% if session[:user_id] != nil and User.follows?(session[:user_id], user.id) %>
                                   <%= button_to "Unfollow", unfollow_path(:id => session[:user_id], :following_id => user.id), method: "delete", class: "btn" %>

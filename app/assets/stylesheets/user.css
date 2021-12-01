@@ -9,6 +9,16 @@
     justify-content: space-between;
 }
 
+.friends-info
+{
+    display: flex;
+}
+
+.friends-username
+{
+    padding: 10px 0px 0px 10px;
+}
+
 .Dash-topWrapper
 {
     display: flex;

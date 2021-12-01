@@ -1,3 +1,7 @@
+
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+<% end %>
 <div class="header">
     <%= form_tag sessions_path, :method => :delete do %>
         <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
@@ -60,7 +64,8 @@
                                 <% end -%>
                                 <div class="friends-who-saved-container">
                                     <% @events_to_friends_map[event].each do |friend| %>
-                                        <%= image_tag(friend.profile_image, class: 'User-icon') if friend.profile_image.attached? %>
+                                        <%= image_tag(friend.profile_image, class: 'User-icon', title: friend.username) if friend.profile_image.attached? %>
+                                        <%= image_tag("user-icon.png", class: 'User-icon', title: friend.username) if !friend.profile_image.attached? %>
                                     <% end %>
                                 </div>
                                 
