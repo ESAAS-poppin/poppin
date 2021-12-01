@@ -4,6 +4,7 @@ class EventsController < ApplicationController
     
 
     def index
+      @events_to_friends_map = @events.map { |event| [event, User.followed_by(session[:user_id]).that_saved_event(event.id)] }.to_h
     end
 
     def display_full_map

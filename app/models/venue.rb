@@ -32,4 +32,9 @@ class Venue < ApplicationRecord
     scope :search, -> (query) {
         where("name like ?", "%#{query}%")
     }
+
+    scope :saved_by, -> (users) {
+        saved_venues = SavedVenue.where(user_id: users)
+        where(id: saved_venues.map {|venue| venue.venue_id})
+    }
 end

@@ -3,6 +3,7 @@ class VenuesController < ApplicationController
     before_action :filter_venues, only: [:index, :venue_map_view]
 
     def index
+      @venues_to_friends_map = @venues.map { |venue| [venue, User.followed_by(session[:user_id]).that_saved_venue(venue.id)] }.to_h
     end
 
     def venue_map_view
@@ -28,6 +29,12 @@ class VenuesController < ApplicationController
           end
         else
           @image_url = nil
+        end
+
+        if session and session[:user_id]
+          @friends_who_saved = User.followed_by(session[:user_id]).that_saved_venue(@venue.id)
+        else
+          @friends_who_saved = []
         end
       end
     end
@@ -69,6 +76,7 @@ class VenuesController < ApplicationController
       @venues = @venues.with_venue_type(params[:filter_venue_type]) if params[:filter_venue_type].present?      
       @venues = @venues.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
       @venues = @venues.search(params[:search]) if params[:search].present?
+      @venues = @venues.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end
   end
   
