@@ -26,6 +26,8 @@
 .Event-image
 {
     height: 300px;
+    width: 300px;
+    object-fit: cover;
 }
 
 .Event-mapWrapper

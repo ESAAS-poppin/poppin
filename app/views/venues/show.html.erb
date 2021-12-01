@@ -30,12 +30,9 @@
     </h2>
     <div class="Venue-info">
         <div class="Venue-infoTop">
-            <% # TODO: Venue image %>
             <div class="Venue-imageWrapper">
                 <% if not @image_url.nil? %>
-                    <%= image_tag @image_url %>
-                <% else %>
-                    No Photo Available
+                    <%= image_tag @image_url, class: 'Event-image' %>
                 <% end %>
             </div>
             <% # TODO: Map image %>

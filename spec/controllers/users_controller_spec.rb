@@ -64,7 +64,7 @@ describe UsersController, :type => :controller do
         expect(session).to include(:user_id)
         expect(session).to include(:type)
 
-        @file = fixture_file_upload('../grey_profile.png', 'image/png')
+        @file = fixture_file_upload('grey_profile.png', 'image/png')
 
         post :update, params: { user: {username: "updated", password: "updated", profile_image: @file}, id: user.id }
         expect(response).to redirect_to(user_path(user.id))
