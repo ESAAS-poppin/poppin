@@ -63,28 +63,51 @@
                     <%= button_to "Save bar", save_venue_path(:id => session[:user_id], :venue_id => @venue.id), method: "put", class: 'btn Save-button' %>
                 <% end %>
             </div>
-            <div class="Venue-eventsWrapper info-bar">
-                <% if @venue_events.length() > 0 %>
-                    <div class="Venue-eventsTitle">
-                        Upcoming events:
+            <div class="Venue-friendsWrapper info-bar"> 
+                <% if @friends_who_saved.length() > 0 %>
+                    <div class="Venue-friendsTitle">
+                        My friends who saved:
                     </div>
-                    <table class="List-table table table-striped col-md-12" id="events">
+                    <table class="List-table table table-striped col-md-12" id="venues">
                         <tbody>
-                            <% @venue_events.each do |event| %>
+                            <% @friends_who_saved.each do |friend| %>
                                 <tr class="List-row" border="1">
                                     <td class="List-item">
-                                        <%= link_to "#{event.name} @ #{event.venue.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                        <%# TODO: Maybe link to user profile (if we want to implement that feature) %>
+                                        <%= friend.username %>
                                     </td>
                                 </tr>
                             <% end %>
                         </tbody>
                     </table>
                 <% else %>
-                    <div class="Venue-eventsTitle">
-                        No upcoming events
+                    <div class="Event-eventsTitle">
+                        No friends have saved
                     </div>         
                 <% end %>
             </div>
+        </div>
+        <div class="Venue-eventsWrapper info-bar">
+            <% if @venue_events.length() > 0 %>
+                <div class="Venue-eventsTitle">
+                    Upcoming events:
+                </div>
+                <table class="List-table table table-striped col-md-12" id="events">
+                    <tbody>
+                        <% @venue_events.each do |event| %>
+                            <tr class="List-row" border="1">
+                                <td class="List-item">
+                                    <%= link_to "#{event.name} @ #{event.venue.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            <% else %>
+                <div class="Venue-eventsTitle">
+                    No upcoming events
+                </div>         
+            <% end %>
         </div>
     </div>
 </div>

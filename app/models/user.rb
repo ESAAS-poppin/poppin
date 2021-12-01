@@ -27,6 +27,11 @@ class User < ApplicationRecord
         where(id: saved_events.map { |saved_event| saved_event.user_id })
     }
 
+    scope :that_saved_venue, -> (venue_id) {
+        saved_venues = SavedVenue.where(venue_id: venue_id)
+        where(id: saved_venues.map { |saved_venue| saved_venue.user_id })
+    }
+
     def self.follow(user_id, following_user_id)
         # TODO: check valid id
         following = Following.find_by(user_id: user_id, following_user_id: following_user_id)

@@ -58,6 +58,12 @@
                                 <% else -%>
                                     <%= link_to "#{event.name}, #{event.date.strftime("%B %-d, %Y %H:%M")}", event_path(event) %>
                                 <% end -%>
+                                <div class="friends-who-saved-container">
+                                    <% @events_to_friends_map[event].each do |friend| %>
+                                        <%= " #{friend.username}" %>
+                                    <% end %>
+                                </div>
+                                
                             </td>
                         </tr>
                     <% end %>
