@@ -32,7 +32,7 @@
         var filter_price_range = document.querySelector('#filter_price_range').value;
         var filter_attire = document.querySelector('#filter_attire').value;
 
-        console.log({search,filter_date,filter_event_type, filter_price_range, filter_attire})
+        console.log({search,filter_date,filter_event_type,filter_price_range,filter_attire})
 
         var pathString = `/display_full_map?search=${search}&filter_attire=${filter_attire}&filter_event_type=${filter_event_type}&filter_price_range=${filter_price_range}&filter_date=${filter_date}`;
         var protocol = window.location.protocol + '//';
@@ -42,7 +42,27 @@
     });
     });
 
-</script>
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function($) {
+    $( "#venue_map_view" ).click(function() {
+  
+        var search = document.querySelector('#search').value;
+        var filter_venue_type = document.querySelector('#filter_venue_type').value;
+        var filter_price_range = document.querySelector('#filter_price_range').value;
+        var filter_attire = document.querySelector('#filter_attire').value;
+
+        console.log({search,filter_venue_type,filter_price_range,filter_attire})
+
+        var pathString = `/venue_map_view?search=${search}&filter_attire=${filter_attire}&filter_venue_type=${filter_venue_type}&filter_price_range=${filter_price_range}`;
+        var protocol = window.location.protocol + '//';
+        var host = window.location.host;
+        window.location.href = protocol + host + pathString
+
+    });
+    });
+
+    </script>
   </body>
   
 </html>

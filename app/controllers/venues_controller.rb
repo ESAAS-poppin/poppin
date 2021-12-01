@@ -1,14 +1,13 @@
 class VenuesController < ApplicationController
     before_action :require_login
+    before_action :filter_venues, only: [:index, :venue_map_view]
+
     def index
-      @venues = Venue.all
-      @venues = @venues.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
-      @venues = @venues.with_venue_type(params[:filter_venue_type]) if params[:filter_venue_type].present?      
-      @venues = @venues.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
-      @venues = @venues.search(params[:search]) if params[:search].present?
     end
 
-    
+    def venue_map_view
+      @venues = @venues.map{|venue| [venue.name, venue.address, venue.latitude, venue.longitude]}
+    end
 
     def show
       id = params[:id]
@@ -60,6 +59,16 @@ class VenuesController < ApplicationController
       flash[:notice] = "Successfully updated venue information."
       redirect_to venue_admin_path(@venue_admin)
       # TODO error check
-  end
+    end
+
+    private
+
+    def filter_venues
+      @venues = Venue.all
+      @venues = @venues.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
+      @venues = @venues.with_venue_type(params[:filter_venue_type]) if params[:filter_venue_type].present?      
+      @venues = @venues.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
+      @venues = @venues.search(params[:search]) if params[:search].present?
+    end
   end
   

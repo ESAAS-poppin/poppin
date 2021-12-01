@@ -2,19 +2,19 @@
     <meta name='turbolinks-visit-control' content='reload'>
     <script>
     document.addEventListener("DOMContentLoaded", function(){
-        initMultiMapPage(<%= raw @events %>)
+        initMultiMapPage(<%= raw @venues %>)
 
     });
     </script>
 <% end %>
-<h2 class="page-title login-title">Events Map View</h2>
+<h2 class="page-title login-title">Venues Map View</h2>
 <% if session[:user_type] == 'user' -%>
     <%= link_to "My Dashboard", user_path(session[:user_id]) %>
 <% else -%>
     <%= link_to "My Dashboard", venue_admin_path(session[:user_id]) %>
 <% end -%>
 <div class="Events-mapWrapper">
-    <div class="Events-map">
+    <div class="Venues-map">
         <div id="map" /div>
     </div>
 </div>
