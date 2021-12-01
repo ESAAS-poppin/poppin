@@ -1,9 +1,37 @@
 <% provide :head_tags do %>
     <meta name='turbolinks-visit-control' content='reload'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function(){
         initMap(<%=@event.latitude%>, <%=@event.longitude%>)
     });
+
+    var ready;
+    ready = function() {
+        setEditing(false);
+
+        $("#edit-event-button").on("click", function(){
+            setEditing(true);
+        });
+        $("#cancel-update-event-button").on("click", function(){
+            setEditing(false);
+        });
+
+        function setEditing(status) {
+            console.log(status);
+            if (status) {
+                document.getElementById("edit-event-form").style.display = "block";
+                document.getElementById("event-details-container").style.display = "none";
+            } else {
+                document.getElementById("edit-event-form").style.display = "none";
+                document.getElementById("event-details-container").style.display = "block";
+            }
+        }
+
+    };
+
+    $(document).ready(ready);
+    $(document).on("page:load", ready);
     </script>
 <% end %>
 
@@ -41,23 +69,84 @@
         </div>
         <div class="Event-infoBottom">
             <div class="Event-details info-bar">
-                <div class="Event-description Event-detail">
-                    <%= @event.name %>
+                <div id='edit-event-form'>
+<%
+=begin%>
+  TODO: UPDATE CSS CLASSES
+<%
+=end%>
+                    <%= form_tag event_path(:id => @event.id), :class => 'form login-form', :method => :patch do %>
+                        <%= label :event, :name, 'Event Name', :class => 'login-form-label' %>
+                        <%= text_field :event, :name, :class => 'form-control' %><br><br/>
+                        
+                        <%= label :event, :description, 'Description', :class => 'login-form-label' %>
+                        <%= text_field :event, :description, :class => 'form-control' %><br><br/>
+                        
+                        <%= label :type, 'Type', :class => 'login-form-label' %>
+                        <%= select_tag :venue_type, options_for_select( Event.available_event_types, "bar")  %><br><br/>
+
+                        <%= label :event, :date, 'Datetime', :class => 'login-form-label' %>
+                        <%= datetime_select :event, :date, :ampm => true, :minute_step => 15 %><br><br/>
+                        
+                        <%= label :event, :duration, 'Duration (minutes)', :class => 'login-form-label' %>
+                        <%= number_field :event, :duration, :class => 'form-control' %><br><br/>
+
+                        <%= label :attire, 'Attire', :class => 'login-form-label' %>
+                        <%= select_tag :attire, options_for_select( Event.available_attires, "casual")  %><br><br/>
+
+                        <%= label :price, 'Price Range', :class => 'login-form-label' %>
+                        <%= select_tag :price_range, options_for_select( Event.available_price_ranges, "$")  %><br><br/>
+
+                        <%= hidden_field_tag :venue_id, @venue[:id]  %>
+                        <% if @venue_admin != nil %>
+                            <%= hidden_field_tag :venue_admin_id, @venue_admin[:id]  %>
+                        <% end %>
+                        
+
+                        <br/><br/>
+                        <%= submit_tag 'Update Event', :class => 'btn btn-primary' %>
+                        <br/><br/>
+                        <% if @venue_admin != nil %>
+                            <%= link_to 'Back to Dashboard', venue_admin_path(id: @venue_admin[:id]), :class => 'link' %>
+                        <% end %>
+                    <% end %>
+                    <button id="cancel-update-event-button">Cancel</button>
                 </div>
-                <div class="Venue-address Venue-detail">
-                    <%= @event.address %>
+                <div id="event-details-container">
+                    <div class="Event-description Event-detail">
+                        <%= "Event Name: #{@event.name}" %>
+                    </div>
+                    <div class="Event-type Event-detail">
+                        <%= "Event Type: #{@event.event_type}" %>
+                    </div>
+                    <div class="Venue-address Venue-detail">
+                        <%= "Address: #{@event.address}" %>
+                    </div>
+                    <div class="Venue-description Venue-detail">
+                        <%= "Description: #{@event.description}" %>
+                    </div>
+                    <div class="Event-datetime Venue-detail">
+                        <%= "Date: #{@event.date.strftime("%B %-d, %Y %H:%M")}" %>
+                    </div>
+                    <div class="Event-duration Venue-detail">
+                        <%= "Duration: #{@event.duration} minutes"%>
+                    </div>
+                    <div class="Event-attire Event-detail">
+                        <%= "Attire: #{@event.attire}" %>
+                    </div>
+                    <div class="Event-price Event-detail">
+                        <%= "Price Range: #{@event.price_range}" %>
+                    </div>
+                    
+                    <% if session[:user_type] == 'venue_admin' %>
+                        <button id="edit-event-button">Edit</button>
+                    <% end %>
+                    <% if session[:user_id] and User.is_event_saved?(session[:user_id], @event.id) %>
+                        <%= button_to "Remove saved event", unsave_event_path(:id => session[:user_id], :event_id => @event.id), method: "delete", class:'btn Save-button' %>
+                    <% else %>
+                        <%= button_to "Save event", save_event_path(:id => session[:user_id], :event_id => @event.id), method: "put", class: 'btn Save-button' %>
+                    <% end %>
                 </div>
-                <div class="Event-attire Event-detail">
-                    <%= "attire: #{@event.attire}" %>
-                </div>
-                <div class="Event-price Event-detail">
-                    <%= @event.price_range %>
-                </div>
-                <% if session[:user_id] != nil and User.is_event_saved?(session[:user_id], @event.id) %>
-                    <%= button_to "Remove saved event", unsave_event_path(:id => session[:user_id], :event_id => @event.id), method: "delete", class:'btn Save-button' %>
-                <% else %>
-                    <%= button_to "Save event", save_event_path(:id => session[:user_id], :event_id => @event.id), method: "put", class: 'btn Save-button' %>
-                <% end %>
             </div>
             <%# TODO: Friends section %>
             <div class="Event-friendsWrapper info-bar">
