@@ -1,7 +1,7 @@
 <div class="page-title login-title">Edit Your Profile Information</div>
 
         <div id ='edit-user-form'>
-            <%= form_for(@user, html: { multipart: true }) do %>
+            <%= form_for(@user, html: { multipart: true, class:"form login-form" }) do %>
                 <%= label :user, :username, 'Username', :class => 'login-form-label' %>
                 <%= text_field :user, :username, :class => 'form-control' %><br><br/>
 

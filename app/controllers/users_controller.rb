@@ -45,7 +45,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        puts(params)
         tmp = params.require(:user).permit(:username, :password, :email, :age, :profile_image)
         if tmp[:username].nil? or tmp[:username].empty?
           flash[:notice] = "Invalid Username."
