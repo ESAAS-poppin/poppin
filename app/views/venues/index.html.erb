@@ -50,7 +50,7 @@
                                 <%= link_to "#{venue.name}", venue_path(venue) %>
                                 <div class="friends-who-saved-container">
                                     <% @venues_to_friends_map[venue].each do |friend| %>
-                                        <%= " #{friend.username}" %>
+                                        <%= image_tag(friend.profile_image, class: 'User-icon') if friend.profile_image.attached? %>
                                     <% end %>
                                 </div>
                             </td>

@@ -60,7 +60,7 @@
                                 <% end -%>
                                 <div class="friends-who-saved-container">
                                     <% @events_to_friends_map[event].each do |friend| %>
-                                        <%= " #{friend.username}" %>
+                                        <%= image_tag(friend.profile_image, class: 'User-icon') if friend.profile_image.attached? %>
                                     <% end %>
                                 </div>
                                 
