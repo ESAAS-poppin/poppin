@@ -62,3 +62,7 @@
     text-align: right;
     float:right;
 }
+
+input[type="file"].image-input {
+    color: black;
+}

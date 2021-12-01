@@ -63,6 +63,12 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
       @event.update(all_params)
 
+      image_param = params.require(:event).permit(:image)
+      if not image_param[:image].blank?
+        @event.event_image.purge
+        @event.event_image.attach(image_param[:image])
+      end
+
       flash[:notice] = "Successfully updated event information."
       redirect_to @event
       # TODO error check
