@@ -94,7 +94,7 @@
                         <%= label :attire, 'Attire', :class => 'login-form-label' %>
                         <%= select_tag :attire, options_for_select( Event.available_attires, "casual")  %><br><br/>
 
-                        <%= label :price, 'Price', :class => 'login-form-label' %>
+                        <%= label :price, 'Price Range', :class => 'login-form-label' %>
                         <%= select_tag :price_range, options_for_select( Event.available_price_ranges, "$")  %><br><br/>
 
                         <%= hidden_field_tag :venue_id, @venue[:id]  %>
