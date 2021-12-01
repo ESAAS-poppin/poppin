@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        tmp = params.require(:user).permit(:username, :password, :email, :age)
+        tmp = params.require(:user).permit(:username, :password, :email, :age, :profile_image)
         if tmp[:username].nil? or tmp[:username].empty?
           flash[:notice] = "Invalid Username."
           redirect_to new_user_path

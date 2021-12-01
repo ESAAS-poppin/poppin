@@ -1,9 +1,18 @@
+<div class="header">
+    <%= form_tag sessions_path, :method => :delete do %>
+        <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
+    <% end %>
+
+    <div class="top-links">
+        <% if session[:user_type] == 'user' -%>
+            <%= link_to "My Dashboard", user_path(session[:user_id]) %>
+        <% else -%>
+            <%= link_to "My Dashboard", venue_admin_path(session[:user_id]) %>
+        <% end -%>
+        <%= link_to 'Find Friends', users_path %>
+    </div>
+</div>
 <div class="List-wrapper">
-    <% if session[:user_type] == 'user' -%>
-        <%= link_to "My Dashboard", user_path(session[:user_id]) %>
-    <% else -%>
-        <%= link_to "My Dashboard", venue_admin_path(session[:user_id]) %>
-    <% end -%>
     <h2 class="List-title page-title">All Venues</h2>
     <div class="List-content">
         <div class="Search-tabs">
@@ -31,7 +40,7 @@
 
                     <%= submit_tag "Go", class: "btn" %>
                 <% end %>
-                <button id="venues_map_view">View Venues Map</button>
+                <button class="btn map-button" id="venues_map_view">View Venues Map</button>
             </div>  
             <table class="List-table table table-striped col-md-12" id="venues">
                 <tbody>

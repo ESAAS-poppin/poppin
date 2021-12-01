@@ -36,13 +36,10 @@
     </script>
 <% end %>
 
-
-<%= form_tag sessions_path, :method => :delete do %>
-    <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
-<% end %>
-
-<div class="top-links">
-  <%= link_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id) %>
+<div class="header">
+    <%= form_tag sessions_path, :method => :delete do %>
+        <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
+    <% end %>
 </div>
 
 <div class="Dashboard-title page-title"><%= @venue.name %>'s Dashboard</div>
@@ -105,7 +102,10 @@
 
     <div class="Admin-container">
         <div class="Admin-wrapper">
-            <h2 class="List-title">Your Events</h2><br>
+            <div class="Admin-eventTop">
+                <div class="Admin-title">Your Events</div>
+                <%= link_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id), class: 'btn create-event-button' %>
+            </div>
             <div class="List-content">
                 <div class="Search-tabs">
                     <div class="Search-tab <% if @past %>highlight<% end %>">

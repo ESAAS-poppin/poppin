@@ -66,5 +66,5 @@ Scenario: login as venue admin with invalid account stays on login page
 
 Scenario: navigate to the create venue admin account page
   Given I am on the login page
-  When I follow "Create Business Account"
+  When I follow "Create Venue Admin Account"
   Then I should be on the create venue admin account page

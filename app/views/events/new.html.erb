@@ -3,8 +3,17 @@
 <% flash.each do |type, msg| %>
   <%= content_tag(:div, msg, class: "flash flash-#{type}") %>
 <% end %>
+<div class="header">
+  <%= form_tag sessions_path, :method => :delete do %>
+    <%= submit_tag 'Sign Out', :class => 'sign-out btn btn-primary' %>
+  <% end %>
 
-<%= form_tag events_path, :class => 'form login-form' do %>
+  <div class="top-links">
+    <%= link_to "My Dashboard", venue_admin_path(session[:user_id]) %>
+  </div>
+</div>
+
+<%= form_tag events_path, :class => 'form login-form', multipart: true do %>
     <%= label :event, :name, 'Event Name', :class => 'login-form-label' %>
     <%= text_field :event, :name, :class => 'form-control' %><br><br/>
     <%= label :event, :description, 'Description', :class => 'login-form-label' %>
@@ -23,11 +32,13 @@
     <%= label :type, 'Type', :class => 'login-form-label' %>
     <%= select_tag :venue_type, options_for_select( Event.available_event_types, "bar")  %><br><br/>
 
+    <%= label :event, :event_image, 'Event Image', :class => 'login-form-label' %>
+    <%= file_field :event, :event_image %>
+
     <%= hidden_field_tag :venue_id, @venue_id  %>
     <%= hidden_field_tag :venue_admin_id, @venue_admin_id  %>
 
     <br/><br/>
     <%= submit_tag 'Create Event', :class => 'btn btn-primary' %>
     <br/><br/>
-    <%= link_to 'Back to Dashboard', venue_admin_path(id: @venue_admin_id), :class => 'link' %>
 <% end %>

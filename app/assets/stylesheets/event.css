@@ -23,11 +23,9 @@
     margin-bottom: 40px;
 }
 
-.Event-imageWrapper
+.Event-image
 {
     height: 300px;
-    width: 300px;
-    background-color: #f3d2fa;
 }
 
 .Event-mapWrapper
@@ -45,4 +43,14 @@
 .button_to
 {
     text-align: center;
+}
+
+.map-button
+{
+    margin-top: 20px;
+}
+
+.edit-event-btn
+{
+    margin-bottom: 20px;
 }
