@@ -12,6 +12,21 @@ describe VenuesController do
           expect(assigns(:venues)).to eq venues
          end
     end
+    describe 'Venue mapview', type: :controller do
+      it 'gets correct venues to display' do
+        user_1 = User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+        user_2 = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+        Following.create(user_id: 1, following_user_id: 2)
+        Venue.create(name:'Dave and Busters')
+        event_1 = Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+        venues_entry = ["Dave and Busters", nil, nil, nil]
+        expected_venues = [venues_entry]
+        session[:user_id] = 1
+        expect(session).to include(:user_id)
+        get :venue_map_view
+        expect(assigns(:venues)).to eq(expected_venues)
+      end
+    end
     describe 'Venue has correct events' do
       it 'venue correctly linked to event' do
         ven = Venue.create(name:'Dave and Busters')

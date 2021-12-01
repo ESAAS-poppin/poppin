@@ -47,3 +47,9 @@
 {
     width: 100%;
 }
+
+.create-event-button
+{
+    text-decoration: none;
+    line-height: 30px;
+}

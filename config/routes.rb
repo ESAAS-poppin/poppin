@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root :to => redirect('/sessions/new')
 
   get 'display_full_map' => 'events#display_full_map'
+  get 'venue_map_view' => 'venues#venue_map_view'
 
   put '/users/:id/follow/:following_id', to: 'users#follow', as: 'follow'
   delete '/users/:id/follow/:following_id', to: 'users#unfollow', as: 'unfollow'

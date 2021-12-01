@@ -18,7 +18,8 @@ class EventsController < ApplicationController
         redirect_to events_path(), :flash => { :error => "Event not found." }
       else
         @event = event
-        puts @event.event_image
+        @venue = Venue.find_by(id: event[:venue_id])
+        @venue_admin = VenueAdmin.find_by(id: @venue[:venue_admin_id])
         if session and session[:user_id]
           @friends_who_saved = User.followed_by(session[:user_id]).that_saved_event(@event.id)
         else
@@ -50,6 +51,21 @@ class EventsController < ApplicationController
       end
     end
 
+    def update
+      @venue = Venue.find_by(id: params[:venue_id])
+      @venue_admin = VenueAdmin.find_by(id: params[:venue_admin_id])
+
+      event_params = params.require(:event).permit(:name, :description, :datetime, :duration, :date)
+      additional_params = {:venue_id => params[:venue_id], :attire => params[:attire], :price_range => params[:price_range],
+        :event_type => params[:venue_type], :address => @venue.address, :latitude => @venue.latitude, :longitude => @venue.longitude}
+      all_params = event_params.merge(additional_params)
+      @event = Event.find(params[:id])
+      @event.update(all_params)
+
+      flash[:notice] = "Successfully updated event information."
+      redirect_to @event
+      # TODO error check
+    end
 
     private
 
@@ -57,7 +73,8 @@ class EventsController < ApplicationController
       @events = Event.all
       @events = @events.with_price_range(params[:filter_price_range]) if params[:filter_price_range].present? 
       @events = @events.with_event_type(params[:filter_event_type]) if params[:filter_event_type].present?      
-      @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present?  
+      @events = @events.with_attire(params[:filter_attire]) if params[:filter_attire].present? 
+      @events = @events.with_date(params[:filter_date]) if params[:filter_date].present?  
       @events = @events.search(params[:search]) if params[:search].present?
       @events = @events.saved_by(params[:saved_by].split(',')) if params[:saved_by] != nil
     end

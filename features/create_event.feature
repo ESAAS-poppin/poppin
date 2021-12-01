@@ -36,5 +36,5 @@ Scenario: create an event
 
 Scenario: navigate back to the venue admin dashboard page
   Given I am on the create event page for venue admin "amityHall"
-  When I follow "Back to Dashboard"
+  When I follow "My Dashboard"
   Then I should be on the "amityHall" venue admin dashboard

@@ -52,50 +52,50 @@
   TODO: UPDATE CSS CLASSES
 <%
 =end%>
-        <div id ='edit-venue-form'>
-            <%= form_tag venue_path(:id => @venue.id), :class => 'form login-form', :method => :patch do %>
-                <%= label :name, 'Business Name', :class => 'login-form-label' %>
-                <%= text_field :venue, :name, :class => 'form-control' %><br><br/>
+            <div id ='edit-venue-form'>
+                <%= form_tag venue_path(:id => @venue.id), :class => 'form login-form', :method => :patch do %>
+                    <%= label :name, 'Business Name', :class => 'login-form-label' %>
+                    <%= text_field :venue, :name, :class => 'form-control' %><br><br/>
 
-                <%= label :address, 'Address', :class => 'login-form-label' %>
-                <%= text_field :venue, :address, :class => 'form-control' %><br><br/>
+                    <%= label :address, 'Address', :class => 'login-form-label' %>
+                    <%= text_field :venue, :address, :class => 'form-control' %><br><br/>
 
-                <%= label :description, 'Description', :class => 'login-form-label' %>
-                <%= text_field :venue, :description, :class => 'form-control' %><br><br/>
+                    <%= label :description, 'Description', :class => 'login-form-label' %>
+                    <%= text_field :venue, :description, :class => 'form-control' %><br><br/>
 
-                <%= label :attire, 'Attire', :class => 'login-form-label' %>
-                <%= select_tag :attire, options_for_select( VenueAdmin.available_attires, "casual")  %><br><br/>
+                    <%= label :attire, 'Attire', :class => 'login-form-label' %>
+                    <%= select_tag :attire, options_for_select( VenueAdmin.available_attires, "casual")  %><br><br/>
 
-                <%= label :price, 'Price', :class => 'login-form-label' %>
-                <%= select_tag :price_range, options_for_select( VenueAdmin.available_price_ranges, "$")  %><br><br/>
+                    <%= label :price, 'Price Range', :class => 'login-form-label' %>
+                    <%= select_tag :price_range, options_for_select( VenueAdmin.available_price_ranges, "$")  %><br><br/>
 
-                <%= label :type, 'Type', :class => 'login-form-label' %>
-                <%= select_tag :venue_type, options_for_select( VenueAdmin.available_venue_types, "bar")  %><br><br/>
-                <br/><br/>
-                <%= submit_tag 'Update Venue', :class => 'btn btn-primary', :id => 'update-venue-button' %>
-            <% end %>
-            <button id="cancel-update-venue-button">Cancel</button>
-        </div>
-        <div id='venue-details-container'>
-            <div class="Venue-description Venue-detail">
-                <%= "Description: #{@venue.description}" %>
+                    <%= label :type, 'Type', :class => 'login-form-label' %>
+                    <%= select_tag :venue_type, options_for_select( VenueAdmin.available_venue_types, "bar")  %><br><br/>
+                    <br/><br/>
+                    <%= submit_tag 'Update Venue', :class => 'btn btn-primary', :id => 'update-venue-button' %>
+                <% end %>
+                <button id="cancel-update-venue-button">Cancel</button>
             </div>
-            <div class="Venue-address Venue-detail">
-                <%= "Address: #{@venue.address}" %>
-            </div>
-            <div class="Venue-attire Venue-detail">
-                <%= "Attire: #{@venue.attire}" %>
-            </div>
-            <div class="Venue-price Venue-detail">
-                <%= "Price Range: #{@venue.price_range}" %>
-            </div>
-            <div class="Venue-type Venue-detail">
-                <%= "Type: #{@venue.venue_type}" %>
-            </div>
-            <div class="Venue-mapWrapper Venue-adminMap">
-                <div id="map"></div>
-            </div>
-            <button id="edit-venue-button">Edit</button>
+            <div id='venue-details-container'>
+                <div class="Venue-description Venue-detail">
+                    <%= "Description: #{@venue.description}" %>
+                </div>
+                <div class="Venue-address Venue-detail">
+                    <%= "Address: #{@venue.address}" %>
+                </div>
+                <div class="Venue-attire Venue-detail">
+                    <%= "Attire: #{@venue.attire}" %>
+                </div>
+                <div class="Venue-price Venue-detail">
+                    <%= "Price Range: #{@venue.price_range}" %>
+                </div>
+                <div class="Venue-type Venue-detail">
+                    <%= "Type: #{@venue.venue_type}" %>
+                </div>
+                <div class="Venue-mapWrapper Venue-adminMap">
+                    <div id="map"></div>
+                </div>
+                <button id="edit-venue-button">Edit</button>
             </div>
         </div>
     </div>
@@ -104,7 +104,7 @@
         <div class="Admin-wrapper">
             <div class="Admin-eventTop">
                 <div class="Admin-title">Your Events</div>
-                <%= button_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id), class: 'btn create-event-button' %>
+                <%= link_to 'Create Event', new_event_path(:venue_id => @venue.id, :venue_admin_id => @venue_admin.id), class: 'btn create-event-button' %>
             </div>
             <div class="List-content">
                 <div class="Search-tabs">
