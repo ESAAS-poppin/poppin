@@ -65,6 +65,20 @@ describe VenuesController do
         get :show, params: { id: ven.id }
         expect(assigns(:venue_events).length()).to eq(1)
       end
+      it 'displays the usernames of accounts that the user follows that have saved this event' do
+        user_1 = User.create(username:'jorger', password: 'password', email: 'jorge@columbia.edu', age:22)
+        user_2 = User.create(username:'caseyo', password: 'password', email: 'casey@columbia.edu', age:22)
+        Following.create(user_id: 1, following_user_id: 2)
+        Venue.create(name:'Dave and Busters')
+        Event.create(name:'Dancing', venue_id:1, date: DateTime.strptime("11/01/2022 17:00", "%m/%d/%Y %H:%M"))
+        SavedVenue.create(user_id: 2, venue_id: 1)
+
+        session[:user_id] = 1
+        expect(session).to include(:user_id)
+
+        get :show, :params => { :id => 1 }
+        expect(assigns(:friends_who_saved)).to eq([user_2])
+      end
       it 'redirects to venues if invalid venue id' do
         testUsr = User.new(username: 'test_user_123')
         login(testUsr)
